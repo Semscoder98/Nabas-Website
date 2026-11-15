@@ -1,0 +1,760 @@
+{% extends 'base.html' %}
+
+{% block title %}Photo Gallery | National Association of Badagry Students (NABAS){% endblock %}
+
+{% block extra_css %}
+<style>
+:root {
+      --primary: #027c57;
+      --primary-light: #03986a;
+      --primary-dark: #014d36;
+      --accent: #f5a623;
+      --accent-hover: #e29415;
+      --surface: #ffffff;
+      --bg-slate: #f8fafc;
+      --border: #e2e8f0;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-accent: 'Caveat', cursive;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-slate);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; border: none; background: none; cursor: pointer; }
+
+    .container {
+      width: 100%;
+      max-width: 1240px !important;
+      margin-inline: auto !important;
+      padding-inline: 1.5rem !important;
+    }
+
+    /* =========================================
+       HERO BANNER (Structured like News Page)
+    ========================================= */
+    .page-hero {
+      background: var(--primary);
+      background-image:
+        radial-gradient(circle at 85% 30%, rgba(3, 152, 106, 0.75) 0%, transparent 60%),
+        linear-gradient(to bottom, rgba(1, 47, 33, 0.92) 0%, rgba(1, 77, 54, 0.98) 100%),
+        url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 4.5rem 0 3.75rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .page-hero-dots {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image: radial-gradient(#f5a623 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .page-hero::after {
+      content: 'Moments & Memories';
+      position: absolute;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-accent);
+      font-size: 8rem;
+      color: rgba(255, 255, 255, 0.035);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .breadcrumb-trail {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #94a3b8;
+      margin-bottom: 12px;
+    }
+
+    .breadcrumb-trail a:hover { color: var(--accent); }
+
+    .hero-heading {
+      font-size: 2.65rem;
+      font-weight: 800;
+      line-height: 1.22;
+      margin-bottom: 12px;
+    }
+
+    .hero-highlight { color: var(--accent); }
+
+    .hero-lead {
+      color: #cbd5e1;
+      max-width: 640px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* =========================================
+       PURE PHOTO GALLERY GRID
+    ========================================= */
+    .gallery-section {
+      padding: 40px 0 60px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 18px;
+      margin-bottom: 48px;
+    }
+
+    .photo-item {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: #01261b;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .photo-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .photo-item:hover img {
+      transform: scale(1.06);
+    }
+
+    /* ON-IMAGE FLOATING OVERLAY (NO BOTTOM TEXT BOXES) */
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(1, 47, 33, 0.94) 0%, rgba(1, 47, 33, 0.35) 55%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .photo-item:hover .photo-overlay,
+    .photo-item:focus-within .photo-overlay {
+      opacity: 1;
+    }
+
+    .overlay-category {
+      align-self: flex-start;
+      background: var(--accent);
+      color: var(--primary);
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 8px;
+    }
+
+    .overlay-desc {
+      font-size: 0.84rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #f1f5f9;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      max-height: 2.8em;
+    }
+
+    /* =========================================
+       PAGINATION CONTROLS
+    ========================================= */
+    .pagination-bar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin: 2.25rem auto 1.5rem;
+      padding: 5px 12px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-sm);
+      width: fit-content;
+      max-width: 90%;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .page-btn {
+      min-width: 32px;
+      height: 32px;
+      padding: 0 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-main);
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .page-btn:hover:not(:disabled) {
+      background: var(--bg-slate);
+      color: var(--primary);
+    }
+
+    .page-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      box-shadow: 0 2px 8px rgba(2, 124, 87, 0.25);
+    }
+
+    .page-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    /* =========================================
+       FULLSCREEN LIGHTBOX VIEWER
+    ========================================= */
+    .lightbox-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(1, 35, 25, 0.97);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lightbox-backdrop.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 1000px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: zoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .lightbox-img-wrapper {
+      max-height: 75vh;
+      max-width: 100%;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      background: #01261b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-img-wrapper img {
+      max-height: 75vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* CAPTION BAR */
+    .lightbox-caption-bar {
+      margin-top: 14px;
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lb-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.8rem;
+    }
+
+    .lb-category-pill {
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+    }
+
+    .lb-counter {
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    .lb-desc {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      font-weight: 500;
+    }
+
+    /* LIGHTBOX CONTROLS */
+    .lb-btn {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .lb-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+      border-color: var(--accent);
+    }
+
+    .lb-close {
+      top: -16px;
+      right: -8px;
+      font-size: 1.5rem;
+    }
+
+    .lb-prev {
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lb-next {
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    .site-footer {
+      background: var(--primary);
+      color: #94a3b8;
+      padding-top: 48px;
+      font-size: 0.85rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 32px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-brand h3 {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .footer-col-title {
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links-list a:hover { color: var(--accent); }
+
+    .social-icons-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .social-icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .social-icon-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+    }
+
+    /* RESPONSIVENESS */
+    @media (max-width: 1100px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 16px; }
+    }
+
+    @media (max-width: 768px) {
+      .desktop-nav-menu, .nav-cta-group { display: none; }
+      .mobile-nav-toggle { display: flex; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .lb-prev { left: 8px; }
+      .lb-next { right: 8px; }
+      .lb-close { top: -12px; right: 0; }
+    }
+
+    @media (max-width: 520px) {
+      .page-hero::after { display: none !important; }
+      .page-hero { padding: 42px 0 44px; }
+      .hero-heading { font-size: 1.85rem; }
+      .gallery-grid { grid-template-columns: 1fr !important; gap: 14px; }
+      /* Reveal overlay slightly on mobile touch devices */
+      .photo-overlay { opacity: 0.92; background: linear-gradient(to top, rgba(1, 47, 33, 0.94) 0%, transparent 80%); }
+      .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+  <!-- HERO BANNER -->
+  <section class="page-hero">
+    <div class="page-hero-dots"></div>
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="breadcrumb-trail">
+        <a href="{% url 'home' %}">Home</a>
+        <span>/</span>
+        <span style="color: var(--accent); font-weight: 700;">Gallery</span>
+      </div>
+      <h1 class="hero-heading">Moments, Memories & <span class="hero-highlight">Impact</span></h1>
+      <p class="hero-lead">Visual archive of conventions, skill bootcamps, and youth empowerment drives across Badagry.</p>
+    </div>
+  </section>
+
+  <!-- GALLERY MAIN SECTION -->
+  <main class="container gallery-section">
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Photos rendered dynamically via JavaScript for pagination support -->
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination-bar" id="paginationBar">
+      <button class="page-btn" id="prevBtn" onclick="changePage(currentPage - 1)">Prev</button>
+      <div id="pageNumbers" style="display:flex; gap:6px;"></div>
+      <button class="page-btn" id="nextBtn" onclick="changePage(currentPage + 1)">Next</button>
+    </div>
+  </main>
+
+  <!-- FULLSCREEN LIGHTBOX -->
+  <div class="lightbox-backdrop" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lb-btn lb-close" onclick="closeLightbox()" title="Close (Esc)">&times;</button>
+      <button class="lb-btn lb-prev" onclick="prevImage()" title="Previous (Left Arrow)">&#10094;</button>
+      <button class="lb-btn lb-next" onclick="nextImage()" title="Next (Right Arrow)">&#10095;</button>
+
+      <div class="lightbox-img-wrapper">
+        <img id="lbImage" src="" alt="Enlarged gallery photo" />
+      </div>
+
+      <div class="lightbox-caption-bar">
+        <div class="lb-meta-row">
+          <span class="lb-category-pill" id="lbCategory">Category</span>
+          <span class="lb-counter" id="lbCounter">1 / 12</span>
+        </div>
+        <div class="lb-desc" id="lbDesc">Short description under 100 characters.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+
+<!-- LIGHTBOX & PAGINATION JAVASCRIPT -->
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// 1. Mobile Menu Drawer
+    const localMobileBtn = document.getElementById('mobileNavBtn');
+    const localDrawer = document.getElementById('mobileDrawer');
+    const localDrawerClose = document.getElementById('drawerClose');
+
+    if (localMobileBtn && localDrawer) {
+      localMobileBtn.addEventListener('click', () => localDrawer.classList.add('open'));
+    }
+    if (localDrawerClose && localDrawer) {
+      localDrawerClose.addEventListener('click', () => localDrawer.classList.remove('open'));
+    }
+
+    // 2. Dynamic Gallery Dataset from Backend
+    const dbGalleryData = [
+      {% for img in images %}
+      {
+        src: "{{ img.display_url|escapejs }}",
+        category: "{{ img.get_category_display|escapejs }}",
+        desc: "{{ img.caption|default:img.title|escapejs }}"
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ];
+
+    const fallbackGalleryData = [
+      {
+        src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
+        category: "Summits",
+        desc: "Over 500 Badagry students and youth leaders gathered for the 2025 National Convention."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80",
+        category: "Empowerment",
+        desc: "Hands-on coding, UI/UX, and data skills training during the 4-week youth tech bootcamp."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80",
+        category: "Education",
+        desc: "Over 200 secondary school leavers supported with free UTME forms and mock CBT exams."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80",
+        category: "Outreach",
+        desc: "Student leaders collaborating with community chiefs on coastal health initiatives."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+        category: "Summits",
+        desc: "Executive council deliberating on student welfare and bursary allocations."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
+        category: "Workshops",
+        desc: "Interactive session guiding undergraduates through scholarship documentation."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
+        category: "Culture",
+        desc: "Heritage and cultural excursion celebrating Badagry's rich coastal history."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80",
+        category: "Institutions",
+        desc: "Students holding chapter consultations and mentoring newly admitted freshmen."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+        category: "Welfare",
+        desc: "Distribution of welfare materials and essential textbooks to rural primary schools."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=80",
+        category: "Leadership",
+        desc: "Keynote address delivered at the annual Badagry Youth Economic Summit."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+        category: "Parliamentary",
+        desc: "Student Parliamentary Council session passing resolutions on chapter accreditation."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80",
+        category: "Summits",
+        desc: "Delegates celebrating unity and academic excellence at the closing gala."
+      }
+    ];
+
+    const galleryData = dbGalleryData.length > 0 ? dbGalleryData : fallbackGalleryData;
+
+    // 3. Numbered Pagination Engine
+    const itemsPerPage = 8;
+    let currentPage = 1;
+    let totalPages = Math.max(1, Math.ceil(galleryData.length / itemsPerPage));
+
+    function renderGallery() {
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const currentItems = galleryData.slice(startIndex, startIndex + itemsPerPage);
+
+      currentItems.forEach((item, index) => {
+        const globalIndex = startIndex + index;
+        const photoEl = document.createElement('div');
+        photoEl.className = 'photo-item';
+        photoEl.setAttribute('onclick', `openLightbox(${globalIndex})`);
+
+        photoEl.innerHTML = `
+          <img src="${item.src}" alt="${item.category}" loading="lazy" />
+          <div class="photo-overlay">
+            <span class="overlay-category">${item.category}</span>
+            <p class="overlay-desc">${item.desc}</p>
+          </div>
+        `;
+        grid.appendChild(photoEl);
+      });
+
+      renderPaginationControls();
+    }
+
+    function renderPaginationControls() {
+      document.getElementById('prevBtn').disabled = currentPage === 1;
+      document.getElementById('nextBtn').disabled = currentPage === totalPages;
+
+      const pageNumbersContainer = document.getElementById('pageNumbers');
+      pageNumbersContainer.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+        btn.innerText = i;
+        btn.onclick = () => changePage(i);
+        pageNumbersContainer.appendChild(btn);
+      }
+    }
+
+    function changePage(page) {
+      if (page >= 1 && page <= totalPages) {
+        currentPage = page;
+        renderGallery();
+        window.scrollTo({ top: document.querySelector('.gallery-section').offsetTop - 80, behavior: 'smooth' });
+      }
+    }
+
+    // 4. Interactive Lightbox Viewer with Keyboard Support
+    let activeLightboxIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lbImage');
+    const lbCategory = document.getElementById('lbCategory');
+    const lbCounter = document.getElementById('lbCounter');
+    const lbDesc = document.getElementById('lbDesc');
+
+    function openLightbox(index) {
+      activeLightboxIndex = index;
+      updateLightboxContent();
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function updateLightboxContent() {
+      const data = galleryData[activeLightboxIndex];
+      lbImage.src = data.src;
+      lbCategory.innerText = data.category;
+      lbDesc.innerText = data.desc;
+      lbCounter.innerText = `${activeLightboxIndex + 1} / ${galleryData.length}`;
+    }
+
+    function nextImage() {
+      activeLightboxIndex = (activeLightboxIndex + 1) % galleryData.length;
+      updateLightboxContent();
+    }
+
+    function prevImage() {
+      activeLightboxIndex = (activeLightboxIndex - 1 + galleryData.length) % galleryData.length;
+      updateLightboxContent();
+    }
+
+    // Close on clicking backdrop outside image content
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Keyboard support: Escape, ArrowLeft, ArrowRight
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    });
+
+    // Initial render
+    renderGallery();
+</script>
+{% endblock %}

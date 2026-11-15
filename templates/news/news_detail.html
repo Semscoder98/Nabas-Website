@@ -1,0 +1,1111 @@
+{% extends 'base.html' %}
+
+{% block title %}Article Details | NABAS - National Association of Badagry Students{% endblock %}
+
+{% block extra_css %}
+<style>
+:root {
+      --primary: #027c57;
+      --primary-light: #03986a;
+      --primary-dark: #014d36;
+      --accent: #f5a623;
+      --accent-hover: #e29415;
+      --accent-light: #fff9e6;
+      --surface: #ffffff;
+      --bg-slate: #f8fafc;
+      --bg-slate-subtle: #f1f5f9;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --border: #e2e8f0;
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-accent: 'Caveat', cursive;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 6px 20px -4px rgba(11, 26, 48, 0.08);
+      --shadow-lg: 0 14px 34px -6px rgba(11, 26, 48, 0.14);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-pill: 9999px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      --container-max: 1240px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: var(--font-main);
+      background-color: var(--bg-slate);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      position: relative;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      background: none;
+      outline: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    .article-container {
+      width: 100%;
+      max-width: 860px !important;
+      margin-inline: auto !important;
+      padding-inline: 1.5rem !important;
+    }
+
+    /* Top Breadcrumb Nav */
+    .breadcrumb-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0 18px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .breadcrumb-trail {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .breadcrumb-trail a:hover {
+      color: var(--accent);
+    }
+
+    .back-nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .back-nav-link:hover {
+      color: var(--accent-hover);
+    }
+
+
+
+    /* =========================================
+       UNIFIED SINGLE ARTICLE MODAL / CARD
+    ========================================= */
+    .unified-article-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    /* Picture at Top of Modal/Card */
+    .article-cover-frame {
+      width: 100%;
+      max-height: 440px;
+      background: var(--primary-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-cover-frame img {
+      width: 100%;
+      height: 100%;
+      max-height: 440px;
+      object-fit: cover;
+    }
+
+    .category-badge-overlay {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: rgba(11, 26, 48, 0.92);
+      color: var(--accent);
+      border: 1px solid rgba(245, 166, 35, 0.4);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-pill);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Publication Details Bar (Immediately below image) */
+    .publication-details-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.75rem;
+      background: var(--bg-slate);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Left Side: round icon/image and name */
+    .publisher-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .publisher-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .publisher-info-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .publisher-name {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.2;
+    }
+
+    .publication-timestamp {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Right Edge: Eye icon + view count, Comment bubble icon + comment count */
+    .stats-meta-edge {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .stat-pill-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .stat-pill-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
+    }
+
+    /* Article Text Body Container */
+    .article-body-wrapper {
+      padding: 2.25rem 2rem 1.75rem;
+    }
+
+    .article-headline {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-text-content {
+      font-size: 1.02rem;
+      color: #334155;
+      line-height: 1.8;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .article-text-content blockquote {
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.25rem;
+      font-style: italic;
+      color: var(--primary);
+      font-weight: 600;
+      background: var(--bg-slate);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 0.5rem 0;
+    }
+
+    /* Bottom Share Section (Represented ONLY by round icon buttons) */
+    .bottom-share-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .share-label-sub {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .share-round-group {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .round-share-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-slate);
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .round-share-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* =========================================
+       INSTAGRAM-STYLE DISCUSSION SECTION
+    ========================================= */
+    .discussion-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 2.25rem 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .discussion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.75rem;
+    }
+
+    .discussion-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .discussion-count {
+      background: var(--bg-slate);
+      color: var(--accent-hover);
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    /* Form: ONLY Name and Comment */
+    .comment-input-box {
+      background: var(--bg-slate);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .replying-indicator {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .replying-indicator.active {
+      display: flex;
+    }
+
+    .cancel-reply-x {
+      color: #ef4444;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .single-input-row {
+      margin-bottom: 0.85rem;
+    }
+
+    .name-input-field {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      font-family: inherit;
+      font-size: 0.88rem;
+      background: #ffffff;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .name-input-field:focus,
+    .comment-textarea-field:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(11, 26, 48, 0.08);
+    }
+
+    .comment-textarea-field {
+      width: 100%;
+      height: 85px;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      font-family: inherit;
+      font-size: 0.88rem;
+      background: #ffffff;
+      outline: none;
+      resize: vertical;
+      transition: var(--transition);
+      margin-bottom: 0.85rem;
+    }
+
+    .comment-submit-row {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* =========================================
+       INSTAGRAM-STYLE COMMENTS (Matches Reference)
+    ========================================= */
+    .comments-section-container {
+      margin-top: 2rem;
+      padding-top: 0.5rem;
+    }
+
+    .comments-main-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.25rem;
+      font-family: inherit;
+    }
+
+    .comments-heading-line {
+      width: 36px;
+      height: 2.5px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 1.25rem;
+    }
+
+    .comments-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .insta-comment-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .insta-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .insta-avatar svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    .insta-content-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .insta-bubble {
+      background: transparent;
+      padding: 0;
+      display: block;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .insta-header-line {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+
+    .insta-author-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .insta-comment-date {
+      font-size: 0.7rem;
+      color: #64748b;
+      font-weight: 400;
+    }
+
+    .insta-comment-text {
+      font-size: 0.82rem;
+      color: #334155;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .insta-mention {
+      font-weight: 700;
+      color: #0f172a;
+      margin-right: 3px;
+    }
+
+    .insta-reply-trigger {
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 0;
+      cursor: pointer;
+      text-decoration: none;
+      margin-top: 2px;
+    }
+    .insta-reply-trigger:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    /* Replies branch indentation */
+    .insta-replies-list {
+      margin-left: 28px;
+      margin-top: 8px;
+      padding-left: 10px;
+      border-left: 2px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: calc(100% - 28px);
+    }
+
+    /* Inline reply box popping up under target comment */
+    .inline-reply-container {
+      margin-top: 8px;
+      margin-left: 0;
+      width: 100%;
+      max-width: 480px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .inline-reply-input {
+      width: 100%;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      margin-bottom: 6px;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+
+    .inline-reply-textarea {
+      width: 100%;
+      height: 52px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-family: inherit;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+
+    .btn-inline-submit {
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-inline-cancel {
+      background: #e2e8f0;
+      color: #475569;
+      font-weight: 600;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Leave a Comment Form */
+    .leave-comment-box {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .leave-comment-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.85rem;
+    }
+
+    .leave-name-field {
+      width: 100%;
+      padding: 7px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: #1e293b;
+      margin-bottom: 10px;
+      font-family: inherit;
+      background: #ffffff;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .leave-name-field:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(2, 124, 87, 0.15);
+    }
+
+    .leave-textarea-field {
+      width: 100%;
+      height: 60px;
+      padding: 7px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: #1e293b;
+      margin-bottom: 10px;
+      font-family: inherit;
+      background: #ffffff;
+      resize: vertical;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .leave-textarea-field:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(2, 124, 87, 0.15);
+    }
+
+    .btn-post-comment {
+      background: var(--accent);
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-post-comment:hover {
+      background: var(--accent-hover);
+    }
+
+    @media (max-width: 640px) {
+      .insta-replies-list {
+        margin-left: 18px;
+        width: calc(100% - 18px);
+      }
+      .comments-main-heading { font-size: 1.05rem; }
+      .leave-comment-title { font-size: 1rem; }
+    }
+
+    /* =========================================
+       FOOTER (Exact Original Formation with All 5 Clean SVGs)
+    ========================================= */
+    .site-footer {
+      background: var(--primary-dark);
+      color: #94a3b8;
+      padding: 4.5rem 0 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.875rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .footer-brand .logo-title {
+      color: #ffffff;
+    }
+
+    .footer-brand .logo-sub {
+      color: #94a3b8;
+    }
+
+    .footer-about-snippet {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #64748b;
+      max-width: 300px;
+    }
+
+    .footer-heading {
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .footer-links-list a {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+
+    .footer-links-list a:hover {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    .footer-contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .footer-contact-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .footer-social-links {
+      display: flex;
+      gap: 0.65rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .social-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom-bar {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-motto {
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* Mobile Responsive Adaptation */
+    @media (max-width: 768px) {
+      .article-headline { font-size: 1.6rem; }
+      .article-cover-frame { max-height: 250px; }
+      .publication-details-bar { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .stats-meta-edge { width: 100%; justify-content: flex-start; gap: 1.5rem; }
+      .article-body-wrapper { padding: 1.5rem 1rem; }
+      .discussion-card { padding: 1.5rem 1rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .nested-replies-thread { padding-left: 0.75rem; }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb Navigation Bar -->
+  <div class="article-container">
+    <div class="breadcrumb-row">
+      <div class="breadcrumb-trail">
+        <a href="{% url 'home' %}">Home</a>
+        <span>/</span>
+        <a href="{% url 'news_list' %}">News & Blog</a>
+        <span>/</span>
+        <span style="color:var(--accent);">Article</span>
+      </div>
+
+      <a href="{% url 'news_list' %}" class="back-nav-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>Back to News</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ARTICLE CONTENT (Unified Single Modal/Card Container) -->
+  <main class="article-container">
+    <article class="unified-article-card">
+      
+      <!-- Top: Featured Cover Picture -->
+      <div class="article-cover-frame">
+        <img src="{% if article %}{{ article.image }}{% else %}https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80{% endif %}" alt="{% if article %}{{ article.title }}{% else %}Bursary Quota Meeting{% endif %}" />
+        <span class="category-badge-overlay">{% if article and article.category %}{{ article.category.name }}{% else %}Official Communiqué{% endif %}</span>
+      </div>
+
+      <!-- Immediately Below Picture: Publication Details Bar -->
+      <div class="publication-details-bar">
+        <!-- Left Side: round icon/image and name -->
+        <div class="publisher-profile">
+          <div class="publisher-avatar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="publisher-info-col">
+            <div class="publisher-name">{% if article %}{{ article.author }}{% else %}NABAS National Secretariat{% endif %}</div>
+            <div class="publication-timestamp">Published: {% if article %}{{ article.created_at|date:"F d, Y" }}{% else %}September 18, 2026{% endif %} &bull; 4 min read</div>
+          </div>
+        </div>
+
+        <!-- Right Edge: Eye icon + views, Comment bubble + comments count -->
+        <div class="stats-meta-edge">
+          <div class="stat-pill-item" title="Total Views">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span>{% if article %}{{ article.views_count }}{% else %}1,420{% endif %}</span>
+          </div>
+
+          <div class="stat-pill-item" title="Total Comments">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span id="commentHeaderBadge">{{ total_comments_count|default:'0' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text Content Inside the Same Card -->
+      <div class="article-body-wrapper">
+        <h1 class="article-headline">
+          {% if article %}{{ article.title }}{% else %}NABAS Leadership Secures Enhanced Tertiary Bursary Quota for Badagry Indigenes{% endif %}
+        </h1>
+
+        <div class="article-text-content">
+          {% if article %}
+            {{ article.content|safe }}
+          {% else %}
+          <p>
+            The Student Executive Council (SEC) of the National Association of Badagry Students (NABAS) is pleased to announce a landmark breakthrough regarding the special educational subvention scheme for indigenes across accredited tertiary institutions in Nigeria.
+          </p>
+
+          <blockquote>
+            “Our administration vowed that educational and economic barriers must never truncate the scholastic potential of any Badagry youth. Today's subvention ratification is testament to constructive student diplomacy and steadfast engagement.”
+            <br />
+            <small style="display:block; margin-top:6px; color:var(--text-muted); font-style:normal;">— Comr. Boyon John Metonno, President, NABAS</small>
+          </blockquote>
+
+          <p>
+            Following consultative sessions convened with statutory education boards and youth advancement stakeholders, the special tertiary subvention quota has been expanded by 35% for the forthcoming academic session. Priority allocations have been formally designated for undergraduate scholars in medicine, engineering, agricultural technologies, and indigent students.
+          </p>
+
+          <p>
+            All indigenous students across federal and state universities, polytechnics, and colleges of education are encouraged to keep their local government certificates and student identification documents ready. Online verification clinics will commence in the coming weeks under the direct supervision of the National Secretariat.
+          </p>
+          {% endif %}
+        </div>
+
+        <!-- Bottom of News: Social Share Bar represented ONLY by Round Icon Buttons -->
+        <div class="bottom-share-section">
+          <span class="share-label-sub">Share Dispatch:</span>
+          
+          <div class="share-round-group">
+            <!-- 1. WhatsApp -->
+            <button class="round-share-btn" onclick="shareArticle('whatsapp')" aria-label="Share on WhatsApp" title="WhatsApp">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            </button>
+
+            <!-- 2. Facebook -->
+            <button class="round-share-btn" onclick="shareArticle('facebook')" aria-label="Share on Facebook" title="Facebook">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </button>
+
+            <!-- 3. Single X -->
+            <button class="round-share-btn" onclick="shareArticle('x')" aria-label="Share on X" title="X">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </button>
+
+            <!-- 4. Copy Link -->
+            <button class="round-share-btn" onclick="copyArticleLink()" aria-label="Copy Article Link" title="Copy Link">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- INSTAGRAM-STYLE DISCUSSION & NESTED COMMENTS SECTION -->
+    <section class="comments-section-container">
+      
+      <!-- Leave a Comment Box (Immediately After the Post, Before the Comments) -->
+      <div class="leave-comment-box" style="margin-bottom: 2.5rem;">
+        <h3 class="leave-comment-title">Leave a Comment</h3>
+        
+        <form method="POST" action="{% url 'news_detail' slug=article.slug %}">
+          {% csrf_token %}
+          <input type="text" name="name" class="leave-name-field" placeholder="Your name (optional - defaults to Anonymous)" />
+          <textarea name="comment" class="leave-textarea-field" placeholder="Share your thoughts on this communiqué..." required></textarea>
+          <button type="submit" class="btn-post-comment">Post Comment</button>
+        </form>
+      </div>
+
+      <h2 class="comments-main-heading">Comments ({{ total_comments_count }})</h2>
+      <div class="comments-heading-line"></div>
+
+      <!-- Comments Stream -->
+      <div class="comments-stream" id="commentsStream">
+        {% for comment in comments %}
+        <div class="insta-comment-item" id="comment-{{ comment.id }}">
+          <div class="insta-avatar">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          
+          <div class="insta-content-wrap">
+            <div class="insta-bubble">
+              <div class="insta-header-line">
+                <span class="insta-author-name">{{ comment.name|default:"Anonymous" }}</span>
+                <span class="insta-comment-date">{{ comment.created_at|date:"F d, Y" }}</span>
+              </div>
+              <div class="insta-comment-text">{{ comment.content }}</div>
+            </div>
+            
+            <button type="button" class="insta-reply-trigger" onclick="toggleReplyBox('replybox-{{ comment.id }}')">Reply</button>
+
+            <!-- Inline Reply Box Under Top Comment -->
+            <div class="inline-reply-container" id="replybox-{{ comment.id }}" style="display: none;">
+              <form method="POST" action="{% url 'news_detail' slug=article.slug %}">
+                {% csrf_token %}
+                <input type="hidden" name="parent_id" value="{{ comment.id }}" />
+                <input type="hidden" name="reply_to_name" value="{{ comment.name|default:'Anonymous' }}" />
+                <input type="text" name="name" class="inline-reply-input" placeholder="Your name (optional)" />
+                <textarea name="comment" class="inline-reply-textarea" placeholder="@{{ comment.name|default:'Anonymous' }}" required></textarea>
+                <div style="display: flex; gap: 8px; margin-top: 8px;">
+                  <button type="submit" class="btn-inline-submit">Reply</button>
+                  <button type="button" class="btn-inline-cancel" onclick="toggleReplyBox('replybox-{{ comment.id }}')">Cancel</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Nested Replies -->
+            {% if comment.replies.all %}
+            <div class="insta-replies-list">
+              {% for reply in comment.replies.all %}
+              <div class="insta-comment-item" id="reply-{{ reply.id }}">
+                <div class="insta-avatar">
+                  <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+                <div class="insta-content-wrap">
+                  <div class="insta-bubble">
+                    <div class="insta-header-line">
+                      <span class="insta-author-name">{{ reply.name|default:"Anonymous" }}</span>
+                      <span class="insta-comment-date">{{ reply.created_at|date:"M. d, Y" }}</span>
+                    </div>
+                    <div class="insta-comment-text">
+                      <strong class="insta-mention">@{% if reply.reply_to_name %}{{ reply.reply_to_name }}{% else %}{{ comment.name|default:"Anonymous" }}{% endif %}</strong> {{ reply.content }}
+                    </div>
+                  </div>
+                  
+                  <button type="button" class="insta-reply-trigger" onclick="toggleReplyBox('reply-sub-box-{{ reply.id }}')">Reply</button>
+
+                  <!-- Inline Reply Box Under Sub-reply -->
+                  <div class="inline-reply-container" id="reply-sub-box-{{ reply.id }}" style="display: none;">
+                    <form method="POST" action="{% url 'news_detail' slug=article.slug %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="parent_id" value="{{ comment.id }}" />
+                      <input type="hidden" name="reply_to_name" value="{{ reply.name|default:'Anonymous' }}" />
+                      <input type="text" name="name" class="inline-reply-input" placeholder="Your name (optional)" />
+                      <textarea name="comment" class="inline-reply-textarea" placeholder="@{{ reply.name|default:'Anonymous' }}" required></textarea>
+                      <div style="display: flex; gap: 8px; margin-top: 8px;">
+                        <button type="submit" class="btn-inline-submit">Reply</button>
+                        <button type="button" class="btn-inline-cancel" onclick="toggleReplyBox('reply-sub-box-{{ reply.id }}')">Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+
+          </div>
+        </div>
+        {% empty %}
+        <div style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); background: white; border-radius: var(--radius-md); border: 1px dashed var(--border);">
+          <svg style="width: 38px; height: 38px; margin: 0 auto 10px; color: #94a3b8;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          <p style="font-weight: 700; font-size: 0.95rem; color: var(--text-main); margin-bottom: 4px;">No comments yet</p>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">Be the first to share your perspective on this communiqué above!</p>
+        </div>
+        {% endfor %}
+      </div>
+
+    </section>
+  </main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function toggleReplyBox(boxId) {
+      const box = document.getElementById(boxId);
+      if (box) {
+        const isHidden = (box.style.display === 'none' || !box.style.display);
+        box.style.display = isHidden ? 'block' : 'none';
+        if (isHidden) {
+          const ta = box.querySelector('textarea');
+          if (ta) ta.focus();
+        }
+      }
+    }
+
+    // Social Share Handlers
+    function shareArticle(platform) {
+      const url = encodeURIComponent(window.location.href);
+      const title = encodeURIComponent(document.title);
+      let shareUrl = '';
+
+      if (platform === 'whatsapp') {
+        shareUrl = `https://api.whatsapp.com/send?text=${title}%20${url}`;
+      } else if (platform === 'facebook') {
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+      } else if (platform === 'x') {
+        shareUrl = `https://twitter.com/intent/tweet?text=${title}&url=${url}`;
+      }
+      window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+
+    function copyArticleLink() {
+      const temp = document.createElement('input');
+      temp.value = window.location.href;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+      alert('Article link copied to clipboard!');
+    }
+</script>
+{% endblock %}

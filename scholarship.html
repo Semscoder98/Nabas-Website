@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scholarships & Grants | National Association of Badagry Students (NABAS)</title>
+  <meta name="description" content="Explore state bursaries, indigent grants, and academic endowment funds available to Badagry students across Nigerian tertiary institutions." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #0b1a30;
+      --primary-light: #152b4d;
+      --accent: #f5a623;
+      --accent-hover: #e29415;
+      --accent-soft: #fef6e7;
+      --surface: #ffffff;
+      --bg-slate: #f8fafc;
+      --border: #e2e8f0;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-accent: 'Caveat', cursive;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.08);
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-slate);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; border: none; background: none; cursor: pointer; }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    /* GLOBAL NAVBAR */
+    .header-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .crest-mark {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-sub {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .desktop-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-item {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      position: relative;
+      transition: var(--transition);
+      padding: 6px 0;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      color: var(--primary);
+    }
+
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2.5px;
+      background-color: var(--accent);
+      border-radius: var(--radius-pill);
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .dropdown-trigger svg {
+      transition: transform 0.2s ease;
+    }
+
+    .dropdown:hover .dropdown-trigger svg {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 0;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      min-width: 210px;
+      padding: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(6px);
+      transition: var(--transition);
+      z-index: 100;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-main);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .dropdown-item:hover, .dropdown-item.active {
+      background: var(--bg-slate);
+      color: var(--accent-hover);
+    }
+
+    .dropdown-item svg {
+      color: var(--accent-hover);
+      flex-shrink: 0;
+    }
+
+    /* NAV BUTTONS */
+    .nav-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-donate-nav {
+      background: var(--accent-soft);
+      color: var(--accent-hover);
+      border: 1px solid var(--accent);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .btn-donate-nav:hover {
+      background: var(--accent);
+      color: var(--primary);
+    }
+
+    .btn-join {
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      box-shadow: 0 4px 10px rgba(245, 166, 35, 0.25);
+    }
+
+    .btn-join:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .mobile-nav-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--primary);
+      z-index: 200;
+      padding: 24px;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open { right: 0; }
+
+    .mobile-drawer a {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mobile-drawer a.active { color: var(--accent); }
+
+    .drawer-sub-group {
+      padding-left: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: -6px;
+      margin-bottom: 6px;
+    }
+
+    .drawer-sub-group a {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      border: none;
+      padding: 4px 0;
+    }
+
+    .drawer-close {
+      align-self: flex-end;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* COMPACT HERO BANNER */
+    .page-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #0d213f 100%);
+      color: white;
+      padding: 36px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::after {
+      content: 'Scholarships';
+      position: absolute;
+      right: -10px;
+      bottom: -15px;
+      font-family: var(--font-accent);
+      font-size: 5.5rem;
+      color: rgba(255, 255, 255, 0.04);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .breadcrumb-trail {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb-trail a:hover { color: var(--accent); }
+
+    .hero-heading {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .hero-highlight { color: var(--accent); }
+
+    .hero-lead {
+      color: #cbd5e1;
+      max-width: 580px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    /* SEARCH ONLY (NO FILTER TABS) */
+    .search-section {
+      margin-top: -24px;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .search-wrapper-full {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .search-input-full {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-size: 0.95rem;
+      outline: none;
+      color: var(--text-main);
+      font-family: inherit;
+    }
+
+    .search-icon-big {
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+
+    /* CARDS GRID */
+    .scholarships-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .sch-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .sch-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+    }
+
+    .sch-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .status-badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+    }
+
+    .status-badge.open { background: #dcfce7; color: #15803d; }
+    .status-badge.closing { background: #fee2e2; color: #dc2626; }
+
+    .award-worth {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--accent-hover);
+    }
+
+    .sch-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .sch-provider {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .sch-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .criteria-box {
+      background: var(--bg-slate);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 0.78rem;
+      color: var(--text-main);
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .criteria-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .criteria-item svg {
+      color: var(--accent-hover);
+      flex-shrink: 0;
+    }
+
+    .sch-footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .deadline-text {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .btn-apply-modal {
+      background: var(--primary);
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .btn-apply-modal:hover {
+      background: var(--primary-light);
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 26, 48, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-card {
+      background: white;
+      border-radius: var(--radius-md);
+      max-width: 520px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: 0 16px 30px rgba(0,0,0,0.18);
+      position: relative;
+      animation: modalPop 0.2s ease-out;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @keyframes modalPop {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: var(--primary);
+      color: #94a3b8;
+      padding-top: 48px;
+      font-size: 0.85rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 32px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-brand h3 {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .footer-col-title {
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links-list a:hover { color: var(--accent); }
+
+    .social-icons-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .social-icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .social-icon-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 992px) {
+      .desktop-nav-menu, .nav-cta-group { display: none; }
+      .mobile-nav-toggle { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+    }
+
+    @media (max-width: 640px) {
+      .page-hero { padding: 26px 0 30px; }
+      .hero-heading { font-size: 1.45rem; }
+      .scholarships-grid { grid-template-columns: 1fr; gap: 16px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="header-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="brand-logo" aria-label="NABAS Home">
+          <div class="crest-mark">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="brand-title">
+            <span>NABAS</span>
+            <span class="brand-sub">Badagry Students Union</span>
+          </div>
+        </a>
+
+        <nav class="desktop-nav-menu">
+          <a href="index.html" class="nav-item">Home</a>
+          <a href="about.html" class="nav-item">About</a>
+          <a href="leadership.html" class="nav-item">Leadership</a>
+          <a href="chapters.html" class="nav-item">Institutions</a>
+          <a href="programmes.html" class="nav-item">Programmes</a>
+
+          <!-- BLOG DROPDOWN -->
+          <div class="dropdown">
+            <span class="nav-item active dropdown-trigger">
+              <span>Blog</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+            <div class="dropdown-menu">
+              <a href="news.html" class="dropdown-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
+                <span>News & Communiqués</span>
+              </a>
+              <a href="scholarships.html" class="dropdown-item active">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                <span>Scholarships & Grants</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="gallery.html" class="nav-item">Gallery</a>
+          <a href="resources.html" class="nav-item">Resources</a>
+          <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+
+        <div class="nav-cta-group">
+          <a href="donate.html" class="btn-donate-nav">Donate</a>
+          <a href="join.html" class="btn-join">Join NABAS</a>
+        </div>
+
+        <button class="mobile-nav-toggle" id="mobileNavBtn" aria-label="Open menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-close" id="drawerClose">&times;</div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="leadership.html">Leadership</a>
+    <a href="chapters.html">Institutions</a>
+    <a href="programmes.html">Programmes</a>
+    
+    <span style="font-size:0.75rem; font-weight:800; color:var(--accent); text-transform:uppercase; letter-spacing:0.08em; margin-top:4px;">Blog & Updates</span>
+    <div class="drawer-sub-group">
+      <a href="news.html">News & Communiqués</a>
+      <a href="scholarships.html" style="color:white; font-weight:700;">Scholarships & Grants</a>
+    </div>
+
+    <a href="gallery.html">Gallery</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+    <a href="donate.html" style="color:var(--accent);">Donate to NABAS</a>
+    <a href="join.html" style="color:var(--accent);">Join NABAS</a>
+  </div>
+
+  <!-- COMPACT HERO BANNER -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb-trail">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Blog</span>
+        <span>/</span>
+        <span>Scholarships & Grants</span>
+      </div>
+      <h1 class="hero-heading">Scholarships, Bursaries & <span class="hero-highlight">Grants</span></h1>
+      <p class="hero-lead">Access financial support, Lagos State bursary allocations, and indigenous student endowment funds.</p>
+    </div>
+  </section>
+
+  <!-- MAIN SECTION -->
+  <main class="container">
+
+    <!-- REAL-TIME SEARCH ONLY (NO FILTER TABS) -->
+    <section class="search-section">
+      <div class="search-wrapper-full">
+        <svg class="search-icon-big" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="schSearch" class="search-input-full" placeholder="Search scholarships, grants, bursaries, or criteria in real time..." />
+      </div>
+    </section>
+
+    <!-- CARDS GRID -->
+    <section class="scholarships-grid" id="schGrid">
+
+      <!-- Scholarship 1 -->
+      <article class="sch-card"
+        data-title="Lagos State Scholarship Board Tertiary Bursary Award"
+        data-worth="₦50,000 – ₦100,000 / Session"
+        data-deadline="November 30, 2026"
+        data-desc="The statutory annual educational grant awarded to verified indigenous Badagry students across all accredited federal and state universities, polytechnics, and colleges of education."
+        data-docs="Indigene Verification Certificate, JAMB Admission Letter, Stamped Course Registration Form, National ID / LASRRA Card.">
+        
+        <div class="sch-top">
+          <span class="status-badge open">Open for Application</span>
+          <span class="award-worth">₦50K – ₦100K</span>
+        </div>
+
+        <h3 class="sch-title">Lagos State Scholarship Board Tertiary Bursary Award</h3>
+        <div class="sch-provider">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span>Lagos State Scholarship Board</span>
+        </div>
+
+        <p class="sch-desc">Statutory educational subvention for verified Badagry indigenes enrolled in recognized tertiary institutions across Nigeria.</p>
+
+        <div class="criteria-box">
+          <div class="criteria-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Verified Badagry indigenes (Compound / Ward attested)</span>
+          </div>
+          <div class="criteria-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Full-time undergraduate students (200 Level and above)</span>
+          </div>
+        </div>
+
+        <div class="sch-footer-row">
+          <span class="deadline-text">Deadline: Nov 30, 2026</span>
+          <button class="btn-apply-modal" onclick="openSchModal(this)">
+            <span>View & Apply</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- Scholarship 2 -->
+      <article class="sch-card"
+        data-title="NABAS Emergency Welfare & Tuition Support Grant"
+        data-worth="Up to ₦40,000 One-off"
+        data-deadline="Rolling Review (Monthly)"
+        data-desc="Administered directly by the Office of the National Welfare Director to assist underprivileged students facing sudden financial distress, tuition default risks, or unexpected accommodation crises."
+        data-docs="Student ID Card, Verified Letter from Dean / HOD confirming tuition status, Statement of Need, Two Guarantors (NABAS Members).">
+        
+        <div class="sch-top">
+          <span class="status-badge open">Active (Monthly Batch)</span>
+          <span class="award-worth">Up to ₦40,000</span>
+        </div>
+
+        <h3 class="sch-title">NABAS Emergency Welfare & Tuition Support Grant</h3>
+        <div class="sch-provider">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg>
+          <span>NABAS Welfare Directorate</span>
+        </div>
+
+        <p class="sch-desc">Discretionary emergency relief fund helping vulnerable undergraduates navigate sudden financial hardships that threaten academic continuation.</p>
+
+        <div class="criteria-box">
+          <div class="criteria-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Registered NABAS member with active ID</span>
+          </div>
+          <div class="criteria-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Verified tuition default or emergency distress letter</span>
+          </div>
+        </div>
+
+        <div class="sch-footer-row">
+          <span class="deadline-text">Reviewed Monthly</span>
+          <button class="btn-apply-modal" onclick="openSchModal(this)">
+            <span>View & Apply</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- Scholarship 3 -->
+      <article class="sch-card"
+        data-title="Badagry Heritage Alumni STEM & Innovation Endowment"
+        data-worth="₦150,000 + Tech Mentorship"
+        data-deadline="October 15, 2026"
+        data-desc="Endowment fund established by senior Badagry alumni in engineering, computer science, and healthcare disciplines to reward outstanding students with a minimum CGPA of 3.5/5.0."
+        data-docs="Official Academic Transcript, 500-word Personal Innovation Statement, Letter of Recommendation, CV.">
+        
+        <div class="sch-top">
+          <span class="status-badge closing">Closing Soon</span>
+          <span class="award-worth">₦150,000</span>
+        </div>
+
+        <h3 class="sch-title">Badagry Heritage Alumni STEM & Innovation Endowment</h3>
+        <div class="sch-provider">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span>Diaspora Alumni Network</span>
+        </div>
+
+        <p class="sch-desc">Merit-based financial sponsorship and industry mentorship for high-performing Badagry students pursuing STEM and technology qualifications.</p>
+
+        <div class="criteria-box">
+          <div class="criteria-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>STEM / Tech / Health Sciences discipline</span>
+          </div>
+          <div class="criteria-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Minimum 3.5 CGPA (or Second Class Upper division)</span>
+          </div>
+        </div>
+
+        <div class="sch-footer-row">
+          <span class="deadline-text">Deadline: Oct 15, 2026</span>
+          <button class="btn-apply-modal" onclick="openSchModal(this)">
+            <span>View & Apply</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- MODAL: APPLICATION PROTOCOL -->
+  <div class="modal-overlay" id="schModal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeSchModal()">&times;</button>
+      <span style="font-size:0.7rem; font-weight:800; color:var(--accent-hover); text-transform:uppercase; letter-spacing:0.06em;">Application Protocol</span>
+      <h3 id="modalTitle" style="font-size:1.2rem; font-weight:800; color:var(--primary); margin:6px 0 8px; line-height:1.3;"></h3>
+      <div id="modalWorth" style="font-size:0.88rem; font-weight:800; color:var(--accent-hover); margin-bottom:12px;"></div>
+      
+      <p id="modalDesc" style="font-size:0.85rem; color:var(--text-muted); line-height:1.55; margin-bottom:16px;"></p>
+
+      <div style="background:var(--bg-slate); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px; margin-bottom:18px;">
+        <span style="font-size:0.75rem; font-weight:800; text-transform:uppercase; color:var(--primary); display:block; margin-bottom:6px;">Required Submission Documents:</span>
+        <p id="modalDocs" style="font-size:0.82rem; color:#475569; line-height:1.5;"></p>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn-join" style="flex:1; justify-content:center;" onclick="alert('Redirecting to verified submission portal...');">Proceed to Portal</button>
+        <a href="resources.html" class="btn-donate-nav" style="padding:9px 16px; font-size:0.85rem;">Download Checklist</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>NABAS</h3>
+          <p>The National Association of Badagry Students is the united voice of indigenous and resident students across tertiary institutions in Nigeria.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About NABAS</a></li>
+            <li><a href="leadership.html">Executive Council</a></li>
+            <li><a href="chapters.html">Institutions</a></li>
+            <li><a href="scholarships.html">Scholarships</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Contact</h4>
+          <ul class="footer-links-list">
+            <li>Secretariat: Badagry Local Government</li>
+            <li>Email: info@nabas.org.ng</li>
+            <li>Phone: +234 901 234 5678</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Follow Us</h4>
+          <div class="social-icons-row">
+            <a href="https://wa.me/2349012345678" target="_blank" class="social-icon-btn" aria-label="WhatsApp">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            </a>
+            <a href="https://facebook.com/nabasnational" target="_blank" class="social-icon-btn" aria-label="Facebook">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://x.com/nabasnational" target="_blank" class="social-icon-btn" aria-label="X">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://instagram.com/nabasnational" target="_blank" class="social-icon-btn" aria-label="Instagram">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://linkedin.com/company/nabasnational" target="_blank" class="social-icon-btn" aria-label="LinkedIn">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 National Association of Badagry Students (NABAS). All rights reserved.</div>
+        <div>Unity, Excellence & Development</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- VANILLA JS -->
+  <script>
+    // Mobile Drawer
+    const mobileBtn = document.getElementById('mobileNavBtn');
+    const drawer = document.getElementById('mobileDrawer');
+    const drawerClose = document.getElementById('drawerClose');
+
+    mobileBtn.addEventListener('click', () => drawer.classList.add('open'));
+    drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
+
+    // Realtime search
+    const searchInput = document.getElementById('schSearch');
+    const cards = document.querySelectorAll('.sch-card');
+
+    searchInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    });
+
+    // Modal
+    function openSchModal(btn) {
+      const card = btn.closest('.sch-card');
+      document.getElementById('modalTitle').innerText = card.getAttribute('data-title');
+      document.getElementById('modalWorth').innerText = 'Award: ' + card.getAttribute('data-worth');
+      document.getElementById('modalDesc').innerText = card.getAttribute('data-desc');
+      document.getElementById('modalDocs').innerText = card.getAttribute('data-docs');
+      document.getElementById('schModal').classList.add('active');
+    }
+
+    function closeSchModal() {
+      document.getElementById('schModal').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

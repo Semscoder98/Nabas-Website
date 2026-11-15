@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leadership & Governance | NABAS - National Association of Badagry Students</title>
+  
+  <!-- Fonts: Plus Jakarta Sans & Caveat Script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0b1a30',
+              'navy-light': '#152b4d',
+              'navy-dark': '#060e1a',
+              gold: '#f5a623',
+              'gold-hover': '#e29415',
+              'gold-light': '#fff9e6',
+              gray: '#64748b',
+              slate: '#f8fafc',
+              'slate-subtle': '#f1f5f9',
+              border: '#e2e8f0'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            script: ['"Caveat"', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .section-pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #94A3B8;
+    }
+    .section-pill-tag::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 12px;
+      background-color: #f5a623;
+      border-radius: 2px;
+    }
+    .watermark-script {
+      font-family: 'Caveat', cursive;
+      user-select: none;
+      pointer-events: none;
+    }
+    .tab-btn.active {
+      background-color: #0b1a30;
+      color: #ffffff;
+      border-color: #0b1a30;
+      box-shadow: 0 4px 14px rgba(11, 26, 48, 0.15);
+    }
+    .tab-btn.active .tab-counter {
+      background-color: #f5a623;
+      color: #0b1a30;
+    }
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-brand-slate text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-brand-gold selection:text-brand-navy">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-border shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo Section -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-xl bg-brand-navy border-2 border-brand-gold flex items-center justify-center shadow-md p-1 group-hover:scale-105 transition-transform">
+            <svg viewBox="0 0 100 100" class="w-full h-full text-brand-gold" fill="currentColor">
+              <path d="M50 5 L85 20 V50 C85 75 50 95 50 95 C50 95 15 75 15 50 V20 Z" fill="#0b1a30" stroke="#f5a623" stroke-width="4"/>
+              <path d="M30 45 Q50 40 50 55 Q50 40 70 45 V70 Q50 65 50 78 Q50 65 30 70 Z" fill="#f5a623"/>
+              <circle cx="50" cy="30" r="5" fill="#FFFFFF"/>
+              <path d="M47 34 L53 34 L51 45 L49 45 Z" fill="#FFFFFF"/>
+            </svg>
+          </div>
+          <div>
+            <span class="block text-2xl font-black tracking-tight text-brand-navy leading-none">NABAS</span>
+            <span class="block text-[10px] font-semibold tracking-wider text-slate-500 uppercase mt-0.5">
+              National Association<br class="hidden sm:inline" /> of Badagry Students
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-7 text-[13px] font-semibold text-slate-600">
+          <a href="index.html" class="hover:text-brand-navy transition-colors">Home</a>
+          <a href="about.html" class="hover:text-brand-navy transition-colors">About</a>
+          <a href="leadership.html" class="text-brand-navy font-bold border-b-2 border-brand-gold pb-1 transition-colors">Leadership</a>
+          <a href="chapters.html" class="hover:text-brand-navy transition-colors">Chapters</a>
+          <a href="programmes.html" class="hover:text-brand-navy transition-colors">Programmes</a>
+          <a href="news.html" class="hover:text-brand-navy transition-colors">News</a>
+          <a href="resources.html" class="hover:text-brand-navy transition-colors">Resources</a>
+        </nav>
+
+        <!-- Search & Action CTA -->
+        <div class="hidden sm:flex items-center gap-4">
+          <button onclick="toggleSearchModal(true)" aria-label="Search" class="p-2.5 rounded-full text-slate-600 hover:text-brand-navy hover:bg-slate-100 transition-colors">
+            <i data-lucide="search" class="w-5 h-5"></i>
+          </button>
+          <button onclick="openJoinModal()" class="inline-flex items-center gap-2 bg-brand-gold hover:bg-brand-gold-hover text-brand-navy font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-wider transition-all duration-200 shadow-sm hover:shadow active:scale-95">
+            <span>JOIN NABAS</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="flex items-center gap-2 lg:hidden">
+          <button onclick="toggleSearchModal(true)" aria-label="Search" class="p-2 text-slate-600">
+            <i data-lucide="search" class="w-5 h-5"></i>
+          </button>
+          <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-700 hover:bg-slate-100" aria-label="Toggle navigation menu">
+            <i data-lucide="menu" id="hamburgerIcon" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-brand-border px-6 py-5 shadow-xl space-y-4">
+      <nav class="flex flex-col space-y-3 font-medium text-slate-700 text-sm">
+        <a href="index.html" onclick="toggleMobileMenu()" class="hover:text-brand-navy">Home</a>
+        <a href="about.html" onclick="toggleMobileMenu()" class="hover:text-brand-navy">About NABAS</a>
+        <a href="leadership.html" onclick="toggleMobileMenu()" class="text-brand-navy font-bold">Leadership</a>
+        <a href="chapters.html" onclick="toggleMobileMenu()" class="hover:text-brand-navy">Chapters</a>
+        <a href="programmes.html" onclick="toggleMobileMenu()" class="hover:text-brand-navy">Programmes</a>
+        <a href="news.html" onclick="toggleMobileMenu()" class="hover:text-brand-navy">News & Events</a>
+        <a href="resources.html" onclick="toggleMobileMenu()" class="hover:text-brand-navy">Resources</a>
+      </nav>
+      <div class="pt-2">
+        <button onclick="openJoinModal(); toggleMobileMenu();" class="w-full flex items-center justify-center gap-2 bg-brand-gold text-brand-navy font-bold py-3 rounded-full text-xs uppercase tracking-wider shadow">
+          <span>JOIN NABAS</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Leadership Hero Section -->
+  <section class="relative bg-brand-navy text-white py-16 md:py-20 overflow-hidden border-b-4 border-brand-gold">
+    <div class="absolute inset-0 pointer-events-none opacity-15 bg-[radial-gradient(#f5a623_1px,transparent_1px)] [background-size:20px_20px]"></div>
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 watermark-script text-8xl md:text-9xl text-white/5 pr-8 hidden md:block">
+      Integrity & Service
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <nav class="flex items-center gap-2 text-xs font-semibold text-slate-400 mb-4 uppercase tracking-wider">
+          <a href="index.html" class="hover:text-brand-gold transition-colors">Home</a>
+          <span class="text-slate-600">/</span>
+          <span class="text-brand-gold">Leadership</span>
+        </nav>
+
+        <div class="section-pill-tag !text-slate-400 mb-2">STEWARDSHIP & GOVERNANCE</div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4">
+          Our Leadership
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed font-normal max-w-2xl">
+          The student statesmen, parliamentary legislators, and revered patrons steering NABAS towards academic distinction, constitutional integrity, and youth advancement.
+        </p>
+
+        <div class="mt-6 inline-flex flex-wrap items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/15 px-4 py-2 rounded-xl text-xs text-slate-200">
+          <span class="flex items-center gap-1.5 font-bold text-brand-gold">
+            <i data-lucide="shield-check" class="w-4 h-4"></i> Current Administration:
+          </span>
+          <span>2025/2026 Executive Term</span>
+          <span class="text-slate-500">•</span>
+          <span class="text-slate-300">Theme: “Consolidation & Shared Prosperity”</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation Filter Tabs -->
+  <section class="sticky top-20 z-30 bg-white border-b border-brand-border shadow-sm py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-1 sm:pb-0 scrollbar-none" id="leadershipTabs">
+        
+        <button onclick="switchTab('cec')" class="tab-btn active inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 text-xs font-bold whitespace-nowrap transition-all duration-200" id="tab-btn-cec">
+          <span>Central Executive Council</span>
+          <span class="tab-counter px-2 py-0.5 text-[10px] rounded-full bg-slate-100 text-slate-700">9</span>
+        </button>
+
+        <button onclick="switchTab('senate')" class="tab-btn inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 text-slate-600 text-xs font-bold whitespace-nowrap transition-all duration-200 hover:border-brand-navy hover:text-brand-navy" id="tab-btn-senate">
+          <span>Legislative Senate Arm</span>
+          <span class="tab-counter px-2 py-0.5 text-[10px] rounded-full bg-slate-100 text-slate-700">9</span>
+        </button>
+
+        <button onclick="switchTab('directorates')" class="tab-btn inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 text-slate-600 text-xs font-bold whitespace-nowrap transition-all duration-200 hover:border-brand-navy hover:text-brand-navy" id="tab-btn-directorates">
+          <span>Directorates</span>
+          <span class="tab-counter px-2 py-0.5 text-[10px] rounded-full bg-slate-100 text-slate-700">4</span>
+        </button>
+
+        <button onclick="switchTab('advisory')" class="tab-btn inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 text-slate-600 text-xs font-bold whitespace-nowrap transition-all duration-200 hover:border-brand-navy hover:text-brand-navy" id="tab-btn-advisory">
+          <span>Advisory Council & Patrons</span>
+          <span class="tab-counter px-2 py-0.5 text-[10px] rounded-full bg-slate-100 text-slate-700">5</span>
+        </button>
+
+        <button onclick="switchTab('hall-of-fame')" class="tab-btn inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-200 text-slate-600 text-xs font-bold whitespace-nowrap transition-all duration-200 hover:border-brand-navy hover:text-brand-navy" id="tab-btn-hall-of-fame">
+          <span>Past Presidents (Hall of Fame)</span>
+          <span class="tab-counter px-2 py-0.5 text-[10px] rounded-full bg-slate-100 text-slate-700">4</span>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Wrapper -->
+  <main class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- =========================================================================
+           TAB 1: Central Executive Council (CEC)
+           ========================================================================= -->
+      <section id="tab-content-cec" class="space-y-12">
+        
+        <!-- National President Spotlight Card -->
+        <div class="bg-white rounded-3xl border border-brand-border shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="grid grid-cols-1 lg:grid-cols-12">
+            
+            <div class="lg:col-span-4 bg-brand-navy relative min-h-[320px] lg:min-h-[420px]">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80" 
+                   alt="Comr. Boyon John Metonno" 
+                   class="w-full h-full object-cover object-center"
+                   onerror="this.src='https://placehold.co/600x750/0b1a30/f5a623?text=Comr.+Boyon+John'" />
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-navy-dark via-transparent to-transparent opacity-80"></div>
+              
+              <div class="absolute top-4 left-4 bg-brand-gold text-brand-navy text-[11px] font-black uppercase tracking-wider px-3.5 py-1 rounded-full shadow">
+                National President
+              </div>
+              <div class="absolute bottom-4 left-4 right-4 text-white">
+                <span class="text-xs text-brand-gold font-semibold uppercase tracking-wider">Lagos State University (LASU)</span>
+                <p class="text-sm font-bold text-slate-200">Faculty of Law &bull; Final Year</p>
+              </div>
+            </div>
+
+            <div class="lg:col-span-8 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-4 mb-2">
+                  <div class="section-pill-tag">OFFICE OF THE NATIONAL PRESIDENT</div>
+                  <span class="text-xs font-bold text-slate-400">Tenure: 2025 – 2026</span>
+                </div>
+                
+                <h2 class="text-2xl sm:text-3xl font-black text-brand-navy tracking-tight">
+                  Comr. Boyon John Metonno
+                </h2>
+                <p class="text-xs font-bold text-brand-gold uppercase tracking-wider mb-4">
+                  President & Chairman, National Executive Council
+                </p>
+
+                <blockquote class="text-slate-600 text-sm sm:text-base italic leading-relaxed border-l-4 border-brand-gold pl-4 my-4">
+                  “Our mandate is straightforward: to restore dignity to every Badagry undergraduate, democratize scholarship information, and build an unbroken bridge between our indigenous youth and opportunities across Nigeria.”
+                </blockquote>
+
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed mt-3">
+                  Comr. Boyon is an indigenous student advocate and legal scholar from Badagry Central. Elected with an overwhelming mandate, his administration prioritizes bursary transparency, digital skills development, and expanding chapter welfare umbrellas.
+                </p>
+              </div>
+
+              <div class="pt-6 mt-6 border-t border-brand-border flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3 text-slate-400">
+                  <a href="mailto:president@nabas.org.ng" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-brand-navy hover:text-white flex items-center justify-center transition-colors" title="Email President">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                  </a>
+                  <a href="#" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-brand-navy hover:text-white flex items-center justify-center transition-colors" title="LinkedIn Profile">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                  </a>
+                  <a href="#" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-brand-navy hover:text-white flex items-center justify-center transition-colors" title="Twitter / X">
+                    <i data-lucide="twitter" class="w-4 h-4"></i>
+                  </a>
+                </div>
+
+                <button onclick="openLeaderModal('boyon-john')" class="inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-navy-light text-white font-bold px-6 py-2.5 rounded-full text-xs uppercase tracking-wider transition-all shadow hover:shadow-md">
+                  <span>View Executive Profile</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Executive Grid Header -->
+        <div class="flex items-center justify-between border-b border-brand-border pb-3">
+          <div>
+            <div class="section-pill-tag">CENTRAL EXECUTIVE COUNCIL</div>
+            <h3 class="text-xl sm:text-2xl font-black text-brand-navy tracking-tight mt-0.5">
+              Cabinet Officers & Directors
+            </h3>
+          </div>
+          <span class="text-xs text-slate-500 font-semibold hidden sm:inline">8 Portfolios</span>
+        </div>
+
+        <!-- 8-Card Cabinet Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Vice President -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Comr. Senapon Abigail Wheto" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Vice President
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Abigail Wheto</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Vice President (Special Duties)</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>University of Lagos (UNILAG)</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                In charge of inter-chapter coordination, female student mentorship initiatives, and campus relations.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <a href="mailto:vp@nabas.org.ng" class="text-slate-400 hover:text-brand-navy"><i data-lucide="mail" class="w-4 h-4"></i></a>
+              <button onclick="openLeaderModal('abigail-wheto')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- General Secretary -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Comr. David Sedenu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Gen. Secretary
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Mawutin David Sedenu</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Secretary-General</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>LASU, Ojo</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Custodian of national records, official correspondence, and administrative secretariat liaison.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <a href="mailto:gensec@nabas.org.ng" class="text-slate-400 hover:text-brand-navy"><i data-lucide="mail" class="w-4 h-4"></i></a>
+              <button onclick="openLeaderModal('david-sedenu')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Assistant General Secretary -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=400&q=80" alt="Comr. Sewanu Folashade Agosu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Asst. Secretary
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Sewanu F. Agosu</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Assistant General Secretary</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>LASUSTECH, Ikorodu</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Manages internal meeting minutes, committee records, and auxiliary communications.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <a href="mailto:asstsec@nabas.org.ng" class="text-slate-400 hover:text-brand-navy"><i data-lucide="mail" class="w-4 h-4"></i></a>
+              <button onclick="openLeaderModal('sewanu-agosu')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Financial Secretary -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Comr. Micheal Sesi Hundeyin" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Fin. Secretary
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Micheal Sesi Hundeyin</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Financial Secretary</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Yaba College of Technology</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Accounts documentation, revenue reconciliation, bursary dues, and financial compliance.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <a href="mailto:finsec@nabas.org.ng" class="text-slate-400 hover:text-brand-navy"><i data-lucide="mail" class="w-4 h-4"></i></a>
+              <button onclick="openLeaderModal('micheal-hundeyin')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Treasurer -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Comr. Elizabeth Senami Posu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Treasurer
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Elizabeth S. Posu</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">National Treasurer</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>LASUED, Otto/Ijanikin</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Custodian of association treasury, statutory disbursements, and audits.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <a href="mailto:treasurer@nabas.org.ng" class="text-slate-400 hover:text-brand-navy"><i data-lucide="mail" class="w-4 h-4"></i></a>
+              <button onclick="openLeaderModal('elizabeth-posu')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Public Relations Officer -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80" alt="Comr. Babatunde Gandonu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  National PRO
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Babatunde Gandonu</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Public Relations Officer</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>LASU, School of Communication</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Press releases, media relations, social platforms brand amplification, and publication oversight.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <a href="mailto:pro@nabas.org.ng" class="text-slate-400 hover:text-brand-navy"><i data-lucide="mail" class="w-4 h-4"></i></a>
+              <button onclick="openLeaderModal('babatunde-gandonu')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Welfare Director -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=400&q=80" alt="Comr. Victoria Senami Whingan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Welfare Dir.
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Victoria S. Whingan</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Welfare Director</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Federal University of Agriculture, Abeokuta</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Emergency student relief funds, campus accommodation aid, and wellness campaigns.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <a href="mailto:welfare@nabas.org.ng" class="text-slate-400 hover:text-brand-navy"><i data-lucide="mail" class="w-4 h-4"></i></a>
+              <button onclick="openLeaderModal('victoria-whingan')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Director of Socials & Sports -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" alt="Comr. Samuel Jesuyon Idowu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Social & Sports
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Samuel J. Idowu</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Director of Socials & Sports</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>University of Ibadan (UI)</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Annual Badagry Student Cultural Fiesta, inter-campus soccer tourney, and talent showcases.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <a href="mailto:socials@nabas.org.ng" class="text-slate-400 hover:text-brand-navy"><i data-lucide="mail" class="w-4 h-4"></i></a>
+              <button onclick="openLeaderModal('samuel-idowu')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =========================================================================
+           TAB 2: Legislative Senate Arm
+           ========================================================================= -->
+      <section id="tab-content-senate" class="hidden space-y-12">
+        
+        <!-- Senate President Featured Card (Proportionately tailored & prominent) -->
+        <div class="bg-white rounded-3xl border border-brand-border shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="grid grid-cols-1 lg:grid-cols-12">
+            
+            <!-- Left Portrait Area -->
+            <div class="lg:col-span-4 bg-brand-navy relative min-h-[260px] lg:min-h-[340px]">
+              <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=700&q=80" 
+                   alt="Sen. Oladimeji Wheyon - Senate President" 
+                   class="w-full h-full object-cover object-top"
+                   onerror="this.src='https://placehold.co/600x700/0b1a30/f5a623?text=Senate+President'" />
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-navy-dark via-transparent to-transparent opacity-80"></div>
+              
+              <div class="absolute top-4 left-4 bg-brand-gold text-brand-navy text-[11px] font-black uppercase tracking-wider px-3.5 py-1 rounded-full shadow">
+                Senate President
+              </div>
+              <div class="absolute bottom-4 left-4 right-4 text-white">
+                <span class="text-xs text-brand-gold font-semibold uppercase tracking-wider">Lagos State University (LASU Chapter)</span>
+                <p class="text-sm font-bold text-slate-200">Badagry Central Constituency</p>
+              </div>
+            </div>
+
+            <!-- Right Content Area -->
+            <div class="lg:col-span-8 p-6 sm:p-8 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-4 mb-2">
+                  <div class="section-pill-tag">OFFICE OF THE SENATE PRESIDENT</div>
+                  <span class="text-xs font-bold text-slate-400">11th National Senate Assembly</span>
+                </div>
+                
+                <h2 class="text-2xl sm:text-3xl font-black text-brand-navy tracking-tight">
+                  Sen. Oladimeji Wheyon
+                </h2>
+                <p class="text-xs font-bold text-brand-gold uppercase tracking-wider mb-3">
+                  President of the Senate & Chairman, National Legislative Assembly
+                </p>
+
+                <blockquote class="text-slate-600 text-xs sm:text-sm italic leading-relaxed border-l-4 border-brand-navy pl-4 my-3">
+                  “The Senate exists to guarantee equitable representation for every Badagry indigenous student on campus, safeguard our amended constitution, and hold all executive branches accountable.”
+                </blockquote>
+
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed mt-2">
+                  Presiding over accredited Senators from across 20+ Nigerian tertiary institutions. He directs constitutional hearings, budget ratification committees, and parliamentary checks and balances.
+                </p>
+              </div>
+
+              <div class="pt-5 mt-5 border-t border-brand-border flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3 text-slate-400">
+                  <a href="mailto:senate@nabas.org.ng" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-brand-navy hover:text-white flex items-center justify-center transition-colors" title="Senate Email">
+                    <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                  </a>
+                  <span class="text-xs font-semibold text-slate-500">Official Assembly: senate@nabas.org.ng</span>
+                </div>
+
+                <button onclick="openLeaderModal('sen-wheyon')" class="inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-navy-light text-white font-bold px-5 py-2.5 rounded-full text-xs uppercase tracking-wider transition-all shadow hover:shadow-md">
+                  <span>View Senate Bio</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Legislative Senators Grid Header -->
+        <div class="flex items-center justify-between border-b border-brand-border pb-3">
+          <div>
+            <div class="section-pill-tag">PRINCIPAL OFFICERS & SENATORS</div>
+            <h3 class="text-xl sm:text-2xl font-black text-brand-navy tracking-tight mt-0.5">
+              Distinguished Senators of the Red Chamber
+            </h3>
+          </div>
+          <span class="text-xs text-slate-500 font-semibold hidden sm:inline">8 Accredited Representatives</span>
+        </div>
+
+        <!-- Senators Photo Card Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Senator 1: Deputy Senate President -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Sen. Kehinde Senapon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Dep. Senate Pres.
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Sen. Kehinde Senapon</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Deputy Senate President</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="landmark" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>University of Lagos (UNILAG)</span>
+              </div>
+              <p class="text-[11px] font-semibold text-slate-400 mt-1">Constituency: Olorunda LCDA</p>
+              <p class="text-xs text-slate-600 mt-2 line-clamp-2">
+                Chairman, Senate Committee on Constitutional Amendments and Chapter Charters.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Principal Officer</span>
+              <button onclick="openLeaderModal('sen-kehinde')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Senator 2: Chief Whip -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=400&q=80" alt="Sen. Tobi Michael Avoseh" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Chief Whip
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Sen. Tobi Michael Avoseh</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Senate Chief Whip</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="landmark" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>LASUED, Otto/Ijanikin</span>
+              </div>
+              <p class="text-[11px] font-semibold text-slate-400 mt-1">Constituency: Badagry West LCDA</p>
+              <p class="text-xs text-slate-600 mt-2 line-clamp-2">
+                Enforces chamber decorum, senator attendance quorums, and parliamentary order.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Principal Officer</span>
+              <button onclick="openLeaderModal('sen-avoseh')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Senator 3: Senate Clerk -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=400&q=80" alt="Sen. Anthonia Mauyon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Clerk of Senate
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Sen. Anthonia Mauyon</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Clerk of the Senate</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="landmark" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Yaba College of Technology</span>
+              </div>
+              <p class="text-[11px] font-semibold text-slate-400 mt-1">Constituency: Badagry Central</p>
+              <p class="text-xs text-slate-600 mt-2 line-clamp-2">
+                Custodian of legislative gazettes, order papers, voting tallies, and bill transmissions.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Principal Officer</span>
+              <button onclick="openLeaderModal('sen-mauyon')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Senator 4: Majority Leader -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" alt="Sen. Olumide Hunsa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Majority Leader
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Sen. Olumide Hunsa</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Senate Majority Leader</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="landmark" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>LASUSTECH, Ikorodu</span>
+              </div>
+              <p class="text-[11px] font-semibold text-slate-400 mt-1">Constituency: Ajara / Olorunda</p>
+              <p class="text-xs text-slate-600 mt-2 line-clamp-2">
+                Leads executive business on the Senate floor and steers statutory policy approvals.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Principal Officer</span>
+              <button onclick="openLeaderModal('sen-hunsa')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Senator 5: Ogun Chapter Zonal Senator -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80" alt="Sen. Florence Viwapon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Senator
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Sen. Florence Viwapon</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Zonal Chapter Senator</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="landmark" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Federal Poly, Ilaro</span>
+              </div>
+              <p class="text-[11px] font-semibold text-slate-400 mt-1">Constituency: Gbaji / Seme Axis</p>
+              <p class="text-xs text-slate-600 mt-2 line-clamp-2">
+                Member, Senate Committee on Public Petitions, Cross-Border Student Welfare and Grants.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Zonal Rep</span>
+              <button onclick="openLeaderModal('sen-florence')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Senator 6: Oyo & Osun Axis Senator -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Sen. Gbenu Joshua" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Senator
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Sen. Gbenu Joshua</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Zonal Chapter Senator</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="landmark" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>University of Ibadan (UI)</span>
+              </div>
+              <p class="text-[11px] font-semibold text-slate-400 mt-1">Constituency: Badagry Central</p>
+              <p class="text-xs text-slate-600 mt-2 line-clamp-2">
+                Member, Senate Committee on Academic Research, Inter-Collegiate Debates and Awards.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Zonal Rep</span>
+              <button onclick="openLeaderModal('sen-gbenu')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Senator 7: Ondo & Ekiti Axis Senator -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=400&q=80" alt="Sen. Folashade Akerele" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Senator
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Sen. Folashade Akerele</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Zonal Chapter Senator</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="landmark" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Federal University of Technology, Akure</span>
+              </div>
+              <p class="text-[11px] font-semibold text-slate-400 mt-1">Constituency: Olorunda LCDA</p>
+              <p class="text-xs text-slate-600 mt-2 line-clamp-2">
+                Member, Senate Committee on Science, Innovation, and Digital Empowerment Programs.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Zonal Rep</span>
+              <button onclick="openLeaderModal('sen-akerele')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Senator 8: Northern Institutions Delegate -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Sen. Yusuf Metonno" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Senator
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Sen. Yusuf Metonno</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Diaspora Chapter Senator</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="landmark" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Ahmadu Bello University (ABU)</span>
+              </div>
+              <p class="text-[11px] font-semibold text-slate-400 mt-1">Constituency: Badagry West LCDA</p>
+              <p class="text-xs text-slate-600 mt-2 line-clamp-2">
+                Coordinates indigenous Badagry students schooling across Northern Nigeria institutions.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Diaspora Rep</span>
+              <button onclick="openLeaderModal('sen-yusuf')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =========================================================================
+           TAB 3: Directorates (Special Appointees & Institutional Offices)
+           ========================================================================= -->
+      <section id="tab-content-directorates" class="hidden space-y-12">
+
+        <div class="flex items-center justify-between border-b border-brand-border pb-3">
+          <div>
+            <div class="section-pill-tag">DIRECTORATES & SPECIAL OFFICES</div>
+            <h3 class="text-xl sm:text-2xl font-black text-brand-navy tracking-tight mt-0.5">
+              Appointed Directors & Institutional Liaison Officers
+            </h3>
+            <p class="text-xs text-slate-500 mt-1">Officers appointed to various offices across institutions, agencies, and partner organizations.</p>
+          </div>
+          <span class="text-xs text-slate-500 font-semibold hidden sm:inline">4 Appointees</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- Directorate 1 -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="Comr. Sewedo Emmanuel Hunpatin" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  ICT Directorate
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Sewedo E. Hunpatin</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Director of ICT & Digital Innovation</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="building-2" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Badagry Tech Hub / LASUSTECH</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Appointed to lead digital infrastructure, student portal engineering, and tech capacity partnerships across partner institutions.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Directorate</span>
+              <button onclick="openLeaderModal('dir-hunpatin')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Directorate 2 -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=400&q=80" alt="Comr. Senami Grace Zannu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Diaspora & Gender
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Senami Grace Zannu</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Director of Gender, Youth & Diaspora Affairs</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="building-2" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Lagos State Youth Council / UNILAG</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Appointed liaison representing Badagry students in youth development agencies, female empowerment coalitions, and diaspora networks.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Directorate</span>
+              <button onclick="openLeaderModal('dir-zannu')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Directorate 3 -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" alt="Comr. Jesuton Paul Gbenu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Bursary Liaison
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Jesuton Paul Gbenu</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Director of Inter-Governmental & Bursary Liaison</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="building-2" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Lagos State Scholarship Board / LASU</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Special appointee interfacing with local councils, scholarship boards, and educational trusts to facilitate seamless bursary verification.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Directorate</span>
+              <button onclick="openLeaderModal('dir-gbenu')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Directorate 4 -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=400&q=80" alt="Comr. Mauyon Esther Vothon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Research & Policy
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Mauyon E. Vothon</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Director of Research, Policy & Documentation</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="building-2" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Badagry Heritage Research Centre / UI</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Appointed to coordinate undergraduate research publications, policy briefs, and educational resource repositories across tertiary chapters.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Directorate</span>
+              <button onclick="openLeaderModal('dir-vothon')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Profile</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =========================================================================
+           TAB 4: Advisory Council & Patrons
+           ========================================================================= -->
+      <section id="tab-content-advisory" class="hidden space-y-12">
+        
+        <!-- Chief Patron Featured Card: Executive Chairman of Badagry LG -->
+        <div class="bg-white rounded-3xl border border-brand-border shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="grid grid-cols-1 lg:grid-cols-12">
+            
+            <div class="lg:col-span-4 bg-brand-navy relative min-h-[260px] lg:min-h-[340px]">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" 
+                   alt="Executive Chairman, Badagry Local Government" 
+                   class="w-full h-full object-cover object-top"
+                   onerror="this.src='https://placehold.co/600x700/0b1a30/f5a623?text=Chief+Patron'" />
+              <div class="absolute inset-0 bg-gradient-to-t from-brand-navy-dark via-transparent to-transparent opacity-80"></div>
+              
+              <div class="absolute top-4 left-4 bg-brand-gold text-brand-navy text-[11px] font-black uppercase tracking-wider px-3.5 py-1 rounded-full shadow">
+                Chief Patron
+              </div>
+              <div class="absolute bottom-4 left-4 right-4 text-white">
+                <span class="text-xs text-brand-gold font-semibold uppercase tracking-wider">Badagry Local Government Secretariat</span>
+                <p class="text-sm font-bold text-slate-200">Executive Arm, Local Council</p>
+              </div>
+            </div>
+
+            <div class="lg:col-span-8 p-6 sm:p-8 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-4 mb-2">
+                  <div class="section-pill-tag">OFFICIAL PATRONAGE</div>
+                  <span class="text-xs font-bold text-slate-400">Statutory Custodianship</span>
+                </div>
+                
+                <h2 class="text-2xl sm:text-3xl font-black text-brand-navy tracking-tight">
+                  The Executive Chairman, Badagry Local Government
+                </h2>
+                <p class="text-xs font-bold text-brand-gold uppercase tracking-wider mb-3">
+                  Chief Patron of the National Association of Badagry Students
+                </p>
+
+                <blockquote class="text-slate-600 text-xs sm:text-sm italic leading-relaxed border-l-4 border-brand-gold pl-4 my-3">
+                  “The progress of Badagry is tethered directly to the capacity and scholastic brilliance of our youth. We remain committed to backing NABAS with bursary interventions, grants, and youth empowerment initiatives.”
+                </blockquote>
+
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed mt-2">
+                  Serving as the constitutional Chief Patron of NABAS, the Executive Chairman provides institutional collaboration, annual bursary funding partnerships, and grassroots backing for all student development activities across Badagry.
+                </p>
+              </div>
+
+              <div class="pt-5 mt-5 border-t border-brand-border flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-2 text-xs font-semibold text-slate-500">
+                  <i data-lucide="map-pin" class="w-4 h-4 text-brand-gold"></i>
+                  <span>Badagry Local Government Secretariat, Ajara, Badagry</span>
+                </div>
+
+                <button onclick="openLeaderModal('patron-chairman')" class="inline-flex items-center gap-2 bg-brand-navy hover:bg-brand-navy-light text-white font-bold px-5 py-2.5 rounded-full text-xs uppercase tracking-wider transition-all shadow hover:shadow-md">
+                  <span>View Chief Patron Citation</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Patrons Grid Header -->
+        <div class="flex items-center justify-between border-b border-brand-border pb-3">
+          <div>
+            <div class="section-pill-tag">COUNCIL OF ADVISERS & PILLARS</div>
+            <h3 class="text-xl sm:text-2xl font-black text-brand-navy tracking-tight mt-0.5">
+              Royal Fathers, Mentors & Trustees
+            </h3>
+          </div>
+          <span class="text-xs text-slate-500 font-semibold hidden sm:inline">Institutional Pillars</span>
+        </div>
+
+        <!-- Patrons 4-Card Photo Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Grand Royal Patron: The Akran -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80" alt="His Royal Majesty, The Akran of Badagry" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Grand Royal Patron
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">HRM De Wheno Aholu Menu-Toyi I</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">The Akran of Badagry Kingdom</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="crown" class="w-3.5 h-3.5 text-brand-gold"></i>
+                <span>Paramount Ruler of Badagry</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Supreme traditional custodian of Ogu cultural heritage, royal trustee, and father of all indigenous Badagry students.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-brand-navy bg-brand-gold/20 px-2 py-0.5 rounded">Royal Palace</span>
+              <button onclick="openLeaderModal('patron-akran')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Citation</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Academic Patron -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80" alt="Prof. Anthony S. Whenu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Academic Patron
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Prof. Anthony S. Whenu</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Dean Emeritus & Research Chair</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="book-open" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Faculty of Science, LASU</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Guides undergraduate academic excellence awards, graduate school scholarships, and research grants.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-600 bg-slate-100 px-2 py-0.5 rounded">Academic Council</span>
+              <button onclick="openLeaderModal('patron-whenu')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Citation</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Legal Adviser & Patron -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=400&q=80" alt="Barr. David Hunpe, SAN" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Legal Patron
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Barr. David Hunpe, SAN</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Honorary Legal Adviser</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="scale" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Senior Advocate of Nigeria</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Provides statutory guidance on the NABAS Constitution, student human rights advocacy, and governance ethics.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-600 bg-slate-100 px-2 py-0.5 rounded">Legal Consult</span>
+              <button onclick="openLeaderModal('patron-hunpe')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Citation</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Grand Matron -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80" alt="Chief Mrs. Senapon Wheto" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-navy text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-md shadow">
+                  Grand Matron
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Chief Mrs. Senapon Wheto</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">Community Leader & Matron</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500"></i>
+                <span>Badagry Women in Leadership</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 line-clamp-2">
+                Sponsors female student hostel grants, sanitary relief packs, and girls in STEM education summits.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-600 bg-slate-100 px-2 py-0.5 rounded">Matron</span>
+              <button onclick="openLeaderModal('patron-wheto')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Citation</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =========================================================================
+           TAB 4: Past Presidents Hall of Fame
+           ========================================================================= -->
+      <section id="tab-content-hall-of-fame" class="hidden space-y-8">
+        
+        <div class="max-w-2xl">
+          <div class="section-pill-tag">HONORING THE TRAILS BLAZED</div>
+          <h2 class="text-2xl sm:text-3xl font-black text-brand-navy tracking-tight mt-1">
+            Past Presidents (Hall of Fame)
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
+            Honoring the visionary student pioneers who served as National Presidents, weathering storms and building the enduring legacy of NABAS across generations.
+          </p>
+        </div>
+
+        <!-- 4-Card Photo Grid for Past Presidents -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Past President 1 -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Comr. Felix Whegbe" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-gold text-brand-navy text-[10px] font-black uppercase px-2.5 py-0.5 rounded-md shadow">
+                  2023 – 2024
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Felix Whegbe</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">10th National President</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>LASU Chapter</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">
+                Pioneered the Badagry Digital Skills Bootcamp, established 4 new campus chapters in southwestern Nigeria, and launched the student emergency loan fund.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-400">Immediate Past Pres.</span>
+              <button onclick="openLeaderModal('hall-whegbe')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Legacy</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Past President 2 -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Comr. Segun Avoseh" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-gold text-brand-navy text-[10px] font-black uppercase px-2.5 py-0.5 rounded-md shadow">
+                  2022 – 2023
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Segun Avoseh</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">9th National President</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>UNILAG Chapter</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">
+                Instituted the Annual Free UTME/JAMB coaching and registration intervention for over 350 indigent secondary school leavers across the division.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-400">Distinguished Alumnus</span>
+              <button onclick="openLeaderModal('hall-avoseh')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Legacy</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Past President 3 -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Comr. Elizabeth Posu-Tosho" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-gold text-brand-navy text-[10px] font-black uppercase px-2.5 py-0.5 rounded-md shadow">
+                  2021 – 2022
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Elizabeth Posu-Tosho</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">8th National President</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>LASUED Chapter</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">
+                Spearheaded the Badagry Coastal Girls Leadership Forum and championed maternal-child community sanitation days across coastal fishing settlements.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-400">Distinguished Alumna</span>
+              <button onclick="openLeaderModal('hall-posu')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Legacy</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Past President 4 -->
+          <div class="bg-white rounded-2xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col justify-between group">
+            <div>
+              <div class="relative w-full aspect-[4/4.2] rounded-xl overflow-hidden mb-4 bg-slate-100 border border-slate-200">
+                <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80" alt="Comr. Ayomide Hunponu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <span class="absolute top-2.5 left-2.5 bg-brand-gold text-brand-navy text-[10px] font-black uppercase px-2.5 py-0.5 rounded-md shadow">
+                  2020 – 2021
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-brand-navy leading-tight">Comr. Ayomide Hunponu</h4>
+              <p class="text-xs font-semibold text-brand-gold mt-0.5">7th National President</p>
+              <div class="text-[11px] text-slate-500 mt-2 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>YABATECH Chapter</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-2.5 leading-relaxed">
+                Successfully organized emergency student food palliative distributions and digital study networks during the height of the COVID-19 pandemic.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase text-slate-400">Distinguished Alumnus</span>
+              <button onclick="openLeaderModal('hall-hunponu')" class="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                <span>Legacy</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Leadership Contact & Chapter Delegation CTA -->
+  <section class="py-14 bg-white border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-brand-navy via-brand-navy-light to-brand-navy rounded-3xl p-8 md:p-12 text-white relative overflow-hidden shadow-xl">
+        <div class="max-w-2xl relative z-10">
+          <div class="section-pill-tag !text-brand-gold">ENGAGE YOUR EXECUTIVES</div>
+          <h3 class="text-2xl sm:text-3xl font-black mt-2 mb-3">
+            Have a proposal or want to reach leadership?
+          </h3>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
+            The National Executive Council runs an open-door policy. Submit campus grievances, partnership proposals, or chapter constitution petitions directly to the secretariat.
+          </p>
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="mailto:executives@nabas.org.ng" class="inline-flex items-center gap-2 bg-brand-gold hover:bg-brand-gold-hover text-brand-navy font-bold px-6 py-3 rounded-full text-xs uppercase tracking-wider transition-all shadow-md">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+              <span>Write to Executive Council</span>
+            </a>
+            <button onclick="openJoinModal()" class="inline-flex items-center gap-2 border border-slate-400 hover:border-white text-white font-bold px-6 py-3 rounded-full text-xs uppercase tracking-wider transition-all">
+              <span>Register Chapter Delegate</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="absolute right-6 -bottom-6 watermark-script text-9xl text-white/5 pointer-events-none hidden md:block">
+          Badagry
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Footer -->
+  <footer id="resources" class="bg-brand-navy text-white pt-16 pb-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+        
+        <!-- Brand Info -->
+        <div class="lg:col-span-4 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-navy border-2 border-brand-gold flex items-center justify-center p-1">
+              <svg viewBox="0 0 100 100" class="w-full h-full text-brand-gold" fill="currentColor">
+                <path d="M50 5 L85 20 V50 C85 75 50 95 50 95 C50 95 15 75 15 50 V20 Z" fill="#0b1a30" stroke="#f5a623" stroke-width="4"/>
+                <path d="M30 45 Q50 40 50 55 Q50 40 70 45 V70 Q50 65 50 78 Q50 65 30 70 Z" fill="#f5a623"/>
+              </svg>
+            </div>
+            <div>
+              <span class="block text-xl font-black tracking-tight text-white leading-none">NABAS</span>
+              <span class="block text-[10px] font-medium tracking-wider text-slate-400 uppercase mt-0.5">
+                National Association of Badagry Students
+              </span>
+            </div>
+          </div>
+
+          <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+            Fostering academic distinction, youth empowerment, and cultural preservation across Badagry kingdom and tertiary institutions nationwide.
+          </p>
+
+          <div class="pt-2">
+            <button onclick="openJoinModal()" class="inline-flex items-center gap-2 bg-brand-gold text-brand-navy font-bold px-5 py-2 rounded-full text-xs uppercase tracking-wider">
+              <span>Join Association</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="lg:col-span-4">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-slate-300 mb-4">Quick Links</h4>
+          <div class="grid grid-cols-2 gap-2 text-xs text-slate-400">
+            <div class="space-y-2.5">
+              <a href="index.html" class="block hover:text-brand-gold transition-colors">Home</a>
+              <a href="about.html" class="block hover:text-brand-gold transition-colors">About</a>
+              <a href="leadership.html" class="block text-brand-gold font-bold transition-colors">Leadership</a>
+              <a href="chapters.html" class="block hover:text-brand-gold transition-colors">Chapters</a>
+            </div>
+            <div class="space-y-2.5">
+              <a href="programmes.html" class="block hover:text-brand-gold transition-colors">Programmes</a>
+              <a href="news.html" class="block hover:text-brand-gold transition-colors">News</a>
+              <a href="resources.html" class="block hover:text-brand-gold transition-colors">Resources</a>
+              <a href="#contact" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})" class="block hover:text-brand-gold transition-colors">Contact</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Us -->
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-slate-300 mb-4">Contact Us</h4>
+          <div class="space-y-2 text-xs text-slate-400">
+            <p class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-gold"></i>
+              <span>+234 901 234 5678</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-3.5 h-3.5 text-brand-gold"></i>
+              <span>info@nabas.org.ng</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-gold"></i>
+              <span>Badagry, Lagos State</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Follow Us -->
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-slate-300 mb-4">Follow Us</h4>
+          <div class="flex items-center gap-3 text-slate-400">
+            <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-brand-gold hover:text-brand-navy flex items-center justify-center transition-colors">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="#" aria-label="X" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-brand-gold hover:text-brand-navy flex items-center justify-center transition-colors">
+              <i data-lucide="twitter" class="w-4 h-4"></i>
+            </a>
+            <a href="#" aria-label="Instagram" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-brand-gold hover:text-brand-navy flex items-center justify-center transition-colors">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#" aria-label="YouTube" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-brand-gold hover:text-brand-navy flex items-center justify-center transition-colors">
+              <i data-lucide="youtube" class="w-4 h-4"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-brand-gold hover:text-brand-navy flex items-center justify-center transition-colors">
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 gap-4">
+        <div>
+          © 2025 National Association of Badagry Students (NABAS). All rights reserved.
+        </div>
+        <div class="font-semibold text-slate-300 tracking-wider">
+          Unity &bull; Excellence &bull; Development
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Interactive Dynamic Profile Bio Modal -->
+  <div id="leaderBioModal" class="fixed inset-0 z-50 hidden bg-brand-navy/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-brand-border relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeLeaderModal()" class="absolute top-5 right-5 text-slate-400 hover:text-brand-navy p-1">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+
+      <div class="flex flex-col sm:flex-row items-start gap-6 mb-6 pb-6 border-b border-brand-border">
+        <div class="w-24 h-28 sm:w-28 sm:h-32 rounded-2xl overflow-hidden bg-slate-100 shrink-0 border border-slate-200">
+          <img id="modalLeaderImg" src="" alt="Leader Portrait" class="w-full h-full object-cover" />
+        </div>
+        <div>
+          <span id="modalLeaderBadge" class="inline-block bg-brand-gold text-brand-navy text-[10px] font-black uppercase px-2.5 py-0.5 rounded-md mb-2">
+            Leadership
+          </span>
+          <h3 id="modalLeaderName" class="text-xl sm:text-2xl font-black text-brand-navy leading-tight">
+            Leader Name
+          </h3>
+          <p id="modalLeaderRole" class="text-xs font-bold text-brand-gold uppercase tracking-wider mt-0.5">
+            Portfolio
+          </p>
+          <p id="modalLeaderInst" class="text-xs text-slate-500 mt-1 flex items-center gap-1.5">
+            <i data-lucide="landmark" class="w-3.5 h-3.5 text-slate-400"></i>
+            <span>Institution / Constituency</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed">
+        <div>
+          <h4 class="font-bold text-brand-navy uppercase text-xs tracking-wider mb-1">Citation & Leadership Profile</h4>
+          <p id="modalLeaderBio">Bio details will appear here.</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-brand-navy uppercase text-xs tracking-wider mb-1">Key Portfolio Mandate & Responsibilities</h4>
+          <ul id="modalLeaderTasks" class="list-disc pl-5 space-y-1 text-slate-600 text-xs">
+            <li>Portfolio duty</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-4 border-t border-brand-border flex items-center justify-between">
+        <a id="modalLeaderEmail" href="mailto:info@nabas.org.ng" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-navy hover:text-brand-gold">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>Official Contact</span>
+        </a>
+        <button onclick="closeLeaderModal()" class="bg-brand-navy hover:bg-brand-navy-light text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider">
+          Close Profile
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Modal -->
+  <div id="searchModal" class="fixed inset-0 z-50 hidden bg-brand-navy/80 backdrop-blur-sm flex items-start justify-center pt-20 p-4">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-4 shadow-2xl border border-slate-200">
+      <div class="flex items-center border-b border-slate-200 pb-3 gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
+        <input type="text" id="searchInput" placeholder="Search executives, senators, constitution, chapters..." class="w-full outline-none text-sm text-slate-800 placeholder-slate-400" />
+        <button onclick="toggleSearchModal(false)" class="text-xs font-bold text-slate-400 hover:text-brand-navy px-2 py-1">ESC</button>
+      </div>
+      <div class="py-4 text-xs text-slate-500">
+        <p class="font-bold text-slate-400 uppercase text-[10px] mb-2">Quick suggestions</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-slate-100 hover:bg-brand-gold/20 hover:text-brand-navy px-3 py-1.5 rounded-lg cursor-pointer transition-colors" onclick="document.getElementById('searchInput').value='National President';">National President</span>
+          <span class="bg-slate-100 hover:bg-brand-gold/20 hover:text-brand-navy px-3 py-1.5 rounded-lg cursor-pointer transition-colors" onclick="document.getElementById('searchInput').value='Senate President';">Senate President</span>
+          <span class="bg-slate-100 hover:bg-brand-gold/20 hover:text-brand-navy px-3 py-1.5 rounded-lg cursor-pointer transition-colors" onclick="document.getElementById('searchInput').value='Chief Patron';">Chief Patron</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Join Modal -->
+  <div id="joinModal" class="fixed inset-0 z-50 hidden bg-brand-navy/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-brand-border relative">
+      <button onclick="closeJoinModal()" class="absolute top-5 right-5 text-slate-400 hover:text-brand-navy p-1">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <div class="section-pill-tag">NABAS MEMBERSHIP</div>
+      <h3 class="text-2xl font-black text-brand-navy mt-1 mb-2">Join Badagry Students</h3>
+      <p class="text-xs text-slate-500 mb-6">Register your tertiary membership to connect with leadership and chapters.</p>
+      <form onsubmit="handleJoinSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Full Name</label>
+          <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-brand-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tertiary School</label>
+          <input type="text" required placeholder="e.g., LASU, UNILAG" class="w-full px-4 py-2.5 rounded-xl border border-brand-border text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold" />
+        </div>
+        <button type="submit" class="w-full bg-brand-gold hover:bg-brand-gold-hover text-brand-navy font-bold py-3 rounded-xl text-xs uppercase tracking-wider transition-all">
+          Submit Membership
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Lucide Icons Initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+
+    // Mobile Navigation Drawer Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Tab Switcher Controller
+    function switchTab(tabId) {
+      const tabs = ['cec', 'senate', 'directorates', 'advisory', 'hall-of-fame'];
+      
+      tabs.forEach(t => {
+        const content = document.getElementById(`tab-content-${t}`);
+        const btn = document.getElementById(`tab-btn-${t}`);
+        
+        if (t === tabId) {
+          content.classList.remove('hidden');
+          btn.classList.add('active');
+          btn.classList.remove('text-slate-600');
+        } else {
+          content.classList.add('hidden');
+          btn.classList.remove('active');
+          btn.classList.add('text-slate-600');
+        }
+      });
+      lucide.createIcons();
+    }
+
+    // Unified Dynamic Database for Leaders across all wings
+    const leadersData = {
+      // CEC
+      'boyon-john': {
+        name: 'Comr. Boyon John Metonno',
+        role: 'President & Chairman of CEC',
+        badge: 'Head of Executive Council',
+        institution: 'Lagos State University (LASU) • Faculty of Law',
+        img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80',
+        email: 'president@nabas.org.ng',
+        bio: 'Comr. Boyon is an indigenous student advocate and legal scholar from Badagry Central. Elected with an overwhelming mandate, his administration prioritizes bursary transparency, digital skills development, and expanding chapter welfare umbrellas.',
+        tasks: [
+          'Presides over all Central Executive Council deliberations and constitutional execution.',
+          'Serves as chief spokesperson representing Badagry students in national and governmental dialogues.',
+          'Oversees student interventions, educational bursary approvals, and community outreach programs.'
+        ]
+      },
+      'abigail-wheto': {
+        name: 'Comr. Abigail Wheto',
+        role: 'Vice President (Special Duties)',
+        badge: 'Executive Officer',
+        institution: 'University of Lagos (UNILAG) • Department of Economics',
+        img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+        email: 'vp@nabas.org.ng',
+        bio: 'Comr. Abigail manages inter-campus student engagements and female academic mentorship. She spearheads the annual Badagry Young Women in Higher Education symposium.',
+        tasks: [
+          'Deputizes for the National President in statutory engagements and administrative capacities.',
+          'Coordinates internal chapter grievances and executive-to-student support structures.',
+          'Supervises gender equality, mentorship, and health awareness committees.'
+        ]
+      },
+      'david-sedenu': {
+        name: 'Comr. Mawutin David Sedenu',
+        role: 'Secretary-General',
+        badge: 'Executive Secretariat',
+        institution: 'Lagos State University (LASU) • Political Science',
+        img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+        email: 'gensec@nabas.org.ng',
+        bio: 'Comr. David is the administrative backbone of NABAS National, overseeing official documentation, correspondence with government agencies, and council minutes.',
+        tasks: [
+          'Maintains statutory records, archive repositories, and official seals of the association.',
+          'Convenes executive meetings, conventions, and delegates congresses in coordination with the President.',
+          'Issues formal circulars, internal memos, and credential certifications.'
+        ]
+      },
+      'sewanu-agosu': {
+        name: 'Comr. Sewanu F. Agosu',
+        role: 'Assistant General Secretary',
+        badge: 'Executive Secretariat',
+        institution: 'LASUSTECH, Ikorodu • Computer Science',
+        img: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=400&q=80',
+        email: 'asstsec@nabas.org.ng',
+        bio: 'A technology student leading digitisation of association records and membership registers across over 20 campus chapters.',
+        tasks: [
+          'Assists the Secretary-General in document cataloging and chapter correspondence.',
+          'Manages digital registries and attendee verification during general congresses.',
+          'Acts as scribe for designated ad-hoc parliamentary committees.'
+        ]
+      },
+      'micheal-hundeyin': {
+        name: 'Comr. Micheal Sesi Hundeyin',
+        role: 'Financial Secretary',
+        badge: 'Financial Control',
+        institution: 'Yaba College of Technology • Accountancy',
+        img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+        email: 'finsec@nabas.org.ng',
+        bio: 'Dedicated to fiscal transparency, Micheal prepares the statutory statement of affairs and reconciles dues from chapter branches.',
+        tasks: [
+          'Records all association financial receipts, levies, and sponsorship inflows.',
+          'Presents quarterly financial statements to the National Senate.',
+          'Ensures all expenditures conform with ratified constitutional budget caps.'
+        ]
+      },
+      'elizabeth-posu': {
+        name: 'Comr. Elizabeth S. Posu',
+        role: 'National Treasurer',
+        badge: 'Treasury & Audit',
+        institution: 'LASUED, Otto/Ijanikin • Educational Management',
+        img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80',
+        email: 'treasurer@nabas.org.ng',
+        bio: 'Experienced student administrator safeguarding association funds and bursary transfers to verified beneficiaries.',
+        tasks: [
+          'Custodian of national bank accounts, liquid assets, and disbursements.',
+          'Signs official checks and payment vouchers alongside the President and Secretary-General.',
+          'Cooperates with external audit committees during annual reviews.'
+        ]
+      },
+      'babatunde-gandonu': {
+        name: 'Comr. Babatunde Gandonu',
+        role: 'Public Relations Officer',
+        badge: 'Media & Communications',
+        institution: 'LASU • School of Communication',
+        img: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80',
+        email: 'pro@nabas.org.ng',
+        bio: 'A passionate media strategist handling association broadcasts, press briefings, stakeholder engagements, and social media brand identity.',
+        tasks: [
+          'Manages all public communiqués, press conferences, and media interviews.',
+          'Directs the digital content team, official portal updates, and student bulletins.',
+          'Safeguards the public image and dignity of the Badagry student populace.'
+        ]
+      },
+      'victoria-whingan': {
+        name: 'Comr. Victoria S. Whingan',
+        role: 'Welfare Director',
+        badge: 'Student Welfare',
+        institution: 'FUNAAB • Agricultural Economics',
+        img: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=400&q=80',
+        email: 'welfare@nabas.org.ng',
+        bio: 'Focused on emergency accommodation, welfare grants, and healthcare relief for students in need across tertiary institutions.',
+        tasks: [
+          'Coordinates hostel and accommodation emergency assistance for stranded freshmen.',
+          'Oversees student relief drives, distress calls, and palliative packages.',
+          'Liaises with university medical teams and hostel wardens for student safety.'
+        ]
+      },
+      'samuel-idowu': {
+        name: 'Comr. Samuel J. Idowu',
+        role: 'Director of Socials & Sports',
+        badge: 'Social Affairs',
+        institution: 'University of Ibadan (UI) • Human Kinetics',
+        img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
+        email: 'socials@nabas.org.ng',
+        bio: 'Championing student bonding, cultural heritage celebrations, annual soccer cups, and artistic showcases celebrating Badagry culture.',
+        tasks: [
+          'Plans and directs the annual All-Badagry Students Cultural Convention and Gala.',
+          'Organizes inter-campus sports tournaments and debate cups.',
+          'Coordinates cultural exhibitions highlighting ancient Badagry traditions.'
+        ]
+      },
+
+      // LEGISLATIVE SENATE
+      'sen-wheyon': {
+        name: 'Sen. Oladimeji Wheyon',
+        role: 'President of the Senate',
+        badge: 'Head of Parliamentary Arm',
+        institution: 'Lagos State University (LASU Chapter) • Badagry Central',
+        img: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=700&q=80',
+        email: 'senate.president@nabas.org.ng',
+        bio: 'Sen. Wheyon presides over the 11th National Senate Assembly. A seasoned campus parliamentarian, he championed the amended 2025 NABAS Constitution and the Zonal Parliamentary Representation Act.',
+        tasks: [
+          'Presides over plenary sessions of the Senate and enforces standing orders.',
+          'Transmits ratified legislative bills and budgetary resolutions to the National President.',
+          'Constitutes statutory and ad-hoc standing committees of the Red Chamber.'
+        ]
+      },
+      'sen-kehinde': {
+        name: 'Sen. Kehinde Senapon',
+        role: 'Deputy Senate President',
+        badge: 'Senate Principal Officer',
+        institution: 'University of Lagos (UNILAG Chapter) • Olorunda LCDA',
+        img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+        email: 'deputy.senate@nabas.org.ng',
+        bio: 'Deputizes the Senate President during plenary proceedings and chairs the Committee of the Whole on Constitutional and Electoral Reviews.',
+        tasks: [
+          'Acts as Speaker of the Senate in the absence of the Senate President.',
+          'Supervises the drafting of legislative resolutions and public interest motions.',
+          'Liaises between institutional campus parliaments and the National Senate.'
+        ]
+      },
+      'sen-avoseh': {
+        name: 'Sen. Tobi Michael Avoseh',
+        role: 'Senate Chief Whip',
+        badge: 'Senate Principal Officer',
+        institution: 'LASUED, Otto/Ijanikin • Badagry West LCDA',
+        img: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=400&q=80',
+        email: 'senate.whip@nabas.org.ng',
+        bio: 'Responsible for maintaining order, party discipline, and senator participation quorums during sitting assemblies.',
+        tasks: [
+          'Enforces disciplinary codes and attendance during ordinary and emergency Senate sittings.',
+          'Coordinates legislative voting procedures and division of the house.',
+          'Serves as member of the Senate Committee on Rules & Ethics.'
+        ]
+      },
+      'sen-mauyon': {
+        name: 'Sen. Anthonia Mauyon',
+        role: 'Clerk of the Senate',
+        badge: 'Senate Secretariat',
+        institution: 'Yaba College of Technology • Badagry Central',
+        img: 'https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=400&q=80',
+        email: 'clerk.senate@nabas.org.ng',
+        bio: 'The head of the Parliamentary Bureau, responsible for maintaining official legislative journals, votes, and proceedings.',
+        tasks: [
+          'Prepares and circulates the Senate Order Paper and Notice of Motions.',
+          'Records verbatim minutes and voting tallies of all legislative sittings.',
+          'Maintains custody of passed resolutions, enrolled bills, and assembly seal.'
+        ]
+      },
+      'sen-hunsa': {
+        name: 'Sen. Olumide Hunsa',
+        role: 'Senate Majority Leader',
+        badge: 'Senate Principal Officer',
+        institution: 'LASUSTECH, Ikorodu • Ajara/Olorunda',
+        img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
+        email: 'majority.senate@nabas.org.ng',
+        bio: 'Leads the deliberation on executive bills, sponsorship approvals, and statutory policy motions in the Red Chamber.',
+        tasks: [
+          'Presents all executive bills transmitted by the National President.',
+          'Manages the debate timetable and legislative calendar on the floor.',
+          'Facilitates consensus building among senators across campus chapters.'
+        ]
+      },
+      'sen-florence': {
+        name: 'Sen. Florence Viwapon',
+        role: 'Zonal Senator (Ogun Axis)',
+        badge: 'Accredited Senator',
+        institution: 'Federal Poly, Ilaro • Gbaji/Seme Axis',
+        img: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80',
+        email: 'sen.ilaro@nabas.org.ng',
+        bio: 'Represents Badagry indigenes studying in Ogun State higher institutions, advocating for border area student bursaries.',
+        tasks: [
+          'Sponsors motions addressing welfare challenges of students in polytechnics.',
+          'Chairs the Senate Committee on Cross-Border Student Affairs.',
+          'Presents quarterly chapter progress reports to the Assembly.'
+        ]
+      },
+      'sen-gbenu': {
+        name: 'Sen. Gbenu Joshua',
+        role: 'Zonal Senator (Oyo/Osun Axis)',
+        badge: 'Accredited Senator',
+        institution: 'University of Ibadan (UI) • Badagry Central',
+        img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80',
+        email: 'sen.ui@nabas.org.ng',
+        bio: 'Represents Badagry undergraduates at the premier university, focusing on academic mentorship and inter-collegiate debates.',
+        tasks: [
+          'Member of the Senate Standing Committee on Academic Honours & Research.',
+          'Facilitates academic exchange and mentorship with Ibadan chapter alumni.',
+          'Co-sponsors the annual Badagry Collegiate Debate Trophy bill.'
+        ]
+      },
+      'sen-akerele': {
+        name: 'Sen. Folashade Akerele',
+        role: 'Zonal Senator (Ondo/Ekiti Axis)',
+        badge: 'Accredited Senator',
+        institution: 'FUTA, Akure • Olorunda LCDA',
+        img: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=400&q=80',
+        email: 'sen.futa@nabas.org.ng',
+        bio: 'Tech enthusiast advocating for STEM scholarships and regional tech bootcamps for Badagry students in technological universities.',
+        tasks: [
+          'Chairs the Senate Ad-Hoc Committee on Youth Digital Empowerment.',
+          'Monitors implementation of student laptop grants and bursaries.',
+          'Advocates for remote chapter members in plenary decisions.'
+        ]
+      },
+      'sen-yusuf': {
+        name: 'Sen. Yusuf Metonno',
+        role: 'Diaspora Senator (Northern Axis)',
+        badge: 'Accredited Senator',
+        institution: 'Ahmadu Bello University (ABU) • Badagry West',
+        img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+        email: 'sen.abu@nabas.org.ng',
+        bio: 'Coordinates Badagry indigenous scholars in northern universities, ensuring welfare coverage during academic breaks and travels.',
+        tasks: [
+          'Represents distant diaspora campus chapters in national decisions.',
+          'Manages emergency transit welfare resolutions for students returning home.',
+          'Reports on national youth integration and campus security matters.'
+        ]
+      },
+
+      // DIRECTORATES
+      'dir-hunpatin': {
+        name: 'Comr. Sewedo Emmanuel Hunpatin',
+        role: 'Director of ICT & Digital Innovation',
+        badge: 'ICT Directorate',
+        institution: 'Badagry Tech & Innovation Hub / LASUSTECH',
+        img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80',
+        email: 'ict@nabas.org.ng',
+        bio: 'Appointed to lead digital infrastructure, student portal engineering, and tech capacity partnerships across partner institutions.',
+        tasks: [
+          'Oversees the NABAS digital membership portal and tech bootcamps.',
+          'Coordinates with partner tech hubs and tertiary ICT directorates.',
+          'Leads digital literacy and software training initiatives.'
+        ]
+      },
+      'dir-zannu': {
+        name: 'Comr. Senami Grace Zannu',
+        role: 'Director of Gender, Youth & Diaspora Affairs',
+        badge: 'Diaspora & Gender',
+        institution: 'Lagos State Youth Council / UNILAG',
+        img: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=400&q=80',
+        email: 'gender.diaspora@nabas.org.ng',
+        bio: 'Appointed liaison representing Badagry students in youth development agencies, female empowerment coalitions, and diaspora networks.',
+        tasks: [
+          'Liaises with state youth ministries and civil society organizations.',
+          'Coordinates female undergraduate mentorship and welfare drives.',
+          'Connects diaspora Badagry scholars with home opportunities.'
+        ]
+      },
+      'dir-gbenu': {
+        name: 'Comr. Jesuton Paul Gbenu',
+        role: 'Director of Inter-Governmental & Bursary Liaison',
+        badge: 'Bursary Liaison',
+        institution: 'Lagos State Scholarship Board / LASU Liaison',
+        img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80',
+        email: 'bursary@nabas.org.ng',
+        bio: 'Special appointee interfacing with local councils, scholarship boards, and educational trusts to facilitate seamless bursary verification.',
+        tasks: [
+          'Interfaces with Badagry LG, Olorunda LCDA, and Badagry West LCDA education desks.',
+          'Assists indigenous students with Lagos State Scholarship Board documentation.',
+          'Tracks institutional grant and bursary disbursements.'
+        ]
+      },
+      'dir-vothon': {
+        name: 'Comr. Mauyon Esther Vothon',
+        role: 'Director of Research, Policy & Documentation',
+        badge: 'Research & Policy',
+        institution: 'Badagry Heritage Research Centre / UI',
+        img: 'https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=400&q=80',
+        email: 'research@nabas.org.ng',
+        bio: 'Appointed to coordinate undergraduate research publications, policy briefs, and educational resource repositories across tertiary chapters.',
+        tasks: [
+          'Curates the NABAS academic past questions and thesis repository.',
+          'Convenes inter-institutional research and policy dialogues.',
+          'Partners with academic bodies and cultural research institutes.'
+        ]
+      },
+
+      // ADVISORY & PATRONS
+      'patron-chairman': {
+        name: 'The Executive Chairman, Badagry Local Government',
+        role: 'Chief Patron of NABAS',
+        badge: 'Official Chief Patron',
+        institution: 'Badagry Local Government Secretariat, Ajara, Badagry',
+        img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80',
+        email: 'chairman@badagry.lg.gov.ng',
+        bio: 'As the Chief Executive of the ancient cradle of Badagry, the Chairman serves as the statutory Chief Patron of NABAS. His office champions youth capacity building, educational subventions, and infrastructural support for Badagry students across Nigeria.',
+        tasks: [
+          'Provides statutory guidance and executive patronage to the national association.',
+          'Facilitates local government bursaries and tertiary educational grants.',
+          'Partners with NABAS on annual community development projects and youth summits.'
+        ]
+      },
+      'patron-akran': {
+        name: 'HRM De Wheno Aholu Menu-Toyi I',
+        role: 'The Akran of Badagry Kingdom',
+        badge: 'Grand Royal Patron',
+        institution: 'Aholu Royal Palace, Badagry Kingdom',
+        img: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=400&q=80',
+        email: 'palace@badagrykingdom.org',
+        bio: 'His Royal Majesty is the revered monarch and paramount ruler of Badagry Kingdom. He has stood as the pillar of cultural identity and royal inspiration for Badagry students over four decades.',
+        tasks: [
+          'Bestows royal blessings and fatherly counsel on student leadership administrations.',
+          'Serves as the highest traditional arbiter and cultural custodian of the association.',
+          'Inspires historical research into Badagry heritage, Ogu language, and maritime peace.'
+        ]
+      },
+      'patron-whenu': {
+        name: 'Prof. Anthony S. Whenu',
+        role: 'Dean Emeritus & Research Chair',
+        badge: 'Academic Patron',
+        institution: 'Faculty of Science, Lagos State University (LASU)',
+        img: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&q=80',
+        email: 'whenu.anthony@lasu.edu.ng',
+        bio: 'A distinguished scholar who has mentored hundreds of Badagry indigenes through undergraduate and postgraduate studies across Nigerian universities.',
+        tasks: [
+          'Chairs the Board of Academic Mentorship and Merit Bursaries.',
+          'Advises the Executive Council on educational symposia and curriculum workshops.',
+          'Facilitates international postgraduate scholarships for outstanding graduates.'
+        ]
+      },
+      'patron-hunpe': {
+        name: 'Barr. David Hunpe, SAN',
+        role: 'Senior Advocate of Nigeria',
+        badge: 'Legal Patron & Adviser',
+        institution: 'Supreme Court of Nigeria / Maritime Legal Chambers',
+        img: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=400&q=80',
+        email: 'hunpe.legal@san.ng',
+        bio: 'Eminent jurist and legal trailblazer from Badagry, offering pro-bono constitutional counsel to protect student rights and constitutional governance.',
+        tasks: [
+          'Advises the Senate on legislative drafting and constitutional amendments.',
+          'Provides legal protection for student rights and unlawful campus victimizations.',
+          'Sponsors legal education bursaries and bar exam support funds.'
+        ]
+      },
+      'patron-wheto': {
+        name: 'Chief Mrs. Senapon Wheto',
+        role: 'Community Leader & Matron',
+        badge: 'Grand Matron',
+        institution: 'Badagry Women in Leadership Forum',
+        img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80',
+        email: 'matron@nabas.org.ng',
+        bio: 'Philanthropist and community leader committed to uplifting the female child through education, health support, and vocational skills empowerment.',
+        tasks: [
+          'Sponsors female student welfare and emergency sanitary distribution campaigns.',
+          'Mentors female students aspiring to executive governance and campus leadership.',
+          'Supports the annual NABAS Girls in Leadership Summit.'
+        ]
+      },
+
+      // PAST PRESIDENTS (HALL OF FAME)
+      'hall-whegbe': {
+        name: 'Comr. Felix Whegbe',
+        role: '10th National President (2023 – 2024)',
+        badge: 'Immediate Past President',
+        institution: 'LASU Chapter • Computer Science',
+        img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+        email: 'alumni@nabas.org.ng',
+        bio: 'Comr. Felix Whegbe led a transformational administration centered on technological empowerment and digital registration. He launched the annual Badagry Student Tech Bootcamp.',
+        tasks: [
+          'Expanded association chapters to 18 accredited campuses in Nigeria.',
+          'Initiated the digital membership database and portal system.',
+          'Established the Emergency Student Loan fund for semester registration fees.'
+        ]
+      },
+      'hall-avoseh': {
+        name: 'Comr. Segun Avoseh',
+        role: '9th National President (2022 – 2023)',
+        badge: 'Past National President',
+        institution: 'UNILAG Chapter • Business Administration',
+        img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+        email: 'alumni@nabas.org.ng',
+        bio: 'His administration is remembered for the historic Free UTME/JAMB forms scheme that sponsored over 350 high school seniors across Badagry.',
+        tasks: [
+          'Established the Annual Free UTME preparatory tutorials in 3 centers.',
+          'Negotiated local government bursary increments for medical and engineering students.',
+          'Resurrected the All-Badagry Inter-Campus Soccer Championship.'
+        ]
+      },
+      'hall-posu': {
+        name: 'Comr. Elizabeth Posu-Tosho',
+        role: '8th National President (2021 – 2022)',
+        badge: 'Past National President',
+        institution: 'LASUED Chapter • Educational Foundations',
+        img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+        email: 'alumni@nabas.org.ng',
+        bio: 'A visionary trailblazer who championed female student empowerment and coastal health hygiene campaigns in shoreline communities.',
+        tasks: [
+          'Convened the first Badagry Young Women in Higher Education symposium.',
+          'Organized coastal community environmental health drives.',
+          'Established chapter libraries and book donation drives for student halls.'
+        ]
+      },
+      'hall-hunponu': {
+        name: 'Comr. Ayomide Hunponu',
+        role: '7th National President (2020 – 2021)',
+        badge: 'Past National President',
+        institution: 'YABATECH Chapter • Civil Engineering',
+        img: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80',
+        email: 'alumni@nabas.org.ng',
+        bio: 'Led the association during the challenging global COVID-19 pandemic, pioneering remote study hubs and emergency food palliative interventions for stranded students.',
+        tasks: [
+          'Directed emergency food and welfare drives during lockdown lockdowns.',
+          'Instituted virtual lectures and skill masterclasses for students at home.',
+          'Strengthened association solidarity through digital media town halls.'
+        ]
+      }
+    };
+
+    // Open Leader Bio Modal
+    function openLeaderModal(leaderKey) {
+      const data = leadersData[leaderKey];
+      if (!data) return;
+
+      document.getElementById('modalLeaderName').innerText = data.name;
+      document.getElementById('modalLeaderRole').innerText = data.role;
+      document.getElementById('modalLeaderBadge').innerText = data.badge;
+      document.getElementById('modalLeaderInst').innerHTML = `<i data-lucide="landmark" class="w-3.5 h-3.5 text-slate-400"></i><span>${data.institution}</span>`;
+      document.getElementById('modalLeaderImg').src = data.img;
+      document.getElementById('modalLeaderBio').innerText = data.bio;
+      document.getElementById('modalLeaderEmail').href = `mailto:${data.email}`;
+      
+      const tasksContainer = document.getElementById('modalLeaderTasks');
+      tasksContainer.innerHTML = '';
+      data.tasks.forEach(task => {
+        const li = document.createElement('li');
+        li.innerText = task;
+        tasksContainer.appendChild(li);
+      });
+
+      document.getElementById('leaderBioModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeLeaderModal() {
+      document.getElementById('leaderBioModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Search Modal
+    function toggleSearchModal(show) {
+      const modal = document.getElementById('searchModal');
+      if (show) {
+        modal.classList.remove('hidden');
+        setTimeout(() => document.getElementById('searchInput').focus(), 50);
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    // Join Modal
+    function openJoinModal() {
+      document.getElementById('joinModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeJoinModal() {
+      document.getElementById('joinModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    function handleJoinSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.innerText = "Processing...";
+      setTimeout(() => {
+        btn.innerText = "Submitted Successfully!";
+        btn.classList.replace('bg-brand-gold', 'bg-emerald-500');
+        btn.classList.add('text-white');
+        setTimeout(() => {
+          closeJoinModal();
+          e.target.reset();
+        }, 1200);
+      }, 700);
+    }
+
+    // Dismiss with ESC key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLeaderModal();
+        closeJoinModal();
+        toggleSearchModal(false);
+      }
+    });
+  </script>
+</body>
+</html>

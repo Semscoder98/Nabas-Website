@@ -1,0 +1,2514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NABAS | National Association of Badagry Students</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-navy: #0c1d36;
+      --navy-dark: #071224;
+      --navy-light: #152b4d;
+      --navy-deep: #09172c;
+      --accent-gold: #f5b301;
+      --accent-gold-hover: #e5a400;
+      --gold-tint: #fff9e6;
+      --gold-gradient: linear-gradient(135deg, #f5b301 0%, #e09f00 100%);
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --bg-white: #ffffff;
+      --bg-slate: #f8fafc;
+      --bg-slate-200: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-subtle: rgba(226, 232, 240, 0.8);
+      --card-radius: 18px;
+      --pill-radius: 9999px;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 20px -2px rgba(15, 23, 42, 0.07);
+      --shadow-lg: 0 10px 30px -4px rgba(15, 23, 42, 0.1);
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-accent: 'Caveat', cursive;
+      --container-max: 1240px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-main);
+      color: var(--text-main);
+      background-color: var(--bg-white);
+      line-height: 1.5;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      outline: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    /* Section Tag Badge */
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-tag::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 14px;
+      background: var(--accent-gold);
+      border-radius: 2px;
+    }
+
+    .section-tag.tag-light {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      letter-spacing: -0.02em;
+    }
+
+    .section-title.light {
+      color: #ffffff;
+    }
+
+    .section-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .link-arrow {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .link-arrow:hover {
+      color: var(--accent-gold-hover);
+      transform: translateX(3px);
+    }
+
+    .header-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .header-nav.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #09172c 0%, #152b4d 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--accent-gold);
+      box-shadow: 0 2px 8px rgba(245, 179, 1, 0.2);
+    }
+
+    .logo-badge svg {
+      width: 26px;
+      height: 26px;
+      fill: var(--accent-gold);
+    }
+
+    .logo-text-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--navy-dark);
+      line-height: 1.1;
+    }
+
+    .logo-sub {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 1.45rem;
+    }
+
+    .nav-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #334155;
+      padding: 0.3rem 0;
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--navy-dark);
+    }
+
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2.5px;
+      background: var(--accent-gold);
+      border-radius: 2px;
+    }
+
+    /* Dropdown Styles for Blog */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .dropdown-trigger svg {
+      transition: transform 0.2s ease;
+    }
+
+    .dropdown:hover .dropdown-trigger svg {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 0;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      min-width: 210px;
+      padding: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(6px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-main);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+      background: var(--bg-slate);
+      color: var(--accent-gold-hover);
+    }
+
+    .dropdown-item svg {
+      color: var(--accent-gold-hover);
+      flex-shrink: 0;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-left: 2rem;
+    }
+
+    .btn-donate-nav {
+      background: var(--gold-tint);
+      color: var(--accent-gold-hover);
+      border: 1.5px solid var(--accent-gold);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--pill-radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn-donate-nav:hover {
+      background: var(--accent-gold);
+      color: var(--navy-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-gold {
+      background: var(--accent-gold);
+      color: var(--navy-dark);
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--pill-radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: 0 4px 14px rgba(245, 179, 1, 0.35);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn-gold:hover {
+      background: var(--accent-gold-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 179, 1, 0.45);
+    }
+
+    .btn-gold svg {
+      transition: transform 0.2s ease;
+    }
+
+    .btn-gold:hover svg {
+      transform: translateX(3px);
+    }
+
+    .btn-outline-white {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--pill-radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+    }
+
+    .btn-outline-white:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .btn-navy {
+      background: var(--navy-dark);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.65rem 1.3rem;
+      border-radius: var(--pill-radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.25s ease;
+    }
+
+    .btn-navy:hover {
+      background: var(--navy-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(12, 29, 54, 0.25);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+      color: var(--navy-dark);
+    }
+
+    .hero-section {
+      background-color: var(--navy-dark);
+      background-image: 
+        radial-gradient(circle at 85% 40%, rgba(21, 43, 77, 0.7) 0%, transparent 60%),
+        linear-gradient(to bottom, rgba(7, 18, 36, 0.85) 0%, rgba(12, 29, 54, 0.95) 100%),
+        url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1800&q=80');
+      background-size: cover;
+      background-position: center right;
+      color: #ffffff;
+      padding: 5rem 0 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content {
+      max-width: 620px;
+    }
+
+    .hero-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #e2e8f0;
+      margin-bottom: 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .hero-tag::before {
+      content: "";
+      width: 4px;
+      height: 15px;
+      background: var(--accent-gold);
+      border-radius: 2px;
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title .highlight-yellow {
+      color: var(--accent-gold);
+      display: block;
+    }
+
+    .hero-description {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+      max-width: 540px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Hero Right Visual Element */
+    .hero-graphic-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image-card {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 4/4.8;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .hero-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: saturate(1.05) contrast(1.05);
+    }
+
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(12, 29, 54, 0.05) 40%, rgba(7, 18, 36, 0.85) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+    }
+
+    .hero-image-badge {
+      background: rgba(12, 29, 54, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 0.85rem 1.2rem;
+      border-radius: 14px;
+      border: 1px solid rgba(245, 179, 1, 0.4);
+      display: inline-block;
+    }
+
+    .hero-image-badge .badge-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-image-badge .badge-sub {
+      font-size: 0.68rem;
+      color: var(--accent-gold);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Floating Stats Bar */
+    .hero-stats-bar {
+      margin-top: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border-radius: var(--card-radius);
+      padding: 1.25rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(245, 179, 1, 0.15);
+      color: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .stat-data {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-number {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .section-about {
+      padding: 5.5rem 0;
+      background: var(--bg-white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .about-left {
+      padding-right: 1rem;
+    }
+
+    .about-text {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 1.2rem 0 1.8rem;
+    }
+
+    .monument-mask-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .monument-organic-frame {
+      width: 100%;
+      max-width: 340px;
+      height: 380px;
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 55%;
+      overflow: hidden;
+      box-shadow: 0 16px 35px -8px rgba(12, 29, 54, 0.15);
+      border: 4px solid #ffffff;
+      position: relative;
+      background: #e2e8f0;
+      animation: morphBorder 9s ease-in-out infinite alternate;
+    }
+
+    @keyframes morphBorder {
+      0% {
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 55%;
+      }
+      100% {
+        border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+      }
+    }
+
+    .monument-organic-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 0.5s ease;
+    }
+
+    .monument-organic-frame:hover img {
+      transform: scale(1.12);
+    }
+
+    .about-right-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .vision-card {
+      display: flex;
+      gap: 1.25rem;
+      padding: 1.35rem 1.5rem;
+      background: var(--bg-slate);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .vision-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(245, 179, 1, 0.4);
+    }
+
+    .vision-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      flex-shrink: 0;
+      color: var(--navy-dark);
+      border: 1px solid var(--border-color);
+    }
+
+    .vision-card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 0.35rem;
+    }
+
+    .vision-card-p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .section-focus {
+      padding: 4.5rem 0 5rem;
+      background: var(--bg-slate);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.25rem;
+    }
+
+    .focus-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .focus-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-gold);
+    }
+
+    .focus-icon-circle {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .focus-card:hover .focus-icon-circle {
+      transform: scale(1.1);
+    }
+
+    .focus-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      line-height: 1.35;
+    }
+
+    /* Focus Card Icon Palettes */
+    .f-rep { background: #e6f9f0; color: #059669; }
+    .f-edu { background: #e0f2fe; color: #0284c7; }
+    .f-sch { background: #fef3c7; color: #d97706; }
+    .f-lea { background: #f3e8ff; color: #9333ea; }
+    .f-wel { background: #fee2e2; color: #dc2626; }
+    .f-com { background: #ecfdf5; color: #10b981; }
+
+    .section-president {
+      background: var(--navy-dark);
+      color: #ffffff;
+      padding: 4.5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .president-watermark {
+      position: absolute;
+      right: 3%;
+      top: 50%;
+      transform: translateY(-50%) rotate(-5deg);
+      font-family: var(--font-accent);
+      font-size: 5.5rem;
+      color: rgba(255, 255, 255, 0.04);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      font-weight: 600;
+      line-height: 0.9;
+      text-align: right;
+    }
+
+    .president-card {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 3.5rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .president-img-wrap {
+      width: 220px;
+      height: 250px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 3px solid rgba(245, 179, 1, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      flex-shrink: 0;
+      background: #1e293b;
+    }
+
+    .president-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .president-content {
+      max-width: 780px;
+    }
+
+    .president-quote {
+      font-size: 1.15rem;
+      line-height: 1.65;
+      color: #e2e8f0;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+      position: relative;
+    }
+
+    .president-author-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.25rem;
+    }
+
+    .pres-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .pres-role {
+      font-size: 0.8rem;
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .section-updates {
+      padding: 5rem 0;
+      background: var(--bg-white);
+    }
+
+    .updates-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    /* Left: News Cards */
+    .news-cards-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .news-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .news-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+    }
+
+    .news-thumb {
+      height: 110px;
+      overflow: hidden;
+      position: relative;
+      background: #f1f5f9;
+    }
+
+    .news-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .news-card:hover .news-thumb img {
+      transform: scale(1.06);
+    }
+
+    .news-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .news-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      width: fit-content;
+      margin-bottom: 0.5rem;
+      text-transform: capitalize;
+    }
+
+    .badge-announcement { background: #dbeafe; color: #1e40af; }
+    .badge-news { background: #e0e7ff; color: #3730a3; }
+    .badge-press { background: #dcfce7; color: #166534; }
+
+    .news-card-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+      flex: 1;
+    }
+
+    .news-date {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* Right: Events List */
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .event-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.15rem;
+      background: var(--bg-slate);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      gap: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .event-item-row:hover {
+      background: #ffffff;
+      border-color: var(--accent-gold);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .event-date-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 0.5rem 0.75rem;
+      text-align: center;
+      min-width: 58px;
+      flex-shrink: 0;
+    }
+
+    .event-day {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      line-height: 1;
+    }
+
+    .event-month {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--accent-gold-hover);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .event-details {
+      flex: 1;
+    }
+
+    .event-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .event-meta {
+      display: flex;
+      gap: 0.85rem;
+      font-size: 0.72rem;
+      color: #64748b;
+      flex-wrap: wrap;
+    }
+
+    .event-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .btn-register {
+      background: var(--navy-dark);
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      border-radius: var(--pill-radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .btn-register:hover {
+      background: var(--accent-gold);
+      color: var(--navy-dark);
+    }
+
+    .section-opportunities {
+      padding: 2rem 0 5rem;
+      background: var(--bg-white);
+    }
+
+    .opp-chapters-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.75rem;
+    }
+
+    /* Yellow Banner - Opportunities */
+    .opp-banner-card {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 1px solid #fde68a;
+      border-radius: var(--card-radius);
+      padding: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .opp-content {
+      max-width: 320px;
+      z-index: 2;
+    }
+
+    .opp-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #b45309;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .opp-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    .opp-desc {
+      font-size: 0.85rem;
+      color: #475569;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .opp-photo-wrap {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      width: 240px;
+      display: flex;
+      align-items: flex-end;
+      pointer-events: none;
+    }
+
+    .opp-photo-wrap img {
+      height: 95%;
+      width: 100%;
+      object-fit: contain;
+      object-position: bottom right;
+    }
+
+    /* Chapter Institutions Card */
+    .chapters-card {
+      background: var(--bg-slate);
+      border: 1px solid var(--border-color);
+      border-radius: var(--card-radius);
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .chap-meta-top {
+      margin-bottom: 1.25rem;
+    }
+
+    .chap-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .chap-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .chap-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .btn-chapters {
+      border: 1.5px solid var(--navy-dark);
+      color: var(--navy-dark);
+      padding: 0.55rem 1.25rem;
+      border-radius: var(--pill-radius);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-chapters:hover {
+      background: var(--navy-dark);
+      color: #ffffff;
+    }
+
+    .chap-stats-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .chap-stat-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+    }
+
+    .chap-stat-row svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-gold-hover);
+    }
+
+    .chap-stat-row .stat-sub {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .section-gallery-impact {
+      padding: 3rem 0 5rem;
+      background: var(--bg-slate);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .gallery-impact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .impact-numbers-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--card-radius);
+      padding: 1.75rem;
+    }
+
+    .impact-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .impact-stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .impact-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--bg-slate);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .impact-number {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+    }
+
+    .impact-sub {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .gallery-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--card-radius);
+      padding: 1.75rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.65rem;
+      margin-top: 1.25rem;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1/1;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.12);
+    }
+
+    .section-partners {
+      padding: 3rem 0;
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .partners-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .partners-logos-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .partner-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #475569;
+      font-size: 0.85rem;
+      font-weight: 700;
+      opacity: 0.85;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .partner-item:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .partner-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-slate-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy-dark);
+    }
+
+    .site-footer {
+      background: var(--navy-dark);
+      color: #94a3b8;
+      padding: 4.5rem 0 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.875rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .footer-brand .logo-title {
+      color: #ffffff;
+    }
+
+    .footer-brand .logo-sub {
+      color: #94a3b8;
+    }
+
+    .footer-about-snippet {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #64748b;
+      max-width: 300px;
+    }
+
+    .footer-heading {
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .footer-links-list a {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+
+    .footer-links-list a:hover {
+      color: var(--accent-gold);
+      transform: translateX(3px);
+    }
+
+    .footer-contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .footer-contact-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-gold);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .footer-social-links {
+      display: flex;
+      gap: 0.65rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .social-btn:hover {
+      background: var(--accent-gold);
+      color: var(--navy-dark);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom-bar {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-motto {
+      color: var(--accent-gold);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* Modal for Quick Actions */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 18, 36, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 100%;
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      transform: scale(0.95);
+      transition: transform 0.25s ease;
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      font-size: 1.5rem;
+      color: #94a3b8;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .modal-close:hover {
+      color: var(--navy-dark);
+    }
+
+    @media (max-width: 1100px) {
+      .focus-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .gallery-impact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+      .hero-title {
+        font-size: 2.6rem;
+      }
+      .hero-graphic-wrap {
+        display: none;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .monument-mask-container {
+        order: -1;
+      }
+      .president-card {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+      }
+      .president-img-wrap {
+        margin: 0 auto;
+      }
+      .updates-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .opp-chapters-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero-stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+        gap: 1.25rem;
+        border-bottom: 2px solid var(--border-color);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+        max-height: calc(100vh - 76px);
+        overflow-y: auto;
+      }
+      .nav-menu.open {
+        transform: translateY(0);
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .news-cards-row {
+        grid-template-columns: 1fr;
+      }
+      .focus-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .impact-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2.1rem;
+      }
+      .hero-stats-bar {
+        grid-template-columns: 1fr;
+      }
+      .focus-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-actions .btn-donate-nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header-nav" id="mainHeader">
+    <div class="container nav-container">
+      <!-- Logo Branding -->
+      <a href="index.html" class="logo-brand">
+        <div class="logo-badge">
+          <!-- Official Shield / Academic Cap SVG Icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <div class="logo-text-block">
+          <span class="logo-title">NABAS</span>
+          <span class="logo-sub">National Association of Badagry Students</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+          <li><a href="chapters.html" class="nav-link">Chapters</a></li>
+          <li><a href="programmes.html" class="nav-link">Programmes</a></li>
+          
+          <!-- Blog Dropdown -->
+          <li class="dropdown">
+            <span class="nav-link dropdown-trigger">
+              <span>Blog</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+            <div class="dropdown-menu">
+              <a href="news.html" class="dropdown-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 002-2V4a2 2 0 00-2-2H8a2 2 0 00-2 2v16a2 2 0 01-2 2zm0 0a2 2 0 01-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
+                <span>News & Communiqués</span>
+              </a>
+              <a href="scholarships.html" class="dropdown-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                <span>Scholarships & Grants</span>
+              </a>
+            </div>
+          </li>
+
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="resources.html" class="nav-link">Resources</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (Search + Donate + Join Button + Mobile Toggle) -->
+      <div class="nav-actions">
+        
+
+        <a href="donate.html" class="btn-donate-nav">
+          <span>Donate</span>
+        </a>
+
+        <a href="join.html" class="btn-gold">
+          <span>Join NABAS</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero-section" id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <!-- Hero Content -->
+        <div class="hero-content">
+          <div class="hero-tag">National Association of Badagry Students</div>
+          <h1 class="hero-title">
+            Empowering<br>
+            Badagry Students.<br>
+            <span class="highlight-yellow">Building Tomorrow.</span>
+          </h1>
+          <p class="hero-description">
+            NABAS is the united voice of Badagry students across tertiary institutions in Nigeria, committed to academic excellence, leadership, welfare and community development.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="join.html" class="btn-gold">
+              <span>Join NABAS</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+
+            <a href="programmes.html" class="btn-outline-white">
+              <span>Explore Our Activities</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Graphic (Badagry Student Leaders / Badagry Arch monument) -->
+        <div class="hero-graphic-wrap">
+          <div class="hero-image-card">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Badagry Students In Unity">
+            <div class="hero-image-overlay">
+              <div class="hero-image-badge">
+                <div class="badge-title">NABAS</div>
+                <div class="badge-sub">Students • Leaders • Change Makers</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Stat Bar -->
+      <div class="hero-stats-bar">
+        <!-- Stat 1 -->
+        <div class="stat-item">
+          <div class="stat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="stat-data">
+            <span class="stat-number">5000+</span>
+            <span class="stat-label">Students Reached</span>
+          </div>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="stat-item">
+          <div class="stat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"></path>
+              <path d="M5 21V10.85L12 3l7 7.85V21"></path>
+              <path d="M9 21v-7h6v7"></path>
+            </svg>
+          </div>
+          <div class="stat-data">
+            <span class="stat-number">20+</span>
+            <span class="stat-label">Institutions Represented</span>
+          </div>
+        </div>
+
+        <!-- Stat 3 -->
+        <div class="stat-item">
+          <div class="stat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <div class="stat-data">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Programmes Conducted</span>
+          </div>
+        </div>
+
+        <!-- Stat 4 -->
+        <div class="stat-item">
+          <div class="stat-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="stat-data">
+            <span class="stat-number">1</span>
+            <span class="stat-label">Stronger Badagry Community</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <!-- Left Column: Story & Learn More -->
+        <div class="about-left">
+          <div class="section-tag">About NABAS</div>
+          <h2 class="section-title">Who We Are</h2>
+          <p class="about-text">
+            The National Association of Badagry Students (NABAS) is a non-political, non-profit organisation that brings together Badagry indigenes and residents in tertiary institutions across Nigeria.
+          </p>
+          <a href="about.html" class="btn-navy">
+            <span>Learn More</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Center: Badagry Architectural Monument (Point of No Return Arch) -->
+        <div class="monument-mask-container">
+          <div class="monument-organic-frame">
+            <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=700&q=80" alt="Badagry Heritage Monument">
+          </div>
+        </div>
+
+        <!-- Right Column: Vision & Mission Cards -->
+        <div class="about-right-cards">
+          <!-- Vision -->
+          <div class="vision-card">
+            <div class="vision-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+            <div>
+              <h3 class="vision-card-title">Our Vision</h3>
+              <p class="vision-card-p">
+                To be a leading student association known for excellence, unity and sustainable development.
+              </p>
+            </div>
+          </div>
+
+          <!-- Mission -->
+          <div class="vision-card">
+            <div class="vision-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+            </div>
+            <div>
+              <h3 class="vision-card-title">Our Mission</h3>
+              <p class="vision-card-p">
+                To unite, support and empower Badagry students through advocacy, capacity building and impactful programmes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-focus" id="focus">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <div class="section-tag">What NABAS Does</div>
+          <h2 class="section-title">Core Areas of Focus</h2>
+        </div>
+        <a href="programmes.html" class="link-arrow">
+          <span>View All Programmes</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <div class="focus-grid">
+        <!-- 1. Student Representation -->
+        <div class="focus-card" onclick="window.location.href='programmes.html'">
+          <div class="focus-icon-circle f-rep">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <span class="focus-title">Student Representation</span>
+        </div>
+
+        <!-- 2. Education & Advocacy -->
+        <div class="focus-card" onclick="window.location.href='programmes.html'">
+          <div class="focus-icon-circle f-edu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
+          </div>
+          <span class="focus-title">Education & Advocacy</span>
+        </div>
+
+        <!-- 3. Scholarships & Bursaries -->
+        <div class="focus-card" onclick="window.location.href='scholarships.html'">
+          <div class="focus-icon-circle f-sch">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="8"></circle>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+          </div>
+          <span class="focus-title">Scholarships & Bursaries</span>
+        </div>
+
+        <!-- 4. Leadership Development -->
+        <div class="focus-card" onclick="window.location.href='programmes.html'">
+          <div class="focus-icon-circle f-lea">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <span class="focus-title">Leadership Development</span>
+        </div>
+
+        <!-- 5. Student Welfare -->
+        <div class="focus-card" onclick="window.location.href='programmes.html'">
+          <div class="focus-icon-circle f-wel">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </div>
+          <span class="focus-title">Student Welfare</span>
+        </div>
+
+        <!-- 6. Community Development -->
+        <div class="focus-card" onclick="window.location.href='programmes.html'">
+          <div class="focus-icon-circle f-com">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <span class="focus-title">Community Development</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-president" id="president">
+    <div class="president-watermark">
+      One Badagry<br>One Voice
+    </div>
+
+    <div class="container">
+      <div class="president-card">
+        <!-- President Portrait -->
+        <div class="president-img-wrap">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Comr. Boyon John Metonno - President NABAS">
+        </div>
+
+        <!-- President Quote & Profile -->
+        <div class="president-content">
+          <div class="section-tag tag-light">President's Message</div>
+          <h2 class="section-title light" style="margin-bottom: 1.25rem;">Together We Can Achieve More</h2>
+          
+          <p class="president-quote">
+            “NABAS is more than an association; it is a family, a platform and a movement. I urge every Badagry student to stay united, get involved and be part of the change we want to see.”
+          </p>
+
+          <div class="president-author-block">
+            <div>
+              <div class="pres-name">Comr. Boyon John Metonno</div>
+              <div class="pres-role">President, NABAS</div>
+            </div>
+
+            <a href="leadership.html" class="btn-gold">
+              <span>Read Full Message</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-updates" id="updates">
+    <div class="container">
+      <div class="updates-grid">
+        
+        <!-- Left: News Column -->
+        <div class="updates-col">
+          <div class="section-header-row" style="margin-bottom: 1.5rem;">
+            <div>
+              <div class="section-tag">Latest News & Updates</div>
+              <h2 class="section-title">Stay Informed</h2>
+            </div>
+            <a href="news.html" class="link-arrow">
+              <span>View All News</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <div class="news-cards-row">
+            <!-- News Item 1 -->
+            <article class="news-card">
+              <div class="news-thumb">
+                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=400&q=80" alt="Membership Registration">
+              </div>
+              <div class="news-body">
+                <span class="news-badge badge-announcement">Announcement</span>
+                <h3 class="news-card-title"><a href="news-detail.html?id=1">NABAS 2025/2026 Membership Registration Now Open</a></h3>
+                <div class="news-date">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                  </svg>
+                  <span>12 Sep 2025</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- News Item 2 -->
+            <article class="news-card">
+              <div class="news-thumb">
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=400&q=80" alt="Leadership Training">
+              </div>
+              <div class="news-body">
+                <span class="news-badge badge-news">News</span>
+                <h3 class="news-card-title"><a href="news-detail.html?id=2">NABAS Holds Successful Leadership Training Programme</a></h3>
+                <div class="news-date">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                  </svg>
+                  <span>5 Sep 2025</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- News Item 3 -->
+            <article class="news-card">
+              <div class="news-thumb">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80" alt="Resource Centre">
+              </div>
+              <div class="news-body">
+                <span class="news-badge badge-press">Press Release</span>
+                <h3 class="news-card-title"><a href="news-detail.html?id=3">NABAS Commissions New Student Resource Centre</a></h3>
+                <div class="news-date">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                  </svg>
+                  <span>28 Aug 2025</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Right: Upcoming Programmes Column -->
+        <div class="updates-col">
+          <div class="section-header-row" style="margin-bottom: 1.5rem;">
+            <div>
+              <div class="section-tag">Upcoming Programmes</div>
+              <h2 class="section-title">Don't Miss Out</h2>
+            </div>
+            <a href="programmes.html" class="link-arrow">
+              <span>View All Events</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <div class="events-list">
+            <!-- Event Row 1 -->
+            <div class="event-item-row">
+              <div class="event-date-box">
+                <div class="event-day">25</div>
+                <div class="event-month">Sep</div>
+              </div>
+              <div class="event-details">
+                <div class="event-title">Leadership & Personal Development Seminar</div>
+                <div class="event-meta">
+                  <span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    10:00 AM – 3:00 PM
+                  </span>
+                  <span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path></svg>
+                    Badagry, Lagos
+                  </span>
+                </div>
+              </div>
+              <a href="programmes.html" class="btn-register">
+                <span>Details</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+
+            <!-- Event Row 2 -->
+            <div class="event-item-row">
+              <div class="event-date-box">
+                <div class="event-day">12</div>
+                <div class="event-month">Oct</div>
+              </div>
+              <div class="event-details">
+                <div class="event-title">Scholarship Application Workshop</div>
+                <div class="event-meta">
+                  <span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    10:00 AM – 1:00 PM
+                  </span>
+                  <span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path></svg>
+                    Lagos State University
+                  </span>
+                </div>
+              </div>
+              <a href="programmes.html" class="btn-register">
+                <span>Details</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+
+            <!-- Event Row 3 -->
+            <div class="event-item-row">
+              <div class="event-date-box">
+                <div class="event-day">26</div>
+                <div class="event-month">Oct</div>
+              </div>
+              <div class="event-details">
+                <div class="event-title">Annual General Meeting (AGM)</div>
+                <div class="event-meta">
+                  <span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    9:00 AM – 2:00 PM
+                  </span>
+                  <span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path></svg>
+                    Badagry
+                  </span>
+                </div>
+              </div>
+              <a href="programmes.html" class="btn-register">
+                <span>Details</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-opportunities" id="institutions">
+    <div class="container">
+      <div class="opp-chapters-grid">
+        
+        <!-- Left: Student Opportunities Banner -->
+        <div class="opp-banner-card">
+          <div class="opp-content">
+            <div class="opp-tag">Student Opportunities</div>
+            <h2 class="opp-title">Unlock Your Potential</h2>
+            <p class="opp-desc">
+              Explore scholarships, bursaries, competitions, training and internship opportunities designed for Badagry students.
+            </p>
+            <a href="scholarships.html" class="btn-gold">
+              <span>View Opportunities</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <div class="opp-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" alt="Student with Notebooks">
+          </div>
+        </div>
+
+        <!-- Right: NABAS Chapters / Our Institutions Card -->
+        <div class="chapters-card">
+          <div class="chap-meta-top">
+            <div class="section-tag">NABAS Chapters</div>
+            <h2 class="chap-title">Our Institutions</h2>
+            <p class="chap-desc">
+              NABAS has chapters across various tertiary institutions in Nigeria. Find your school and get connected.
+            </p>
+          </div>
+
+          <div class="chap-bottom-row">
+            <a href="chapters.html" class="btn-chapters">
+              <span>View All Chapters</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+
+            <div class="chap-stats-box">
+              <div class="chap-stat-row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V10.85L12 3l7 7.85V21M9 21v-7h6v7"></path></svg>
+                <span>20+</span>
+                <span class="stat-sub">Institutions</span>
+              </div>
+              <div class="chap-stat-row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path></svg>
+                <span class="stat-sub">Across Nigeria</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-gallery-impact">
+    <div class="container">
+      <div class="gallery-impact-grid">
+        
+        <!-- Impact Numbers Box -->
+        <div class="impact-numbers-box">
+          <div class="section-tag">Our Impact</div>
+          <h2 class="section-title" style="font-size: 1.55rem; margin-bottom: 0.5rem;">Numbers That Tell Our Story</h2>
+          
+          <div class="impact-stats-grid">
+            <div class="impact-stat-item">
+              <div class="impact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              </div>
+              <div class="impact-number">5000+</div>
+              <div class="impact-sub">Students Reached</div>
+            </div>
+
+            <div class="impact-stat-item">
+              <div class="impact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V10.85L12 3l7 7.85V21"></path></svg>
+              </div>
+              <div class="impact-number">20+</div>
+              <div class="impact-sub">Institutions Represented</div>
+            </div>
+
+            <div class="impact-stat-item">
+              <div class="impact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line></svg>
+              </div>
+              <div class="impact-number">50+</div>
+              <div class="impact-sub">Programmes Conducted</div>
+            </div>
+
+            <div class="impact-stat-item">
+              <div class="impact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path></svg>
+              </div>
+              <div class="impact-number">1</div>
+              <div class="impact-sub">Stronger Community</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gallery Box -->
+        <div class="gallery-box">
+          <div class="section-header-row" style="margin-bottom: 0;">
+            <div>
+              <div class="section-tag">Gallery</div>
+              <h2 class="section-title" style="font-size: 1.55rem;">Moments, Memories, Impact</h2>
+            </div>
+            <a href="gallery.html" class="link-arrow">
+              <span>View All Photos</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+
+          <div class="gallery-grid">
+            <div class="gallery-item" onclick="window.location.href='gallery.html'">
+              <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=300&q=80" alt="Students Gathering">
+            </div>
+            <div class="gallery-item" onclick="window.location.href='gallery.html'">
+              <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=300&q=80" alt="Students In Classroom">
+            </div>
+            <div class="gallery-item" onclick="window.location.href='gallery.html'">
+              <img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=300&q=80" alt="Conference Seminar">
+            </div>
+            <div class="gallery-item" onclick="window.location.href='gallery.html'">
+              <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=300&q=80" alt="Cultural Day">
+            </div>
+            <div class="gallery-item" onclick="window.location.href='gallery.html'">
+              <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=300&q=80" alt="Badagry Monument Arch">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-partners">
+    <div class="container">
+      <div class="partners-header">
+        <div class="section-tag" style="justify-content: center;">Our Partners & Supporters</div>
+        <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--navy-dark);">Together for Greater Impact</h3>
+      </div>
+
+      <div class="partners-logos-row">
+        <div class="partner-item">
+          <div class="partner-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V10.85L12 3l7 7.85V21"></path></svg>
+          </div>
+          <span>Badagry Local Government</span>
+        </div>
+
+        <div class="partner-item">
+          <div class="partner-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </div>
+          <span>Lagos State Government</span>
+        </div>
+
+        <div class="partner-item">
+          <div class="partner-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          </div>
+          <span>Education Partners</span>
+        </div>
+
+        <div class="partner-item">
+          <div class="partner-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          </div>
+          <span>Corporate Sponsors</span>
+        </div>
+
+        <div class="partner-item">
+          <div class="partner-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+          </div>
+          <span>Community Partners</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Footer Column 1: Brand & Bio -->
+        <div class="footer-brand">
+          <div class="logo-brand">
+            <div class="logo-badge">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <div class="logo-text-block">
+              <span class="logo-title">NABAS</span>
+              <span class="logo-sub">National Association of Badagry Students</span>
+            </div>
+          </div>
+          <p class="footer-about-snippet">
+            Empowering students, cultivating future leaders, and fostering sustainable community development throughout Badagry and beyond.
+          </p>
+        </div>
+
+        <!-- Footer Column 2: Quick Links -->
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="leadership.html">Leadership</a></li>
+            <li><a href="chapters.html">Chapters</a></li>
+          </ul>
+        </div>
+
+        <!-- Footer Column 3: Navigation Part 2 -->
+        <div>
+          <h4 class="footer-heading">Programmes & More</h4>
+          <ul class="footer-links-list">
+            <li><a href="programmes.html">Programmes</a></li>
+            <li><a href="news.html">News & Communiqués</a></li>
+            <li><a href="scholarships.html">Scholarships</a></li>
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="donate.html">Donate</a></li>
+          </ul>
+        </div>
+
+        <!-- Footer Column 4: Contact & Socials -->
+        <div>
+          <h4 class="footer-heading">Contact Us</h4>
+          <div class="footer-contact-items">
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>+234 901 234 5678</span>
+            </div>
+
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>info@nabas.org.ng</span>
+            </div>
+
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Badagry Local Government Secretariat, Ajara, Lagos State</span>
+            </div>
+
+            <div style="margin-top: 0.5rem;">
+              <span style="font-size: 0.75rem; color: #cbd5e1; font-weight: 600;">Follow Us</span>
+              <div class="footer-social-links">
+                <!-- WhatsApp -->
+                <a href="https://wa.me/2349012345678" target="_blank" class="social-btn" aria-label="WhatsApp">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                </a>
+                <!-- Facebook -->
+                <a href="#fb" class="social-btn" aria-label="Facebook">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <!-- Single Glyph X -->
+                <a href="#tw" class="social-btn" aria-label="X Twitter">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <!-- Instagram -->
+                <a href="#ig" class="social-btn" aria-label="Instagram">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <!-- LinkedIn -->
+                <a href="#in" class="social-btn" aria-label="LinkedIn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 National Association of Badagry Students (NABAS). All rights reserved.
+        </div>
+        <div class="footer-motto">
+          Unity • Excellence • Development
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Mobile Menu Toggle */
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    if (mobileBtn && navMenu) {
+      mobileBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+      });
+
+      // Close menu on navigation click
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('open');
+        });
+      });
+    }
+
+    /* Scroll header styling */
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('mainHeader');
+      if (window.scrollY > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    function openSearchModal() {
+      const query = prompt("Search NABAS news, chapters, and resources:");
+      if (query) {
+        window.location.href = `news.html?search=${encodeURIComponent(query)}`;
+      }
+    }
+  </script>
+</body>
+</html>

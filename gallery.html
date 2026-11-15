@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Gallery | National Association of Badagry Students (NABAS)</title>
+  <meta name="description" content="Visual moments, summits, and student community outreach by NABAS." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #0b1a30;
+      --primary-light: #152b4d;
+      --accent: #f5a623;
+      --accent-hover: #e29415;
+      --surface: #ffffff;
+      --bg-slate: #f8fafc;
+      --border: #e2e8f0;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-accent: 'Caveat', cursive;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-slate);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; border: none; background: none; cursor: pointer; }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    /* =========================================
+       GLOBAL NAVBAR
+    ========================================= */
+    .header-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .crest-mark {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-sub {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .desktop-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-item {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      position: relative;
+      transition: var(--transition);
+      padding: 6px 0;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      color: var(--primary);
+    }
+
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2.5px;
+      background-color: var(--accent);
+      border-radius: var(--radius-pill);
+    }
+
+    .btn-join {
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      box-shadow: 0 4px 10px rgba(245, 166, 35, 0.25);
+    }
+
+    .btn-join:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .mobile-nav-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--primary);
+      z-index: 200;
+      padding: 24px;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+    }
+
+    .mobile-drawer.open { right: 0; }
+
+    .mobile-drawer a {
+      color: #cbd5e1;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mobile-drawer a.active { color: var(--accent); }
+
+    .drawer-close {
+      align-self: flex-end;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* =========================================
+       COMPACT PROPORTIONAL HERO BANNER
+    ========================================= */
+    .page-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #0d213f 100%);
+      color: white;
+      padding: 36px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::after {
+      content: 'Gallery';
+      position: absolute;
+      right: -10px;
+      bottom: -15px;
+      font-family: var(--font-accent);
+      font-size: 5.5rem;
+      color: rgba(255, 255, 255, 0.04);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .breadcrumb-trail {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb-trail a:hover { color: var(--accent); }
+
+    .hero-heading {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .hero-highlight { color: var(--accent); }
+
+    .hero-lead {
+      color: #cbd5e1;
+      max-width: 580px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       PURE PHOTO GALLERY GRID
+    ========================================= */
+    .gallery-section {
+      padding: 40px 0 60px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-bottom: 48px;
+    }
+
+    .photo-item {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: #0f172a;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .photo-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+    }
+
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .photo-item:hover img {
+      transform: scale(1.06);
+    }
+
+    /* ON-IMAGE FLOATING OVERLAY (NO BOTTOM TEXT BOXES) */
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11, 26, 48, 0.92) 0%, rgba(11, 26, 48, 0.3) 50%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .photo-item:hover .photo-overlay,
+    .photo-item:focus-within .photo-overlay {
+      opacity: 1;
+    }
+
+    .overlay-category {
+      align-self: flex-start;
+      background: var(--accent);
+      color: var(--primary);
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 8px;
+    }
+
+    .overlay-desc {
+      font-size: 0.84rem;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #f1f5f9;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      max-height: 2.8em;
+    }
+
+    /* =========================================
+       PAGINATION CONTROLS
+    ========================================= */
+    .pagination-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .page-btn {
+      min-width: 40px;
+      height: 40px;
+      padding: 0 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text-main);
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .page-btn:hover:not(:disabled) {
+      background: var(--bg-slate);
+      border-color: #cbd5e1;
+      color: var(--primary);
+    }
+
+    .page-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .page-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* =========================================
+       FULLSCREEN LIGHTBOX VIEWER
+    ========================================= */
+    .lightbox-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 17, 32, 0.94);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lightbox-backdrop.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 1000px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: zoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .lightbox-img-wrapper {
+      max-height: 75vh;
+      max-width: 100%;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-img-wrapper img {
+      max-height: 75vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* CAPTION BAR */
+    .lightbox-caption-bar {
+      margin-top: 14px;
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lb-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.8rem;
+    }
+
+    .lb-category-pill {
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+    }
+
+    .lb-counter {
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    .lb-desc {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      font-weight: 500;
+    }
+
+    /* LIGHTBOX CONTROLS */
+    .lb-btn {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .lb-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+      border-color: var(--accent);
+    }
+
+    .lb-close {
+      top: -16px;
+      right: -8px;
+      font-size: 1.5rem;
+    }
+
+    .lb-prev {
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .lb-next {
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    .site-footer {
+      background: var(--primary);
+      color: #94a3b8;
+      padding-top: 48px;
+      font-size: 0.85rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 32px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-brand h3 {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .footer-col-title {
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links-list a:hover { color: var(--accent); }
+
+    .social-icons-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .social-icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .social-icon-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+    }
+
+    /* RESPONSIVENESS */
+    @media (max-width: 992px) {
+      .desktop-nav-menu, .nav-cta-group { display: none; }
+      .mobile-nav-toggle { display: flex; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .lb-prev { left: 8px; }
+      .lb-next { right: 8px; }
+      .lb-close { top: -12px; right: 0; }
+    }
+
+    @media (max-width: 640px) {
+      .page-hero { padding: 26px 0 30px; }
+      .hero-heading { font-size: 1.45rem; }
+      .gallery-grid { grid-template-columns: 1fr; gap: 14px; }
+      /* Reveal overlay slightly on mobile touch devices */
+      .photo-overlay { opacity: 0.92; background: linear-gradient(to top, rgba(11,26,48,0.92) 0%, transparent 80%); }
+      .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="header-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="brand-logo" aria-label="NABAS Home">
+          <div class="crest-mark">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="brand-title">
+            <span>NABAS</span>
+            <span class="brand-sub">Badagry Students Union</span>
+          </div>
+        </a>
+
+        <nav class="desktop-nav-menu">
+          <a href="index.html" class="nav-item">Home</a>
+          <a href="about.html" class="nav-item">About</a>
+          <a href="leadership.html" class="nav-item">Leadership</a>
+          <a href="chapters.html" class="nav-item">Institutions</a>
+          <a href="programmes.html" class="nav-item">Programmes</a>
+          <a href="news.html" class="nav-item">News</a>
+          <a href="gallery.html" class="nav-item active">Gallery</a>
+          <a href="resources.html" class="nav-item">Resources</a>
+        </nav>
+
+        <div class="nav-cta-group">
+          <a href="join.html" class="btn-join">Join NABAS</a>
+        </div>
+
+        <button class="mobile-nav-toggle" id="mobileNavBtn" aria-label="Open menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-close" id="drawerClose">&times;</div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="leadership.html">Leadership</a>
+    <a href="chapters.html">Institutions</a>
+    <a href="programmes.html">Programmes</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="resources.html">Resources</a>
+    <a href="join.html" style="color:var(--accent);">Join NABAS</a>
+  </div>
+
+  <!-- COMPACT HERO BANNER -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb-trail">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Gallery</span>
+      </div>
+      <h1 class="hero-heading">Moments, Memories & <span class="hero-highlight">Impact</span></h1>
+      <p class="hero-lead">Visual archive of conventions, skill bootcamps, and youth empowerment drives across Badagry.</p>
+    </div>
+  </section>
+
+  <!-- GALLERY MAIN SECTION -->
+  <main class="container gallery-section">
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Photos rendered dynamically via JavaScript for pagination support -->
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination-bar" id="paginationBar">
+      <button class="page-btn" id="prevBtn" onclick="changePage(currentPage - 1)">Prev</button>
+      <div id="pageNumbers" style="display:flex; gap:6px;"></div>
+      <button class="page-btn" id="nextBtn" onclick="changePage(currentPage + 1)">Next</button>
+    </div>
+  </main>
+
+  <!-- FULLSCREEN LIGHTBOX -->
+  <div class="lightbox-backdrop" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lb-btn lb-close" onclick="closeLightbox()" title="Close (Esc)">&times;</button>
+      <button class="lb-btn lb-prev" onclick="prevImage()" title="Previous (Left Arrow)">&#10094;</button>
+      <button class="lb-btn lb-next" onclick="nextImage()" title="Next (Right Arrow)">&#10095;</button>
+
+      <div class="lightbox-img-wrapper">
+        <img id="lbImage" src="" alt="Enlarged gallery photo" />
+      </div>
+
+      <div class="lightbox-caption-bar">
+        <div class="lb-meta-row">
+          <span class="lb-category-pill" id="lbCategory">Category</span>
+          <span class="lb-counter" id="lbCounter">1 / 12</span>
+        </div>
+        <div class="lb-desc" id="lbDesc">Short description under 100 characters.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>NABAS</h3>
+          <p>The National Association of Badagry Students is the united voice of indigenous and resident students across tertiary institutions.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About NABAS</a></li>
+            <li><a href="leadership.html">Executive Council</a></li>
+            <li><a href="chapters.html">Institutions</a></li>
+            <li><a href="programmes.html">Programmes</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Contact</h4>
+          <ul class="footer-links-list">
+            <li>Secretariat: Badagry Local Government</li>
+            <li>Email: info@nabas.org.ng</li>
+            <li>Phone: +234 901 234 5678</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Follow Us</h4>
+          <div class="social-icons-row">
+            <!-- WhatsApp -->
+            <a href="https://wa.me/2349012345678" target="_blank" class="social-icon-btn" aria-label="WhatsApp">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            </a>
+            <!-- Facebook -->
+            <a href="https://facebook.com/nabasnational" target="_blank" class="social-icon-btn" aria-label="Facebook">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <!-- Single X -->
+            <a href="https://x.com/nabasnational" target="_blank" class="social-icon-btn" aria-label="X">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a href="https://instagram.com/nabasnational" target="_blank" class="social-icon-btn" aria-label="Instagram">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/company/nabasnational" target="_blank" class="social-icon-btn" aria-label="LinkedIn">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 National Association of Badagry Students (NABAS). All rights reserved.</div>
+        <div>Unity, Excellence & Development</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX & PAGINATION JAVASCRIPT -->
+  <script>
+    // 1. Mobile Menu
+    const mobileBtn = document.getElementById('mobileNavBtn');
+    const drawer = document.getElementById('mobileDrawer');
+    const drawerClose = document.getElementById('drawerClose');
+
+    mobileBtn.addEventListener('click', () => drawer.classList.add('open'));
+    drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
+
+    // 2. Pure Gallery Dataset (All descriptions strictly under 100 characters)
+    const galleryData = [
+      {
+        src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
+        category: "Summits",
+        desc: "Over 500 Badagry students and youth leaders gathered for the 2025 National Convention."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80",
+        category: "Empowerment",
+        desc: "Hands-on coding, UI/UX, and data skills training during the 4-week youth tech bootcamp."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80",
+        category: "Education",
+        desc: "Over 200 secondary school leavers supported with free UTME forms and mock CBT exams."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80",
+        category: "Outreach",
+        desc: "Student leaders collaborating with community chiefs on coastal health initiatives."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+        category: "Summits",
+        desc: "Executive council deliberating on student welfare and bursary allocations."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
+        category: "Workshops",
+        desc: "Interactive session guiding undergraduates through scholarship documentation."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80",
+        category: "Culture",
+        desc: "Heritage and cultural excursion celebrating Badagry's rich coastal history."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80",
+        category: "Institutions",
+        desc: "Students holding chapter consultations and mentoring newly admitted freshmen."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+        category: "Welfare",
+        desc: "Distribution of welfare materials and essential textbooks to rural primary schools."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=80",
+        category: "Leadership",
+        desc: "Keynote address delivered at the annual Badagry Youth Economic Summit."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+        category: "Senate",
+        desc: "Legislative senate session passing resolutions on chapter accreditation."
+      },
+      {
+        src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80",
+        category: "Summits",
+        desc: "Delegates celebrating unity and academic excellence at the closing gala."
+      }
+    ];
+
+    // 3. Numbered Pagination Engine
+    const itemsPerPage = 6;
+    let currentPage = 1;
+    const totalPages = Math.ceil(galleryData.length / itemsPerPage);
+
+    function renderGallery() {
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const currentItems = galleryData.slice(startIndex, startIndex + itemsPerPage);
+
+      currentItems.forEach((item, index) => {
+        const globalIndex = startIndex + index;
+        const photoEl = document.createElement('div');
+        photoEl.className = 'photo-item';
+        photoEl.setAttribute('onclick', `openLightbox(${globalIndex})`);
+
+        photoEl.innerHTML = `
+          <img src="${item.src}" alt="${item.category}" loading="lazy" />
+          <div class="photo-overlay">
+            <span class="overlay-category">${item.category}</span>
+            <p class="overlay-desc">${item.desc}</p>
+          </div>
+        `;
+        grid.appendChild(photoEl);
+      });
+
+      renderPaginationControls();
+    }
+
+    function renderPaginationControls() {
+      document.getElementById('prevBtn').disabled = currentPage === 1;
+      document.getElementById('nextBtn').disabled = currentPage === totalPages;
+
+      const pageNumbersContainer = document.getElementById('pageNumbers');
+      pageNumbersContainer.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+        btn.innerText = i;
+        btn.onclick = () => changePage(i);
+        pageNumbersContainer.appendChild(btn);
+      }
+    }
+
+    function changePage(page) {
+      if (page >= 1 && page <= totalPages) {
+        currentPage = page;
+        renderGallery();
+        window.scrollTo({ top: document.querySelector('.gallery-section').offsetTop - 80, behavior: 'smooth' });
+      }
+    }
+
+    // 4. Interactive Lightbox Viewer with Keyboard Support
+    let activeLightboxIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lbImage');
+    const lbCategory = document.getElementById('lbCategory');
+    const lbCounter = document.getElementById('lbCounter');
+    const lbDesc = document.getElementById('lbDesc');
+
+    function openLightbox(index) {
+      activeLightboxIndex = index;
+      updateLightboxContent();
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function updateLightboxContent() {
+      const data = galleryData[activeLightboxIndex];
+      lbImage.src = data.src;
+      lbCategory.innerText = data.category;
+      lbDesc.innerText = data.desc;
+      lbCounter.innerText = `${activeLightboxIndex + 1} / ${galleryData.length}`;
+    }
+
+    function nextImage() {
+      activeLightboxIndex = (activeLightboxIndex + 1) % galleryData.length;
+      updateLightboxContent();
+    }
+
+    function prevImage() {
+      activeLightboxIndex = (activeLightboxIndex - 1 + galleryData.length) % galleryData.length;
+      updateLightboxContent();
+    }
+
+    // Close on clicking backdrop outside image content
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Keyboard support: Escape, ArrowLeft, ArrowRight
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    });
+
+    // Initial render
+    renderGallery();
+  </script>
+</body>
+</html>

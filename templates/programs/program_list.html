@@ -1,0 +1,1309 @@
+{% extends 'base.html' %}
+
+{% block title %}Programmes & Events | NABAS - National Association of Badagry Students{% endblock %}
+
+{% block extra_css %}
+<style>
+:root {
+      --primary: #027c57;
+      --primary-light: #03986a;
+      --primary-dark: #014d36;
+      --accent: #f5a623;
+      --accent-hover: #e29415;
+      --accent-light: #fef5e7;
+      --surface: #ffffff;
+      --bg-slate: #f8fafc;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-accent: 'Caveat', cursive;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-pill: 9999px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-slate);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      background: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px !important;
+      margin-inline: auto !important;
+      padding-inline: 24px !important;
+    }
+
+
+
+    /* =========================================
+       HERO BREADCRUMB
+    ========================================= */
+    .page-hero {
+      background: linear-gradient(135deg, #014d36 0%, #027c57 100%);
+      color: white;
+      padding: 56px 0 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::after {
+      content: 'Programmes';
+      position: absolute;
+      right: -20px;
+      bottom: -25px;
+      font-family: var(--font-accent);
+      font-size: 8rem;
+      color: rgba(255, 255, 255, 0.04);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .breadcrumb-trail {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #94a3b8;
+      margin-bottom: 16px;
+    }
+
+    .breadcrumb-trail a:hover {
+      color: var(--accent);
+    }
+
+    .breadcrumb-sep {
+      color: #64748b;
+    }
+
+    .hero-heading {
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .hero-highlight {
+      color: var(--accent);
+    }
+
+    .hero-lead {
+      color: #cbd5e1;
+      max-width: 640px;
+      font-size: 1.05rem;
+    }
+
+    /* =========================================
+       UPCOMING EVENTS FILTER BAR
+    ========================================= */
+    .filter-section {
+      margin-top: 2rem;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 40px;
+    }
+
+    .filter-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .filter-chips {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .chip-btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-slate);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .chip-btn:hover, .chip-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .search-box {
+      position: relative;
+      min-width: 240px;
+      flex-grow: 1;
+      max-width: 320px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 9px 14px 9px 36px;
+      font-size: 0.88rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      background: var(--bg-slate);
+      color: var(--text-main);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      background: white;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* =========================================
+       UPCOMING EVENTS GRID
+    ========================================= */
+    .section-title-wrap {
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .badge-sub {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--accent-hover);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .section-h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .event-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: visible;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-focus);
+    }
+
+    .card-banner {
+      height: 180px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      background: #1e293b;
+    }
+
+    .card-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .event-card:hover .card-banner img {
+      transform: scale(1.05);
+    }
+
+    .category-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(11, 26, 48, 0.85);
+      color: white;
+      backdrop-filter: blur(8px);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .date-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .date-calendar-box {
+      width: 48px;
+      height: 50px;
+      border-radius: 8px;
+      background: var(--bg-slate);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .date-month {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--accent-hover);
+      text-transform: uppercase;
+    }
+
+    .date-day {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .event-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .event-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .info-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-item svg {
+      color: var(--accent-hover);
+      flex-shrink: 0;
+    }
+
+    .event-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    /* ACTION ROW WITH REGISTER & INLINE ADD-TO-CALENDAR */
+    .card-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    .btn-register-event {
+      flex: 1;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .btn-register-event:hover {
+      background: var(--primary-light);
+    }
+
+    /* CALENDAR DROPDOWN COMPONENT */
+    .cal-dropdown-container {
+      position: relative;
+    }
+
+    .btn-cal-trigger {
+      background: var(--bg-slate);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-cal-trigger:hover,
+    .btn-cal-trigger[aria-expanded="true"] {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent-hover);
+    }
+
+    .cal-menu {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      right: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      width: 200px;
+      z-index: 50;
+      padding: 6px 0;
+      animation: menuPop 0.15s ease-out forwards;
+    }
+
+    @keyframes menuPop {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cal-menu.active {
+      display: block;
+    }
+
+    .cal-menu-header {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4px;
+    }
+
+    .cal-option {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-main);
+      transition: var(--transition);
+      text-align: left;
+    }
+
+    .cal-option:hover {
+      background: var(--bg-slate);
+      color: var(--primary);
+    }
+
+    .cal-option svg {
+      color: var(--accent-hover);
+      flex-shrink: 0;
+    }
+
+    /* =========================================
+       PAST PROGRAMMES ARCHIVE SECTION
+    ========================================= */
+    .past-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 0 80px;
+    }
+
+    .past-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 28px;
+    }
+
+    .past-card {
+      background: var(--bg-slate);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .past-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-focus);
+      background: white;
+    }
+
+    .past-thumb {
+      height: 190px;
+      width: 100%;
+      position: relative;
+    }
+
+    .past-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(15%);
+    }
+
+    .concluded-pill {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #94a3b8;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .past-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .past-date {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-hover);
+      margin-bottom: 6px;
+    }
+
+    .past-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .past-summary {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+
+    .impact-stat-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 14px;
+      background: rgba(245, 166, 35, 0.08);
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+    }
+
+    .stat-num {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .btn-view-archive {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .btn-view-archive:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* =========================================
+       MODALS (RSVP & ARCHIVE)
+    ========================================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 26, 48, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-dialog {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      max-width: 540px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: modalFadeUp 0.2s ease-out;
+    }
+
+    @keyframes modalFadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-slate);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .modal-close-btn:hover {
+      background: #fee2e2;
+      color: #ef4444;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.15);
+    }
+
+    .form-submit-btn {
+      width: 100%;
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 800;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      margin-top: 10px;
+      transition: var(--transition);
+    }
+
+    .form-submit-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    .site-footer {
+      background: var(--primary);
+      color: #94a3b8;
+      padding-top: 64px;
+      font-size: 0.9rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.2fr 1fr;
+      gap: 40px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-brand h3 {
+      color: white;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .footer-col-title {
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links-list a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 992px) {
+      .desktop-nav-menu, .nav-cta-group { display: none; }
+      .mobile-nav-toggle { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .page-hero::after { display: none !important; }
+      .filter-wrapper { flex-direction: column; align-items: stretch; gap: 12px; }
+      .search-box { min-width: 100% !important; max-width: 100% !important; }
+      .filter-chips { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; padding-bottom: 6px; }
+    }
+
+    @media (max-width: 640px) {
+      .events-grid, .past-grid { grid-template-columns: 1fr !important; }
+      .hero-heading { font-size: 1.85rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- =========================================
+       PAGE HERO
+  ========================================== -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb-trail">
+        <a href="{% url 'home' %}">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <span style="color: var(--accent); font-weight: 700;">Programmes & Events</span>
+      </div>
+      <h1 class="hero-heading">Empowering Students Through <span class="hero-highlight">Impactful Events</span></h1>
+      <p class="hero-lead">From annual leadership summits to bursary support workshops and digital bootcamps, stay connected to initiatives shaping Badagry's next generation.</p>
+    </div>
+  </section>
+
+  <main class="container" style="max-width: 1240px !important; margin: 0 auto !important; padding: 0 1.5rem !important;">
+    
+    <!-- Filter & Search Row -->
+    <section class="filter-section">
+      <div class="filter-wrapper">
+        <div class="filter-chips">
+          <button class="chip-btn active" data-filter="all">All Programmes</button>
+          <button class="chip-btn" data-filter="leadership">Leadership</button>
+          <button class="chip-btn" data-filter="bursary">Scholarships & Bursary</button>
+          <button class="chip-btn" data-filter="empowerment">Skill Bootcamps</button>
+          <button class="chip-btn" data-filter="convention">Conventions & AGM</button>
+        </div>
+        <div class="search-box">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="eventSearchInput" class="search-input" placeholder="Search programmes or dates..." />
+        </div>
+      </div>
+    </section>
+
+    <!-- Header for Upcoming Events -->
+    <div class="section-title-wrap">
+      <div>
+        <span class="badge-sub">Upcoming Calendar</span>
+        <h3 class="section-h2">Scheduled Programmes</h2>
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="events-grid" id="eventsGrid">
+
+      {% for prog in upcoming_programs %}
+      <article class="event-card" data-category="{{ prog.category|lower }}"
+        data-event-title="{{ prog.title }}"
+        data-event-start="20261114T090000Z"
+        data-event-end="20261114T150000Z"
+        data-event-location="{{ prog.venue }}"
+        data-event-desc="{{ prog.description|striptags|truncatewords:20|escape }}">
+        
+        <div class="card-banner">
+          <img src="{{ prog.display_image }}" alt="{{ prog.title }}" />
+          <span class="category-badge">{{ prog.category }}</span>
+        </div>
+
+        <div class="card-body">
+          <div class="date-meta-row">
+            <div class="date-calendar-box">
+              <span class="date-month">{{ prog.date|slice:":3"|upper }}</span>
+              <span class="date-day">{{ prog.date|slice:"4:6" }}</span>
+            </div>
+            <div>
+              <span style="font-size:0.75rem; color:#10b981; font-weight:700;">● {{ prog.status|default:"Registration Open" }}</span>
+              <div style="font-size:0.82rem; font-weight:600; color:var(--text-muted);">{{ prog.time|default:"9:00 AM – 3:00 PM WAT" }}</div>
+            </div>
+          </div>
+
+          <h3 class="event-title">{{ prog.title }}</h3>
+
+          <div class="event-info-list">
+            <span class="info-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              {{ prog.venue }}
+            </span>
+            <span class="info-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              {{ prog.target_audience|default:"Open to All Badagry Tertiary Students" }}
+            </span>
+          </div>
+
+          <p class="event-desc">{{ prog.description|striptags|truncatewords:22 }}</p>
+
+          <div class="card-actions-row">
+            <a href="{% url 'program_detail' slug=prog.slug %}" class="btn-register-event">
+              <span>View&Register</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <!-- Inline Add to Calendar Dropdown -->
+            <div class="cal-dropdown-container">
+              <button type="button" class="btn-cal-trigger" onclick="toggleCalMenu(this, event)" aria-expanded="false">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg>
+                <span>+ Calendar</span>
+              </button>
+              <div class="cal-menu">
+                <div class="cal-menu-header">Add To Calendar</div>
+                <button type="button" class="cal-option" onclick="addToGoogleCal(this)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+                  <span>Google Calendar</span>
+                </button>
+                <button type="button" class="cal-option" onclick="downloadIcs(this)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                  <span>Apple / Outlook (.ics)</span>
+                </button>
+                <button type="button" class="cal-option" onclick="addToYahooCal(this)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>
+                  <span>Yahoo Calendar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      {% empty %}
+      <!-- Seed / Fallback Card -->
+      <article class="event-card" data-category="leadership"
+        data-event-title="NABAS Leadership & Personal Development Seminar"
+        data-event-start="20261025T090000Z"
+        data-event-end="20261025T140000Z"
+        data-event-location="Badagry Town Hall, Marina, Badagry, Lagos"
+        data-event-desc="A high-impact leadership retreat designed for student council executives, chapter parliamentarians, and emerging undergraduate leaders from Badagry.">
+        
+        <div class="card-banner">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=700&q=80" alt="Leadership Seminar" />
+          <span class="category-badge">Leadership</span>
+        </div>
+
+        <div class="card-body">
+          <div class="date-meta-row">
+            <div class="date-calendar-box">
+              <span class="date-month">OCT</span>
+              <span class="date-day">25</span>
+            </div>
+            <div>
+              <span style="font-size:0.75rem; color:#10b981; font-weight:700;">● Registration Open</span>
+              <div style="font-size:0.82rem; font-weight:600; color:var(--text-muted);">9:00 AM – 2:00 PM WAT</div>
+            </div>
+          </div>
+
+          <h3 class="event-title">Leadership & Personal Development Seminar</h3>
+
+          <div class="event-info-list">
+            <span class="info-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Badagry Town Hall, Marina, Badagry
+            </span>
+            <span class="info-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              Open to All Badagry Tertiary Students
+            </span>
+          </div>
+
+          <p class="event-desc">An intensive leadership accelerator tackling public governance, academic excellence, career navigation, and ethical student unionism.</p>
+
+          <div class="card-actions-row">
+            <button class="btn-register-event" onclick="openRsvpModal('Leadership & Personal Development Seminar')">
+              <span>Register Now</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+
+            <!-- Inline Add to Calendar Dropdown -->
+            <div class="cal-dropdown-container">
+              <button type="button" class="btn-cal-trigger" onclick="toggleCalMenu(this, event)" aria-expanded="false">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg>
+                <span>+ Calendar</span>
+              </button>
+              <div class="cal-menu">
+                <div class="cal-menu-header">Add To Calendar</div>
+                <button type="button" class="cal-option" onclick="addToGoogleCal(this)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+                  <span>Google Calendar</span>
+                </button>
+                <button type="button" class="cal-option" onclick="downloadIcs(this)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                  <span>Apple / Outlook (.ics)</span>
+                </button>
+                <button type="button" class="cal-option" onclick="addToYahooCal(this)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>
+                  <span>Yahoo Calendar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+
+    </div>
+  </main>
+
+  <!-- =========================================
+       PAST PROGRAMMES ARCHIVE SECTION
+  ========================================== -->
+  <section class="past-section">
+    <div class="container">
+      <div class="section-title-wrap">
+        <div>
+          <span class="badge-sub">Archive & Milestones</span>
+          <h2 class="section-h2">Past Programmes & Impact</h2>
+        </div>
+      </div>
+
+      <div class="past-grid">
+
+        {% for past in past_programs %}
+        <article class="past-card">
+          <div class="past-thumb">
+            <img src="{{ past.display_image }}" alt="{{ past.title }}" />
+            <span class="concluded-pill">Completed</span>
+          </div>
+          <div class="past-body">
+            <div class="past-date">{{ past.date|upper }}</div>
+            <h3 class="past-title">{{ past.title }}</h3>
+            <p class="past-summary">{{ past.description|striptags|truncatewords:22 }}</p>
+            <div class="impact-stat-bar">
+              <div>
+                <div class="stat-num">{{ past.impact_stat_1_num|default:"500+" }}</div>
+                <div class="stat-lbl">{{ past.impact_stat_1_label|default:"Delegates" }}</div>
+              </div>
+              <div>
+                <div class="stat-num">{{ past.impact_stat_2_num|default:"22" }}</div>
+                <div class="stat-lbl">{{ past.impact_stat_2_label|default:"Chapters" }}</div>
+              </div>
+              <div>
+                <div class="stat-num">{{ past.impact_stat_3_num|default:"₦1.2M" }}</div>
+                <div class="stat-lbl">{{ past.impact_stat_3_label|default:"Prizes Awarded" }}</div>
+              </div>
+            </div>
+            <button type="button" class="btn-view-archive" onclick="openArchiveModal('{{ past.title|escapejs }}', '{{ past.impact_summary|striptags|default:past.description|striptags|escapejs }}')">View Impact Summary</button>
+          </div>
+        </article>
+        {% empty %}
+        <!-- Past 1 -->
+        <article class="past-card">
+          <div class="past-thumb">
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=700&q=80" alt="2025 Annual Convention" />
+            <span class="concluded-pill">Completed</span>
+          </div>
+          <div class="past-body">
+            <div class="past-date">DECEMBER 2025</div>
+            <h3 class="past-title">2025 National Convention & Youth Summit</h3>
+            <p class="past-summary">Convened over 450 student delegates across 20+ tertiary institutions to debate educational equity, bursary disbursement reforms, and community advocacy.</p>
+            <div class="impact-stat-bar">
+              <div>
+                <div class="stat-num">500+</div>
+                <div class="stat-lbl">Delegates</div>
+              </div>
+              <div>
+                <div class="stat-num">22</div>
+                <div class="stat-lbl">Chapters</div>
+              </div>
+              <div>
+                <div class="stat-num">₦1.2M</div>
+                <div class="stat-lbl">Prizes Awarded</div>
+              </div>
+            </div>
+            <button type="button" class="btn-view-archive" onclick="openArchiveModal('2025 National Convention', 'Convened delegates across South-West tertiary institutions, resulting in the 2025 Badagry Student Charter.')">View Impact Summary</button>
+          </div>
+        </article>
+
+        <!-- Past 2 -->
+        <article class="past-card">
+          <div class="past-thumb">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=700&q=80" alt="Tech Bootcamp" />
+            <span class="concluded-pill">Completed</span>
+          </div>
+          <div class="past-body">
+            <div class="past-date">AUGUST 2025</div>
+            <h3 class="past-title">Badagry Tech & Digital Skills Bootcamp</h3>
+            <p class="past-summary">A 4-week intensive cohort equipping 150+ youths and undergraduates with practical training in Web Development, UI/UX Design, and Data Analytics.</p>
+            <div class="impact-stat-bar">
+              <div>
+                <div class="stat-num">150</div>
+                <div class="stat-lbl">Trained Youths</div>
+              </div>
+              <div>
+                <div class="stat-num">40</div>
+                <div class="stat-lbl">Laptops Donated</div>
+              </div>
+              <div>
+                <div class="stat-num">85%</div>
+                <div class="stat-lbl">Certification</div>
+              </div>
+            </div>
+            <button type="button" class="btn-view-archive" onclick="openArchiveModal('Badagry Tech Bootcamp', 'Successfully trained 150 youths in frontend coding and design with sponsored community mentorship.')">View Impact Summary</button>
+          </div>
+        </article>
+
+        <!-- Past 3 -->
+        <article class="past-card">
+          <div class="past-thumb">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=700&q=80" alt="Free UTME Forms" />
+            <span class="concluded-pill">Completed</span>
+          </div>
+          <div class="past-body">
+            <div class="past-date">MARCH 2025</div>
+            <h3 class="past-title">Annual Free UTME/JAMB Sponsorship</h3>
+            <p class="past-summary">Distributed 200 free UTME registration forms and facilitated 6 weeks of intensive weekend CBT preparatory mock examinations for secondary school leavers.</p>
+            <div class="impact-stat-bar">
+              <div>
+                <div class="stat-num">200</div>
+                <div class="stat-lbl">JAMB Forms</div>
+              </div>
+              <div>
+                <div class="stat-num">3</div>
+                <div class="stat-lbl">CBT Centers</div>
+              </div>
+              <div>
+                <div class="stat-num">72%</div>
+                <div class="stat-lbl">Scored 200+</div>
+              </div>
+            </div>
+            <button type="button" class="btn-view-archive" onclick="openArchiveModal('Free UTME Scheme', 'Fully sponsored 200 tertiary aspirants with registration vouchers and free coaching.')">View Impact Summary</button>
+          </div>
+        </article>
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       RSVP MODAL DIALOG
+  ========================================== -->
+  <div class="modal-overlay" id="rsvpModal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="closeRsvpModal()" aria-label="Close modal">✕</button>
+      <div style="font-size:0.75rem; font-weight:800; color:var(--accent-hover); text-transform:uppercase; margin-bottom:4px;">Seat Reservation</div>
+      <h3 style="font-size:1.3rem; font-weight:800; color:var(--primary); margin-bottom:16px;" id="modalEventTitle">Register for Programme</h3>
+      
+      <form id="rsvpForm" onsubmit="handleRsvpSubmit(event)">
+  {% csrf_token %}
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" placeholder="e.g. Adeyemi Posu" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tertiary Institution & Chapter</label>
+          <input type="text" class="form-control" placeholder="e.g. LASU, UNILAG, FUTA" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone / WhatsApp Number</label>
+          <input type="tel" class="form-control" placeholder="e.g. 08012345678" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-control" placeholder="name@domain.com" required />
+        </div>
+        <button type="submit" class="form-submit-btn">Confirm RSVP Reservation</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ARCHIVE MODAL -->
+  <div class="modal-overlay" id="archiveModal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="closeArchiveModal()" aria-label="Close modal">✕</button>
+      <div style="font-size:0.75rem; font-weight:800; color:var(--accent-hover); text-transform:uppercase; margin-bottom:4px;">Programme Archive</div>
+      <h3 style="font-size:1.3rem; font-weight:800; color:var(--primary); margin-bottom:12px;" id="archiveModalTitle">Event Milestone</h3>
+      <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.6; margin-bottom:20px;" id="archiveModalDesc"></p>
+      <div style="background:var(--bg-slate); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; text-align:center;">
+        <span style="font-size:0.82rem; color:var(--text-main); font-weight:600;">Official communiqué & photography archive recorded in national gazette.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
+
+<!-- =========================================
+       VANILLA JAVASCRIPT: FILTER, SEARCH & CALENDAR
+  ========================================== -->
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // 1. Tab Filter
+    const chipBtns = document.querySelectorAll('.chip-btn');
+
+    chipBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        chipBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = (btn.getAttribute('data-filter') || 'all').toLowerCase();
+        const cards = document.querySelectorAll('.event-card');
+
+        cards.forEach(card => {
+          const cat = (card.getAttribute('data-category') || '').toLowerCase();
+          const title = (card.getAttribute('data-event-title') || '').toLowerCase();
+          if (filter === 'all' || cat.includes(filter) || filter.includes(cat) || title.includes(filter)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 2. Real-time Search
+    const searchInput = document.getElementById('eventSearchInput');
+    searchInput?.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.event-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? 'flex' : 'none';
+      });
+    });
+
+    // 3. Per-Card Calendar Dropdown Engine
+    function toggleCalMenu(btn, e) {
+      if (e) e.stopPropagation();
+      const menu = btn.nextElementSibling;
+      const isOpen = menu && menu.classList.contains('active');
+
+      document.querySelectorAll('.cal-menu').forEach(m => m.classList.remove('active'));
+      document.querySelectorAll('.btn-cal-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+      if (!isOpen && menu) {
+        menu.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // Close calendar menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.cal-dropdown-container')) {
+        document.querySelectorAll('.cal-menu').forEach(m => m.classList.remove('active'));
+        document.querySelectorAll('.btn-cal-trigger').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      }
+    });
+
+    function getCardEventData(el) {
+      const card = el.closest('.event-card');
+      return {
+        title: card.getAttribute('data-event-title') || 'NABAS Event',
+        start: card.getAttribute('data-event-start') || '20261114T090000Z',
+        end: card.getAttribute('data-event-end') || '20261114T150000Z',
+        location: card.getAttribute('data-event-location') || 'Badagry, Lagos',
+        desc: card.getAttribute('data-event-desc') || 'NABAS Student Programme'
+      };
+    }
+
+    function addToGoogleCal(btn) {
+      const d = getCardEventData(btn);
+      const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(d.title)}&dates=${d.start}/${d.end}&details=${encodeURIComponent(d.desc)}&location=${encodeURIComponent(d.location)}`;
+      window.open(url, '_blank');
+    }
+
+    function addToYahooCal(btn) {
+      const d = getCardEventData(btn);
+      const url = `https://calendar.yahoo.com/?v=60&title=${encodeURIComponent(d.title)}&st=${d.start}&et=${d.end}&desc=${encodeURIComponent(d.desc)}&in_loc=${encodeURIComponent(d.location)}`;
+      window.open(url, '_blank');
+    }
+
+    function downloadIcs(btn) {
+      const d = getCardEventData(btn);
+      const icsContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//NABAS Badagry//Student Events//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        `SUMMARY:${d.title}`,
+        `DESCRIPTION:${d.desc}`,
+        `LOCATION:${d.location}`,
+        `DTSTART:${d.start}`,
+        `DTEND:${d.end}`,
+        'STATUS:CONFIRMED',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute('download', `${d.title.replace(/[^a-zA-Z0-9]/g, '_')}.ics`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // 4. RSVP Modal Functions
+    function openRsvpModal(title) {
+      document.getElementById('modalEventTitle').innerText = title;
+      document.getElementById('rsvpModal').classList.add('active');
+    }
+
+    function closeRsvpModal() {
+      document.getElementById('rsvpModal').classList.remove('active');
+    }
+
+    function handleRsvpSubmit(e) {
+      e.preventDefault();
+      alert('Your RSVP seat reservation has been recorded successfully! A confirmation SMS/email will follow.');
+      closeRsvpModal();
+    }
+
+    // 5. Archive Modal Functions
+    function openArchiveModal(title, desc) {
+      document.getElementById('archiveModalTitle').innerText = title;
+      document.getElementById('archiveModalDesc').innerText = desc || 'Official milestone and impact summary recorded in national gazette.';
+      document.getElementById('archiveModal').classList.add('active');
+    }
+
+    function closeArchiveModal() {
+      document.getElementById('archiveModal').classList.remove('active');
+    }
+</script>
+{% endblock %}

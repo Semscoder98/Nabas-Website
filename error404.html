@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Page Not Found | National Association of Badagry Students (NABAS)</title>
+  <meta name="description" content="The page you are looking for might have been removed, had its name changed, or is temporarily unavailable." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #0b1a30;
+      --primary-light: #152b4d;
+      --accent: #f5a623;
+      --accent-hover: #e29415;
+      --accent-soft: #fef6e7;
+      --surface: #ffffff;
+      --bg-slate: #f8fafc;
+      --border: #e2e8f0;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-accent: 'Caveat', cursive;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.08);
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-slate);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; border: none; background: none; cursor: pointer; }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    /* =========================================
+       GLOBAL NAVBAR
+    ========================================= */
+    .header-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .crest-mark {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-sub {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .desktop-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-item {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      position: relative;
+      transition: var(--transition);
+      padding: 6px 0;
+    }
+
+    .nav-item:hover {
+      color: var(--primary);
+    }
+
+    .btn-join {
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      box-shadow: 0 4px 10px rgba(245, 166, 35, 0.25);
+    }
+
+    .btn-join:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .mobile-nav-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--primary);
+      z-index: 200;
+      padding: 24px;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+    }
+
+    .mobile-drawer.open { right: 0; }
+
+    .mobile-drawer a {
+      color: #cbd5e1;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .drawer-close {
+      align-self: flex-end;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* =========================================
+       404 HERO / ERROR MAIN BODY
+    ========================================= */
+    .error-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      position: relative;
+    }
+
+    .error-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px 36px;
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .error-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--primary) 100%);
+    }
+
+    .error-watermark {
+      font-size: 7.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      opacity: 0.08;
+      line-height: 0.9;
+      margin-bottom: -50px;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+
+    .badge-error {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fee2e2;
+      color: #dc2626;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .error-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+      line-height: 1.25;
+      position: relative;
+      z-index: 2;
+    }
+
+    .error-title span {
+      color: var(--accent);
+    }
+
+    .error-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .error-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .btn-home {
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 11px 24px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(11, 26, 48, 0.15);
+    }
+
+    .btn-home:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-contact {
+      background: var(--bg-slate);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 11px 22px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .btn-contact:hover {
+      background: #e2e8f0;
+      border-color: #cbd5e1;
+    }
+
+    /* QUICK HELPFUL LINKS */
+    .quick-links-box {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    .quick-links-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .quick-links-pills {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .quick-pill {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-main);
+      background: var(--bg-slate);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      transition: var(--transition);
+    }
+
+    .quick-pill:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent-hover);
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    .site-footer {
+      background: var(--primary);
+      color: #94a3b8;
+      padding-top: 48px;
+      font-size: 0.85rem;
+      margin-top: auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 32px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-brand h3 {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .footer-col-title {
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links-list a:hover { color: var(--accent); }
+
+    .social-icons-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .social-icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .social-icon-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+    }
+
+    /* RESPONSIVENESS */
+    @media (max-width: 992px) {
+      .desktop-nav-menu, .nav-cta-group { display: none; }
+      .mobile-nav-toggle { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+    }
+
+    @media (max-width: 640px) {
+      .error-card { padding: 32px 20px; }
+      .error-watermark { font-size: 5rem; margin-bottom: -32px; }
+      .error-title { font-size: 1.55rem; }
+      .error-desc { font-size: 0.88rem; }
+      .error-actions { flex-direction: column; width: 100%; }
+      .btn-home, .btn-contact { width: 100%; justify-content: center; }
+      .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="header-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="brand-logo" aria-label="NABAS Home">
+          <div class="crest-mark">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="brand-title">
+            <span>NABAS</span>
+            <span class="brand-sub">Badagry Students Union</span>
+          </div>
+        </a>
+
+        <nav class="desktop-nav-menu">
+          <a href="index.html" class="nav-item">Home</a>
+          <a href="about.html" class="nav-item">About</a>
+          <a href="leadership.html" class="nav-item">Leadership</a>
+          <a href="chapters.html" class="nav-item">Institutions</a>
+          <a href="programmes.html" class="nav-item">Programmes</a>
+          <a href="news.html" class="nav-item">News</a>
+          <a href="gallery.html" class="nav-item">Gallery</a>
+          <a href="resources.html" class="nav-item">Resources</a>
+          <a href="contact.html" class="nav-item">Contact</a>
+        </nav>
+
+        <div class="nav-cta-group">
+          <a href="join.html" class="btn-join">Join NABAS</a>
+        </div>
+
+        <button class="mobile-nav-toggle" id="mobileNavBtn" aria-label="Open menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-close" id="drawerClose">&times;</div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="leadership.html">Leadership</a>
+    <a href="chapters.html">Institutions</a>
+    <a href="programmes.html">Programmes</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+    <a href="join.html" style="color:var(--accent);">Join NABAS</a>
+  </div>
+
+  <!-- 404 BODY -->
+  <main class="error-container">
+    <div class="error-card">
+      <div class="error-watermark">404</div>
+      <div class="badge-error">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Error 404 • Lost Pathway</span>
+      </div>
+
+      <h1 class="error-title">Page Has Drifted <span>Off Shore</span></h1>
+      <p class="error-desc">The resource, dispatch, or file you are searching for might have been archived, renamed, or is temporarily unavailable on the national server.</p>
+
+      <div class="error-actions">
+        <a href="index.html" class="btn-home">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Return to Homepage</span>
+        </a>
+        <a href="contact.html" class="btn-contact">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>Report to Secretariat</span>
+        </a>
+      </div>
+
+      <div class="quick-links-box">
+        <div class="quick-links-title">Helpful Navigation Shortcuts</div>
+        <div class="quick-links-pills">
+          <a href="news.html" class="quick-pill">Latest News</a>
+          <a href="programmes.html" class="quick-pill">Upcoming Events</a>
+          <a href="resources.html" class="quick-pill">Bursary Guides</a>
+          <a href="join.html" class="quick-pill">Student ID Card</a>
+          <a href="gallery.html" class="quick-pill">Photo Gallery</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>NABAS</h3>
+          <p>The National Association of Badagry Students is the united voice of indigenous and resident students across tertiary institutions in Nigeria.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About NABAS</a></li>
+            <li><a href="leadership.html">Executive Council</a></li>
+            <li><a href="chapters.html">Institutions</a></li>
+            <li><a href="programmes.html">Programmes</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Contact</h4>
+          <ul class="footer-links-list">
+            <li>Secretariat: Badagry Local Government</li>
+            <li>Email: info@nabas.org.ng</li>
+            <li>Phone: +234 901 234 5678</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Follow Us</h4>
+          <div class="social-icons-row">
+            <!-- WhatsApp -->
+            <a href="https://wa.me/2349012345678" target="_blank" class="social-icon-btn" aria-label="WhatsApp">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            </a>
+            <!-- Facebook -->
+            <a href="https://facebook.com/nabasnational" target="_blank" class="social-icon-btn" aria-label="Facebook">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <!-- Single Glyph X -->
+            <a href="https://x.com/nabasnational" target="_blank" class="social-icon-btn" aria-label="X">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a href="https://instagram.com/nabasnational" target="_blank" class="social-icon-btn" aria-label="Instagram">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/company/nabasnational" target="_blank" class="social-icon-btn" aria-label="LinkedIn">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 National Association of Badagry Students (NABAS). All rights reserved.</div>
+        <div>Unity, Excellence & Development</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- VANILLA JS -->
+  <script>
+    const mobileBtn = document.getElementById('mobileNavBtn');
+    const drawer = document.getElementById('mobileDrawer');
+    const drawerClose = document.getElementById('drawerClose');
+
+    mobileBtn.addEventListener('click', () => drawer.classList.add('open'));
+    drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
+  </script>
+</body>
+</html>

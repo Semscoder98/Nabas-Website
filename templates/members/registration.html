@@ -1,0 +1,1819 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Join NABAS & Generate Standard Digital Student ID | National Association of Badagry Students
+{% endblock %}
+
+{% block extra_css %}
+<style>
+  :root {
+    --primary: #027c57;
+    --primary-light: #03986a;
+    --primary-accent: #014d36;
+    --accent: #f5a623;
+    --accent-hover: #e29415;
+    --accent-soft: #fff7eb;
+    --surface: #ffffff;
+    --bg-slate: #f8fafc;
+    --border: #e2e8f0;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --success: #10b981;
+    --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-accent: 'Caveat', cursive;
+    --font-mono: 'Space Mono', monospace;
+    --font-barcode: 'Libre Barcode 39', cursive;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-pill: 9999px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.09);
+    --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--font-main);
+    background-color: var(--bg-slate);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  button {
+    font-family: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1240px !important;
+    margin-inline: auto !important;
+    padding-inline: 1.5rem !important;
+  }
+
+  .page-hero {
+    background: linear-gradient(135deg, #014d36 0%, #027c57 100%);
+    color: white;
+    padding: 52px 0 56px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 4px solid var(--accent);
+  }
+
+  .page-hero::after {
+    content: 'Membership';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-accent);
+    font-size: 7.5rem;
+    color: rgba(255, 255, 255, 0.04);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .breadcrumb-trail {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #94a3b8;
+    margin-bottom: 12px;
+  }
+
+  .breadcrumb-trail a:hover {
+    color: var(--accent);
+  }
+
+  .hero-heading {
+    font-size: 2.45rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .hero-highlight {
+    color: var(--accent);
+  }
+
+  .hero-lead {
+    color: #cbd5e1;
+    max-width: 600px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .wizard-container {
+    margin-top: 1.5rem;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .wizard-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    box-shadow: var(--shadow-md);
+  }
+
+  .stepper-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 2;
+  }
+
+  .step-num {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-pill);
+    background: var(--bg-slate);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+
+  .step-label {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .step-tag {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .step-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .step-item.active .step-num {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--accent);
+  }
+
+  .step-item.active .step-title {
+    color: var(--primary);
+  }
+
+  .step-item.completed .step-num {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+  }
+
+  .step-panel {
+    display: none;
+    animation: fadeIn 0.25s ease-out;
+  }
+
+  .step-panel.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .panel-header {
+    margin-bottom: 20px;
+  }
+
+  .panel-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--accent-hover);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .panel-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  .panel-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .form-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .form-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-main);
+  }
+
+  .form-label span {
+    color: #dc2626;
+  }
+
+  .form-input,
+  .form-select {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.86rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-slate);
+    font-family: inherit;
+    color: var(--text-main);
+    outline: none;
+    transition: var(--transition);
+  }
+
+  .form-input:focus,
+  .form-select:focus {
+    border-color: var(--accent);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.15);
+  }
+
+  .photo-upload-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px;
+    background: var(--bg-slate);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: 18px;
+  }
+
+  .photo-preview-box {
+    width: 86px;
+    height: 98px;
+    border-radius: var(--radius-sm);
+    background: white;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    color: var(--text-muted);
+  }
+
+  .photo-preview-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .upload-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .upload-btn-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary);
+    color: white;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    width: fit-content;
+    transition: var(--transition);
+  }
+
+  .upload-btn-label:hover {
+    background: var(--primary-light);
+  }
+
+  .upload-hints {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+  }
+
+  .attest-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+    border-radius: var(--radius-sm);
+    background: #f1f5f9;
+    border: 1px solid var(--border);
+    margin-bottom: 22px;
+  }
+
+  .attest-box input[type="checkbox"] {
+    margin-top: 3px;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  .attest-text {
+    font-size: 0.8rem;
+    color: var(--text-main);
+    line-height: 1.45;
+  }
+
+  .form-nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+
+  .btn-prev {
+    background: var(--bg-slate);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+  }
+
+  .btn-prev:hover {
+    background: #e2e8f0;
+  }
+
+  .btn-next,
+  .btn-submit {
+    background: var(--accent);
+    color: var(--primary);
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 10px 24px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    margin-left: auto;
+  }
+
+  .btn-next:hover,
+  .btn-submit:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+  }
+
+  .id-showcase-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-top: 10px;
+  }
+
+  .id-cards-wrapper {
+    display: flex;
+    gap: 28px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 16px;
+    background: #e2e8f0;
+    border: 1px solid #cbd5e1;
+    border-radius: var(--radius-lg);
+  }
+
+  /* 
+       Standard ISO/IEC 7810 ID-1 (CR80) Specs:
+       85.60 mm × 53.98 mm (approx 3.370 in × 2.125 in, 1.5858 ratio)
+       In Screen View: 380px × 240px with 3.18mm (approx 12px) corner radius
+    */
+  .cr80-card {
+    width: 380px;
+    height: 240px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(1, 77, 54, 0.28), 0 2px 6px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(245, 166, 35, 0.45);
+    background: var(--primary);
+    color: #ffffff;
+    flex-shrink: 0;
+    user-select: none;
+  }
+
+  .card-label-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  /* FRONT CARD DESIGN */
+  .cr80-front {
+    background: linear-gradient(135deg, #014d36 0%, #027c57 50%, #013b29 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 11px 13px;
+    position: relative;
+  }
+
+  /* Guilloche Pattern and Microprint simulation */
+  .cr80-front::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 75% 20%, rgba(245, 166, 35, 0.16) 0%, transparent 48%),
+      repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.015) 0px, rgba(255, 255, 255, 0.015) 1px, transparent 1px, transparent 4px);
+    pointer-events: none;
+  }
+
+  .cr80-front-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1.5px solid var(--accent);
+    padding-bottom: 6px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cr80-watermark {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .cr80-watermark img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    opacity: 0.08;
+    filter: grayscale(100%) contrast(150%);
+  }
+
+  .cr80-crest {
+    width: 32px;
+    height: 32px;
+    background: #ffffff;
+    border: 1.5px solid var(--accent);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    padding: 1px;
+  }
+
+  .cr80-crest img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .smart-chip-sim {
+    width: 28px;
+    height: 22px;
+    background: linear-gradient(135deg, #d4af37 0%, #fef08a 50%, #b45309 100%);
+    border-radius: 4px;
+    border: 0.5px solid rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2px;
+  }
+
+  .smart-chip-sim::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+  }
+
+  .cr80-front-titles {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .cr80-title-main {
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+
+  .cr80-title-sub {
+    font-size: 0.52rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .cr80-front-body {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 5px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cr80-photo-wrap {
+    width: 82px;
+    height: 98px;
+    border-radius: 6px;
+    border: 2px solid var(--accent);
+    background: #014d36;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cr80-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cr80-front-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5px;
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .id-row-val {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .id-field-chip {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+  }
+
+  .id-meta-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 2px 6px;
+    font-size: 0.58rem;
+    margin-top: 2px;
+  }
+
+  .id-meta-item {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .id-meta-lbl {
+    color: #94a3b8;
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .id-meta-txt {
+    color: #e2e8f0;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cr80-front-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 4px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .security-hologram {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    background: linear-gradient(135deg, rgba(245, 166, 35, 0.25) 0%, rgba(16, 185, 129, 0.25) 100%);
+    border: 1px solid rgba(245, 166, 35, 0.6);
+    border-radius: 4px;
+    font-size: 0.52rem;
+    font-weight: 800;
+    color: #fef08a;
+    letter-spacing: 0.06em;
+  }
+
+  .auth-sig-block {
+    text-align: right;
+    line-height: 1;
+  }
+
+  .sig-handwritten {
+    font-family: var(--font-accent);
+    font-size: 1.25rem;
+    color: var(--accent);
+    line-height: 0.9;
+  }
+
+  .sig-designation {
+    font-size: 0.48rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+
+  /* BACK CARD DESIGN */
+  .cr80-back {
+    background: linear-gradient(135deg, #013b29 0%, #014d36 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 12px;
+    position: relative;
+  }
+
+  .cr80-magnetic-stripe {
+    height: 26px;
+    background: #020617;
+    margin: -10px -12px 6px -12px;
+    border-bottom: 1px solid #1e293b;
+    position: relative;
+  }
+
+  .cr80-back-terms {
+    font-size: 0.48rem;
+    line-height: 1.35;
+    color: #cbd5e1;
+    text-align: justify;
+    margin-bottom: 4px;
+  }
+
+  .cr80-back-info-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 5px;
+    padding: 4px 6px;
+    font-size: 0.52rem;
+  }
+
+  .cr80-back-info-strip strong {
+    color: var(--accent);
+  }
+
+  .cr80-back-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    padding-top: 5px;
+    margin-top: 4px;
+  }
+
+  .qr-code-box {
+    width: 44px;
+    height: 44px;
+    background: #ffffff;
+    padding: 3px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .qr-code-box svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .barcode-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  .barcode-svg {
+    width: 155px;
+    height: 26px;
+  }
+
+  .barcode-number {
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    color: #94a3b8;
+    letter-spacing: 0.1em;
+  }
+
+  /* Print and ID Actions Panel */
+  .id-actions-tray {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .btn-action-print {
+    background: var(--accent);
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 12px 28px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(245, 166, 35, 0.3);
+    transition: var(--transition);
+  }
+
+  .btn-action-print:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+  }
+
+  .btn-action-alt {
+    background: var(--primary);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 12px 22px;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+  }
+
+  .btn-action-alt:hover {
+    background: var(--primary-light);
+  }
+
+  .site-footer {
+    background: var(--primary);
+    color: #94a3b8;
+    padding-top: 48px;
+    font-size: 0.85rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 32px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-brand h3 {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .footer-col-title {
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-links-list a:hover {
+    color: var(--accent);
+  }
+
+  .social-icons-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .social-icon-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .social-icon-btn:hover {
+    background: var(--accent);
+    color: var(--primary);
+    transform: translateY(-2px);
+  }
+
+  .footer-bottom {
+    padding: 18px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+  }
+
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 15mm;
+    }
+
+    /* Hide entire site interface except the printable ID card wrapper */
+    header,
+    .page-hero,
+    .stepper-nav,
+    .panel-header,
+    .id-actions-tray,
+    .site-footer,
+    .mobile-drawer,
+    #step1,
+    #step2,
+    #step3,
+    #customToast,
+    .card-label-tag,
+    .form-nav-actions {
+      display: none !important;
+    }
+
+    body,
+    html {
+      background: #ffffff !important;
+      color: #000000 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .container,
+    .wizard-container,
+    .wizard-card,
+    .id-showcase-container {
+      padding: 0 !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+      box-shadow: none !important;
+      border: none !important;
+      background: transparent !important;
+    }
+
+    .step-panel {
+      display: block !important;
+    }
+
+    /* Print Layout Sheet */
+    .id-cards-wrapper {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10mm !important;
+      background: transparent !important;
+      border: none !important;
+      padding: 20mm 0 !important;
+    }
+
+    /* Physical ISO 7810 ID-1 standard dimensions: 85.60mm x 53.98mm */
+    .cr80-card {
+      width: 85.6mm !important;
+      height: 53.98mm !important;
+      box-shadow: none !important;
+      border: 0.3mm solid #94a3b8 !important;
+      border-radius: 3.18mm !important;
+      page-break-inside: avoid !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      position: relative !important;
+    }
+
+    /* Printable Crop & Cut Mark simulation */
+    .card-unit {
+      position: relative;
+      padding: 2mm;
+    }
+
+    .card-unit::before {
+      content: '✂ Cut line';
+      position: absolute;
+      top: -4mm;
+      left: 2mm;
+      font-size: 7pt;
+      color: #64748b;
+      font-family: sans-serif;
+    }
+  }
+
+  @media (max-width: 992px) {
+
+    .desktop-nav-menu,
+    .nav-cta-group {
+      display: none;
+    }
+
+    .mobile-nav-toggle {
+      display: flex;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .stepper-nav {
+      overflow-x: auto;
+      gap: 16px;
+      scrollbar-width: none;
+    }
+
+    .stepper-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .step-item {
+      flex-shrink: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .page-hero {
+      padding: 26px 0 22px;
+    }
+
+    .hero-heading {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+
+    .hero-lead {
+      font-size: 0.85rem;
+      line-height: 1.45;
+    }
+
+    .wizard-container {
+      margin-top: 1rem;
+      margin-bottom: 36px;
+    }
+
+    .page-hero::after {
+      display: none;
+    }
+
+    .wizard-card {
+      padding: 18px 14px;
+    }
+
+    .form-grid-2,
+    .form-grid-3 {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .step-label {
+      display: none;
+    }
+
+    .stepper-nav {
+      justify-content: space-between;
+    }
+
+    .photo-upload-wrapper {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .id-cards-wrapper,
+    .id-preview-stage {
+      padding: 10px 4px !important;
+      gap: 16px !important;
+      background: transparent !important;
+      border: none !important;
+      max-width: 100% !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Scale the CR80 card proportionally on small mobile screens */
+    .cr80-card {
+      width: 100% !important;
+      max-width: 340px !important;
+      min-width: 0 !important;
+      flex-shrink: 1 !important;
+      height: 220px;
+      box-sizing: border-box !important;
+    }
+
+    .cr80-photo-wrap {
+      width: 72px;
+      height: 88px;
+    }
+
+    .id-row-val {
+      font-size: 0.8rem;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb-trail">
+      <a href="{% url 'home' %}">Home</a>
+      <span>/</span>
+      <span>Join NABAS</span>
+    </div>
+    <h1 class="hero-heading">Membership <span class="hero-highlight">Registration</span></h1>
+    <p class="hero-lead">Enroll in the national directory of indigenous Badagry students across Nigerian
+      tertiary institutions and print your NABAS Membership ID card.</p>
+  </div>
+</section>
+
+<main class="container" style="max-width: 1240px !important; margin: 0 auto !important; padding: 0 1.5rem !important;">
+  <section class="wizard-container">
+    <div class="wizard-card">
+
+      <!-- Stepper Progress Navigation -->
+      <div class="stepper-nav">
+        <div class="step-item active" id="stepIndicator1">
+          <div class="step-num">1</div>
+          <div class="step-label">
+            <span class="step-tag">Step 1</span>
+            <span class="step-title">Personal Data</span>
+          </div>
+        </div>
+        <div class="step-item" id="stepIndicator2">
+          <div class="step-num">2</div>
+          <div class="step-label">
+            <span class="step-tag">Step 2</span>
+            <span class="step-title">Academic Profile</span>
+          </div>
+        </div>
+        <div class="step-item" id="stepIndicator3">
+          <div class="step-num">3</div>
+          <div class="step-label">
+            <span class="step-tag">Step 3</span>
+            <span class="step-title">Photo & Attestation</span>
+          </div>
+        </div>
+        <div class="step-item" id="stepIndicator4">
+          <div class="step-num">4</div>
+          <div class="step-label">
+            <span class="step-tag">Step 4</span>
+            <span class="step-title">Printable ID Card</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="membershipForm" onsubmit="event.preventDefault();">
+        {% csrf_token %}
+
+        <!-- STEP 1: PERSONAL BIODATA -->
+        <div class="step-panel active" id="step1">
+          <div class="panel-header">
+            <span class="panel-tag">Biodata Information</span>
+            <h2 class="panel-title">Personal & Origin Details</h2>
+            <p class="panel-sub">Ensure your name matches your official admission documents.</p>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="fullName">Full Name (Surname First) <span>*</span></label>
+              <input type="text" id="fullName" class="form-input" placeholder="e.g. Akran Babatunde Joseph" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address <span>*</span></label>
+              <input type="email" id="email" class="form-input" placeholder="e.g. student@gmail.com" required />
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label class="form-label" for="dob">Date of Birth <span>*</span></label>
+              <input type="date" id="dob" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="gender">Gender <span>*</span></label>
+              <select id="gender" class="form-select" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="bloodGroup">Blood Group</label>
+              <select id="bloodGroup" class="form-select">
+                <option value="O+">O+</option>
+                <option value="A+">A+</option>
+                <option value="B+">B+</option>
+                <option value="AB+">AB+</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label class="form-label" for="phone">WhatsApp / Phone <span>*</span></label>
+              <input type="tel" id="phone" class="form-input" placeholder="e.g. 08012345678" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lcdaArea">Badagry Division Constituency / LGA <span>*</span></label>
+              <select id="lcdaArea" class="form-select" required>
+                <option value="" disabled selected>Select Constituency</option>
+                <option value="Badagry Central LGA">Badagry Central LGA</option>
+                <option value="Olorunda LCDA">Olorunda LCDA</option>
+                <option value="Badagry West LCDA">Badagry West LCDA</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="wardCompound">Town / Ward / Ancestral Compound <span>*</span></label>
+              <input type="text" id="wardCompound" class="form-input" placeholder="e.g. Ajara Topa, Apa, Marina"
+                required />
+            </div>
+          </div>
+
+          <div class="form-nav-actions">
+            <div></div>
+            <button type="button" class="btn-next" onclick="goToStep(2)">
+              <span>Continue to Academic Profile</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="step-panel" id="step2">
+          <div class="panel-header">
+            <span class="panel-tag">Academic Enrollment</span>
+            <h2 class="panel-title">Tertiary Institution Profile</h2>
+            <p class="panel-sub">Provide your valid tertiary registration and faculty particulars.</p>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="institution">Tertiary Institution <span>*</span></label>
+              <input type="text" id="institution" class="form-input" placeholder="e.g. Lagos State University (LASU)"
+                required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="faculty">Faculty / School <span>*</span></label>
+              <input type="text" id="faculty" class="form-input" placeholder="e.g. Faculty of Social Sciences"
+                required />
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label class="form-label" for="department">Course of Study <span>*</span></label>
+              <input type="text" id="department" class="form-input" placeholder="e.g. Economics & Development Studies"
+                required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="level">Current Level <span>*</span></label>
+              <select id="level" class="form-select" required>
+                <option value="" disabled selected>Select Level</option>
+                <option value="100 Level">100 Level (Freshman)</option>
+                <option value="200 Level">200 Level</option>
+                <option value="300 Level">300 Level</option>
+                <option value="400 Level">400 Level</option>
+                <option value="500 Level">500 Level</option>
+                <option value="Postgraduate">Postgraduate</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="matricNo">Matriculation / JAMB Reg Number <span>*</span></label>
+              <input type="text" id="matricNo" class="form-input" placeholder="e.g. 220592014" required />
+            </div>
+          </div>
+
+          <div class="form-nav-actions">
+            <button type="button" class="btn-prev" onclick="goToStep(1)">Back</button>
+            <button type="button" class="btn-next" onclick="goToStep(3)">
+              <span>Continue to Photo & Verification</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="step-panel" id="step3">
+          <div class="panel-header">
+            <span class="panel-tag">Photo & Credentials</span>
+            <h2 class="panel-title">Passport Portrait & Verification</h2>
+            <p class="panel-sub">Upload a portrait photo for your CR80 membership card.</p>
+          </div>
+
+          <div class="photo-upload-wrapper">
+            <div class="photo-preview-box" id="previewBox">
+              <!-- Mock default placeholder portrait -->
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </div>
+            <div class="upload-details">
+              <label class="upload-btn-label" for="passportUpload">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="17 8 12 3 7 8" />
+                  <line x1="12" y1="3" x2="12" y2="15" />
+                </svg>
+                <span>Select Passport Photo</span>
+              </label>
+              <input type="file" id="passportUpload" accept="image/*" style="display:none;"
+                onchange="handlePhotoUpload(this)" />
+              <span class="upload-hints">Upload portrait format. Max 3MB (PNG, JPG, or WEBP).</span>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="emergencyName">Next of Kin / Emergency Contact <span>*</span></label>
+              <input type="text" id="emergencyName" class="form-input" placeholder="e.g. Chief A. Akran (Guardian)"
+                required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="emergencyPhone">Emergency Contact Phone <span>*</span></label>
+              <input type="tel" id="emergencyPhone" class="form-input" placeholder="e.g. 08098765432" required />
+            </div>
+          </div>
+
+          <div class="attest-box">
+            <input type="checkbox" id="attestCheck" required />
+            <label for="attestCheck" class="attest-text">
+              I solemnly certify that the information provided is correct, and that I am an indigenous or resident
+              student of Badagry Division. I pledge to uphold the constitution, dignity, and heritage of the National
+              Association of Badagry Students (NABAS).
+            </label>
+          </div>
+
+          <div class="form-nav-actions">
+            <button type="button" class="btn-prev" onclick="goToStep(2)">Back</button>
+            <button type="button" class="btn-submit" onclick="generateStandardCard()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+              <span>Submit & Generate ID</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="step-panel" id="step4">
+          <div class="panel-header" style="text-align: center;">
+            <span class="panel-tag" style="color:var(--success);">Verified Credential</span>
+            <h2 class="panel-title">Official Student Membership Card (CR80)</h2>
+            <p class="panel-sub">Standard physical dimensions (85.60mm × 53.98mm). Click "Print ID Card" to print
+              strictly the card units.</p>
+          </div>
+
+          <div class="id-showcase-container">
+
+            <!-- Cards Showcase Area (Front & Back) -->
+            <div class="id-cards-wrapper" id="printableIdArea">
+
+              <!-- FRONT OF CARD -->
+              <div class="card-unit">
+                <div class="card-label-tag">Card Front</div>
+                <div class="cr80-card cr80-front" id="idCardFront">
+                  <!-- Faded Background Logo Watermark -->
+                  <div class="cr80-watermark">
+                    <img src="{% static 'img/logo.jpg' %}" alt="NABAS Watermark" />
+                  </div>
+
+                  <!-- Header with National Emblem -->
+                  <div class="cr80-front-header">
+                    <div class="cr80-crest">
+                      <img src="{% static 'img/logo.jpg' %}" alt="NABAS Official Crest" />
+                    </div>
+                    <div class="cr80-front-titles">
+                      <span class="cr80-title-main">NATIONAL ASSOCIATION OF BADAGRY STUDENTS</span>
+                      <span class="cr80-title-sub">STUDENT MEMBERSHIP IDENTITY CARD</span>
+                    </div>
+                  </div>
+
+                  <!-- Body Content -->
+                  <div class="cr80-front-body">
+                    <!-- Photo Frame -->
+                    <div class="cr80-photo-wrap" id="cardFrontPhoto">
+                      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)"
+                        stroke-width="1.5">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                      </svg>
+                    </div>
+
+                    <!-- Details Column -->
+                    <div class="cr80-front-details">
+                      <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span class="id-field-chip" id="cardRegNo">NABAS/2026/0842</span>
+                        <div class="smart-chip-sim" title="Secure Polycarbonate Microchip"></div>
+                      </div>
+                      <div class="id-row-val" id="cardName">AKRAN BABATUNDE JOSEPH</div>
+
+                      <div class="id-meta-grid">
+                        <div class="id-meta-item">
+                          <span class="id-meta-lbl">Institution</span>
+                          <span class="id-meta-txt" id="cardInst">LASU Ojo</span>
+                        </div>
+                        <div class="id-meta-item">
+                          <span class="id-meta-lbl">Level / Sex</span>
+                          <span class="id-meta-txt" id="cardLevelSex">300L • Male</span>
+                        </div>
+                        <div class="id-meta-item">
+                          <span class="id-meta-lbl">Course / Dept</span>
+                          <span class="id-meta-txt" id="cardDept">Economics</span>
+                        </div>
+                        <div class="id-meta-item">
+                          <span class="id-meta-lbl">Constituency</span>
+                          <span class="id-meta-txt" id="cardLcda">Badagry Central</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Card Front Footer -->
+                  <div class="cr80-front-footer">
+                    <div class="security-hologram">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                          d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                      </svg>
+                      <span>OFFICIAL NABAS SEAL</span>
+                    </div>
+                    <div class="auth-sig-block">
+                      <div class="sig-handwritten">Deji Akran</div>
+                      <div class="sig-designation">President</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- BACK OF CARD -->
+              <div class="card-unit">
+                <div class="card-label-tag">Card Back</div>
+                <div class="cr80-card cr80-back" id="idCardBack">
+                  <!-- Faded Background Logo Watermark -->
+                  <div class="cr80-watermark">
+                    <img src="{% static 'img/logo.jpg' %}" alt="NABAS Watermark" />
+                  </div>
+
+                  <!-- Magnetic Stripe Simulation -->
+                  <div class="cr80-magnetic-stripe"></div>
+
+                  <!-- Terms & Conditions -->
+                  <p class="cr80-back-terms">
+                    This identity card is the statutory property of the National Association of Badagry Students (NABAS
+                    National Body). It certifies that the bearer is a bonafide student member. If found, kindly return
+                    to any NABAS Campus Chapter Secretariat or the National Secretariat, Badagry Local Government
+                    Headquarters, Lagos State, Nigeria.
+                  </p>
+
+                  <!-- Emergency & Association Contacts -->
+                  <div class="cr80-back-info-strip">
+                    <div>Emergency: <strong id="cardBackEmergency">08031122334</strong></div>
+                    <div>Valid Thru: <strong>DEC 2027</strong></div>
+                    <div>Secretariat: <strong>Badagry LG HQ</strong></div>
+                    <div>Blood Group: <strong id="cardBackBlood">O+</strong></div>
+                  </div>
+
+                  <!-- Footer: QR Code & Barcode -->
+                  <div class="cr80-back-footer">
+                    <div class="qr-code-box" title="Scan to Verify Student Membership">
+                      <!-- Stylized QR Code SVG -->
+                      <svg viewBox="0 0 100 100" fill="#013b29">
+                        <rect x="0" y="0" width="30" height="30" fill="#013b29" />
+                        <rect x="6" y="6" width="18" height="18" fill="#ffffff" />
+                        <rect x="10" y="10" width="10" height="10" fill="#013b29" />
+
+                        <rect x="70" y="0" width="30" height="30" fill="#013b29" />
+                        <rect x="76" y="6" width="18" height="18" fill="#ffffff" />
+                        <rect x="80" y="10" width="10" height="10" fill="#013b29" />
+
+                        <rect x="0" y="70" width="30" height="30" fill="#013b29" />
+                        <rect x="6" y="76" width="18" height="18" fill="#ffffff" />
+                        <rect x="10" y="80" width="10" height="10" fill="#013b29" />
+
+                        <rect x="40" y="10" width="10" height="20" />
+                        <rect x="10" y="40" width="20" height="10" />
+                        <rect x="40" y="40" width="20" height="20" />
+                        <rect x="70" y="40" width="20" height="10" />
+                        <rect x="40" y="70" width="20" height="20" />
+                        <rect x="70" y="70" width="10" height="20" />
+                        <rect x="85" y="85" width="10" height="10" />
+                      </svg>
+                    </div>
+
+                    <div class="barcode-container">
+                      <!-- Standard 1D Barcode Simulation SVG -->
+                      <svg class="barcode-svg" viewBox="0 0 160 30" preserveAspectRatio="none">
+                        <rect x="0" y="0" width="3" height="30" fill="#ffffff" />
+                        <rect x="5" y="0" width="2" height="30" fill="#ffffff" />
+                        <rect x="10" y="0" width="5" height="30" fill="#ffffff" />
+                        <rect x="18" y="0" width="2" height="30" fill="#ffffff" />
+                        <rect x="23" y="0" width="4" height="30" fill="#ffffff" />
+                        <rect x="30" y="0" width="1" height="30" fill="#ffffff" />
+                        <rect x="34" y="0" width="6" height="30" fill="#ffffff" />
+                        <rect x="43" y="0" width="3" height="30" fill="#ffffff" />
+                        <rect x="49" y="0" width="2" height="30" fill="#ffffff" />
+                        <rect x="54" y="0" width="4" height="30" fill="#ffffff" />
+                        <rect x="61" y="0" width="5" height="30" fill="#ffffff" />
+                        <rect x="69" y="0" width="2" height="30" fill="#ffffff" />
+                        <rect x="74" y="0" width="4" height="30" fill="#ffffff" />
+                        <rect x="81" y="0" width="3" height="30" fill="#ffffff" />
+                        <rect x="87" y="0" width="5" height="30" fill="#ffffff" />
+                        <rect x="95" y="0" width="2" height="30" fill="#ffffff" />
+                        <rect x="100" y="0" width="4" height="30" fill="#ffffff" />
+                        <rect x="107" y="0" width="6" height="30" fill="#ffffff" />
+                        <rect x="116" y="0" width="3" height="30" fill="#ffffff" />
+                        <rect x="122" y="0" width="2" height="30" fill="#ffffff" />
+                        <rect x="127" y="0" width="5" height="30" fill="#ffffff" />
+                        <rect x="135" y="0" width="2" height="30" fill="#ffffff" />
+                        <rect x="140" y="0" width="4" height="30" fill="#ffffff" />
+                        <rect x="147" y="0" width="3" height="30" fill="#ffffff" />
+                        <rect x="153" y="0" width="4" height="30" fill="#ffffff" />
+                      </svg>
+                      <span class="barcode-number" id="cardBarcodeNumber">NABAS*2026*0842</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Dedicated Print and Action Bar -->
+            <div class="id-actions-tray">
+              <button type="button" class="btn-action-print" onclick="triggerCardPrint()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6 9 6 2 18 2 18 9" />
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                  <rect x="6" y="14" width="12" height="8" />
+                </svg>
+                <span>Print ID Card</span>
+              </button>
+              <button type="button" class="btn-action-alt" onclick="goToStep(1)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                </svg>
+                <span>Edit Registration Details</span>
+              </button>
+              <a href="{% url 'resources' %}" class="btn-action-alt">
+                <span>Go to Resources Library</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // 1. Photo Handling
+  let uploadedPhotoSrc = '';
+
+  function handlePhotoUpload(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        uploadedPhotoSrc = e.target.result;
+        document.getElementById('previewBox').innerHTML = `<img src="${uploadedPhotoSrc}" alt="Uploaded Passport" />`;
+        // Also set immediately on the card front photo container
+        document.getElementById('cardFrontPhoto').innerHTML = `<img src="${uploadedPhotoSrc}" alt="Student Photo" />`;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  // 3. Step Navigation with Inline Validation
+  function goToStep(targetStep) {
+    if (targetStep === 2) {
+      const fullName = document.getElementById('fullName').value.trim();
+      const dob = document.getElementById('dob').value;
+      const phone = document.getElementById('phone').value.trim();
+      const lcda = document.getElementById('lcdaArea').value;
+      const ward = document.getElementById('wardCompound').value.trim();
+
+      if (!fullName || !dob || !phone || !lcda || !ward) {
+        showNotification('Please fill in all required personal information fields.');
+        return;
+      }
+    }
+
+    if (targetStep === 3) {
+      const inst = document.getElementById('institution').value.trim();
+      const fac = document.getElementById('faculty').value.trim();
+      const dept = document.getElementById('department').value.trim();
+      const lvl = document.getElementById('level').value;
+      const matric = document.getElementById('matricNo').value.trim();
+
+      if (!inst || !fac || !dept || !lvl || !matric) {
+        showNotification('Please complete all academic profile fields.');
+        return;
+      }
+    }
+
+    // Toggle Panels
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    const nextPanel = document.getElementById('step' + targetStep);
+    if (nextPanel) nextPanel.classList.add('active');
+
+    // Update Stepper Numbers
+    for (let i = 1; i <= 4; i++) {
+      const ind = document.getElementById('stepIndicator' + i);
+      if (ind) {
+        ind.classList.remove('active');
+        if (i < targetStep) {
+          ind.classList.add('completed');
+        } else if (i === targetStep) {
+          ind.classList.add('active');
+        } else {
+          ind.classList.remove('completed');
+        }
+      }
+    }
+
+    window.scrollTo({ top: 120, behavior: 'smooth' });
+  }
+
+  // 4. Generate Standard CR80 Card Front and Back
+  function generateStandardCard() {
+    const emergencyName = document.getElementById('emergencyName').value.trim();
+    const emergencyPhone = document.getElementById('emergencyPhone').value.trim();
+    const attest = document.getElementById('attestCheck').checked;
+
+    if (!emergencyName || !emergencyPhone) {
+      showNotification('Please enter your emergency contact details.');
+      return;
+    }
+
+    if (!attest) {
+      showNotification('Please accept the membership declaration to proceed.');
+      return;
+    }
+
+    // Gather Form Input Values
+    const fullName = document.getElementById('fullName').value.trim().toUpperCase();
+    const email = document.getElementById('email')?.value.trim() || '';
+    const phone = document.getElementById('phone').value.trim();
+    const institution = document.getElementById('institution').value.trim();
+    const faculty = document.getElementById('faculty').value.trim();
+    const department = document.getElementById('department').value.trim();
+    const matricNo = document.getElementById('matricNo').value.trim();
+    const level = document.getElementById('level').value.replace(' (Freshman)', '');
+    const gender = document.getElementById('gender').value || 'Male';
+    const blood = document.getElementById('bloodGroup').value || 'O+';
+    const lcda = document.getElementById('lcdaArea').value.replace(' LGA', '').replace(' LCDA', '');
+
+    // Generate Fallback Random Membership Serial
+    const randomSeq = Math.floor(1000 + Math.random() * 9000);
+    let memberId = `NABAS/2026/${randomSeq}`;
+
+    // Populate FRONT
+    document.getElementById('cardName').textContent = fullName;
+    document.getElementById('cardRegNo').textContent = memberId;
+    document.getElementById('cardInst').textContent = institution;
+    document.getElementById('cardDept').textContent = department;
+    document.getElementById('cardLevelSex').textContent = `${level} • ${gender}`;
+    document.getElementById('cardLcda').textContent = lcda;
+
+    if (uploadedPhotoSrc) {
+      document.getElementById('cardFrontPhoto').innerHTML = `<img src="${uploadedPhotoSrc}" alt="Student Photo" />`;
+    }
+
+    // Populate BACK
+    document.getElementById('cardBackEmergency').textContent = emergencyPhone;
+    document.getElementById('cardBackBlood').textContent = blood;
+    document.getElementById('cardBarcodeNumber').textContent = `*${memberId.replace(/\//g, '*')}*`;
+
+    // Submit to Django API asynchronously
+    const formData = new FormData();
+    formData.append('fullName', fullName);
+    if (email) formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('institution', institution);
+    formData.append('faculty', faculty);
+    formData.append('department', department);
+    formData.append('matricNo', matricNo);
+    formData.append('level', level);
+    formData.append('gender', gender);
+    formData.append('bloodGroup', blood);
+    formData.append('lcdaArea', lcda);
+
+    const csrfEl = document.querySelector('[name=csrfmiddlewaretoken]');
+    if (csrfEl) formData.append('csrfmiddlewaretoken', csrfEl.value);
+
+    const fileInput = document.getElementById('passportUpload');
+    if (fileInput && fileInput.files && fileInput.files[0]) {
+      formData.append('passport_photo', fileInput.files[0]);
+    }
+
+    fetch('/api/register/', {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.id_number) {
+          memberId = data.id_number;
+          document.getElementById('cardRegNo').textContent = memberId;
+          document.getElementById('cardBarcodeNumber').textContent = `*${memberId.replace(/\//g, '*')}*`;
+          showNotification('Registration confirmed in national registry: ' + memberId);
+        }
+      })
+      .catch(err => {
+        console.log('Registration saved locally');
+      });
+
+    // Advance to Step 4
+    goToStep(4);
+  }
+
+  // 5. Trigger Isolated Print for ID Card
+  function triggerCardPrint() {
+    window.print();
+  }
+
+  // Inline Toast Helper
+  function showNotification(msg) {
+    let toast = document.getElementById('customToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'customToast';
+      toast.style.cssText = `
+          position: fixed;
+          bottom: 24px;
+          right: 24px;
+          background: #014d36;
+          color: white;
+          border-left: 4px solid #f5a623;
+          padding: 12px 18px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          border-radius: 6px;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+          z-index: 9999;
+          transition: all 0.3s ease;
+        `;
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.style.display = 'block';
+    toast.style.opacity = '1';
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => toast.style.display = 'none', 300);
+    }, 3500);
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,696 @@
+{% extends 'base.html' %}
+
+{% block title %}Resources & Downloads - National Association of Badagry Students (NABAS){% endblock %}
+
+{% block extra_css %}
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'nabas-navy': '#027c57',
+          'nabas-navy-light': '#03986a',
+          'nabas-gold': '#f5b301',
+          'nabas-gold-hover': '#e0a200',
+          'nabas-border': '#e2e8f0',
+        }
+      }
+    }
+  }
+</script>
+<style>
+body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #334155;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    .glow-gold {
+      box-shadow: 0 0 25px -5px rgba(245, 179, 1, 0.35);
+    }
+    .resource-banner-hero {
+      background: linear-gradient(135deg, #014d36 0%, #027c57 100%) !important;
+      color: #ffffff !important;
+    }
+    .cant-find-doc-box {
+      background: linear-gradient(135deg, #014d36 0%, #027c57 100%) !important;
+      color: #ffffff !important;
+    }
+    .download-btn {
+      background: #f5b301 !important;
+      color: #014d36 !important;
+      font-weight: 700 !important;
+      border: 1px solid #e0a200 !important;
+      transition: all 0.2s ease !important;
+    }
+    .download-btn:hover {
+      background: #e0a200 !important;
+      color: #014d36 !important;
+    }
+    .download-btn svg {
+      color: #014d36 !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="resource-banner-hero relative text-white overflow-hidden py-7 sm:py-8 lg:py-9" style="background: linear-gradient(135deg, #014d36 0%, #027c57 100%) !important; border-bottom: 3px solid #f5b301;">
+    <!-- Background Watermarks and Accents -->
+    <div class="absolute -right-10 -bottom-10 select-none pointer-events-none opacity-5 font-script text-[140px] sm:text-[180px] text-white whitespace-nowrap leading-none">
+      Resources
+    </div>
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#f5a623_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="max-width: 1240px !important; margin: 0 auto !important;">
+      
+      <!-- Breadcrumbs -->
+      <nav class="flex items-center space-x-2 text-xs sm:text-sm font-medium text-slate-300 mb-4" aria-label="Breadcrumb">
+        <a href="{% url 'home' %}" class="hover:text-nabas-gold transition-colors flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+          Home
+        </a>
+        <span class="text-slate-500">/</span>
+        <span class="text-nabas-gold font-semibold" style="color: #f5b301 !important;">Resources & Downloads</span>
+      </nav>
+
+      <!-- Main Headline & Intro -->
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-amber-400/20 text-amber-300 border border-amber-400/30 mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-nabas-gold"></span>
+          Official Document Repository
+        </div>
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight mb-3">
+          Empowering Students with Essential Academic & Official Resources
+        </h1>
+        <p class="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
+          Access verified legislative constitutions, bursary guides, official templates, revision packs, and toolkits curated by the NABAS Secretariat.
+        </p>
+      </div>
+
+      <!-- Quick Metrics Counter Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6 pt-5 border-t border-slate-700/60 max-w-3xl">
+        <div class="p-2.5 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
+          <div class="text-xl sm:text-2xl font-extrabold text-nabas-gold" style="color: #f5b301;">45+</div>
+          <div class="text-[11px] text-slate-300 mt-0.5 font-medium">Verified Documents</div>
+        </div>
+        <div class="p-2.5 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
+          <div class="text-xl sm:text-2xl font-extrabold text-nabas-gold" style="color: #f5b301;">18.4K</div>
+          <div class="text-[11px] text-slate-300 mt-0.5 font-medium">Total Downloads</div>
+        </div>
+        <div class="p-2.5 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
+          <div class="text-xl sm:text-2xl font-extrabold text-nabas-gold" style="color: #f5b301;">100%</div>
+          <div class="text-[11px] text-slate-300 mt-0.5 font-medium">Free Access</div>
+        </div>
+        <div class="p-2.5 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
+          <div class="text-xl sm:text-2xl font-extrabold text-nabas-gold" style="color: #f5b301;">2026</div>
+          <div class="text-[11px] text-slate-300 mt-0.5 font-medium">Current Edition</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8" style="max-width: 1240px !important; margin: 0 auto !important;">
+    
+    <!-- Filter Control Card -->
+    <div class="bg-white rounded-2xl shadow-sm border border-nabas-border p-4 sm:p-5 mb-8 -mt-8 sm:-mt-10 relative z-10">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+        
+        <!-- Live Search Input -->
+        <div class="relative flex-1 max-w-xl">
+          <label for="resource-search" class="sr-only">Search Resources</label>
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </div>
+          <input 
+            type="text" 
+            id="resource-search" 
+            placeholder="Search by title, keyword, department, or year..." 
+            class="w-full pl-11 pr-10 py-3 rounded-xl border border-slate-300 bg-slate-50 focus:bg-white text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-nabas-gold focus:border-transparent transition-all"
+          >
+          <button id="clear-search-btn" class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+
+        <!-- Sorting / Format Filter Tools -->
+        <div class="flex items-center gap-3">
+          <label for="sort-select" class="text-xs font-semibold uppercase text-slate-500 whitespace-nowrap">Sort By:</label>
+          <select id="sort-select" class="px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-nabas-gold transition-all">
+            <option value="featured">Featured / Recommended</option>
+            <option value="newest">Latest Release</option>
+            <option value="popular">Most Downloaded</option>
+            <option value="alpha">Alphabetical (A - Z)</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="mt-6 pt-5 border-t border-slate-100 flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar" id="category-chips">
+        <button data-cat="all" class="cat-pill active-cat px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all duration-150 bg-nabas-navy text-white shadow-sm">
+          All Resources (<span id="count-all">{{ resources.count }}</span>)
+        </button>
+        <button data-cat="constitution" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all duration-150 bg-slate-100 text-slate-600 hover:bg-slate-200">
+          Constitution & Governance
+        </button>
+        <button data-cat="bursary" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all duration-150 bg-slate-100 text-slate-600 hover:bg-slate-200">
+          Bursary & Scholarships
+        </button>
+        <button data-cat="academic" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all duration-150 bg-slate-100 text-slate-600 hover:bg-slate-200">
+          Academic Guides
+        </button>
+        <button data-cat="past_questions" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all duration-150 bg-slate-100 text-slate-600 hover:bg-slate-200">
+          Past Questions
+        </button>
+        <button data-cat="forms" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all duration-150 bg-slate-100 text-slate-600 hover:bg-slate-200">
+          Forms & Templates
+        </button>
+        <button data-cat="media" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all duration-150 bg-slate-100 text-slate-600 hover:bg-slate-200">
+          Media & Press Kit
+        </button>
+      </div>
+    </div>
+
+    <!-- Active Filter Status and Result Summary -->
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-6 px-1">
+      <div class="text-sm font-semibold text-slate-600">
+        Showing <span id="visible-count" class="text-nabas-navy font-bold">{{ resources.count }}</span> results
+        <span id="active-query-text" class="text-nabas-gold ml-1"></span>
+      </div>
+      <button id="reset-filters" class="hidden text-xs font-semibold text-rose-600 hover:text-rose-700 underline focus:outline-none">
+        Clear All Filters
+      </button>
+    </div>
+
+    <div id="resource-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+      {% for res in resources %}
+      <article class="resource-card group bg-white rounded-2xl border border-nabas-border p-6 shadow-sm hover:shadow-lg hover:border-amber-300 transition-all duration-200 flex flex-col justify-between"
+               data-title="{{ res.title }}"
+               data-category="{{ res.category }}"
+               data-format="PDF"
+               data-size="{{ res.file_size|default:'N/A' }}"
+               data-downloads="{{ res.downloads_count }}"
+               data-date="{{ res.uploaded_at|date:'Y-m-d' }}"
+               data-author="NABAS National Secretariat"
+               data-desc="{{ res.description|striptags|default:res.title|escape }}">
+        
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-rose-100 text-rose-700 border border-rose-200">
+              <svg class="w-3.5 h-3.5 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path></svg>
+              .PDF
+            </span>
+            <div class="flex items-center text-xs font-medium text-slate-400 gap-1.5">
+              <span>{{ res.file_size|default:'N/A' }}</span>
+              <span>•</span>
+              <span class="text-slate-500 font-semibold">{{ res.downloads_count }} downloads</span>
+            </div>
+          </div>
+
+          <div class="text-[11px] font-bold uppercase tracking-wider text-amber-600 mb-2">{{ res.get_category_display }}</div>
+
+          <h3 class="text-lg font-bold text-nabas-navy group-hover:text-amber-600 transition-colors line-clamp-2 mb-2 leading-snug">
+            {{ res.title }}
+          </h3>
+
+          <p class="text-xs text-slate-500 line-clamp-3 mb-6 leading-relaxed">
+            {{ res.description|striptags|default:"Official document verified by the NABAS National Secretariat for indigenous Badagry students across all institutions." }}
+          </p>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+          <button type="button" class="preview-btn flex-1 inline-flex items-center justify-center px-3.5 py-2.5 rounded-xl border border-slate-200 hover:border-nabas-navy text-xs font-bold text-slate-700 hover:text-nabas-navy bg-slate-50 hover:bg-slate-100 transition-colors">
+            <svg class="w-4 h-4 mr-1.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            Quick Preview
+          </button>
+          <a href="{% url 'download_resource' pk=res.pk %}" class="download-btn inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-bold transition-colors shadow-xs">
+            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            Download
+          </a>
+        </div>
+      </article>
+      {% empty %}
+      <div class="col-span-3 text-center py-12 text-slate-500">No resources found.</div>
+      {% endfor %}
+    </div>
+
+    <!-- Empty State Result (Hidden by default) -->
+    <div id="no-results-state" class="hidden text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300 mt-6 p-8">
+      <div class="w-16 h-16 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-4">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </div>
+      <h3 class="text-lg font-bold text-nabas-navy mb-1">No matching documents found</h3>
+      <p class="text-sm text-slate-500 max-w-md mx-auto mb-6">We couldn't find any resources matching your search terms or active category. Try adjusting your query or submit a custom document request below.</p>
+      <button id="reset-empty-btn" class="px-5 py-2.5 rounded-xl bg-nabas-navy text-white text-xs font-bold hover:bg-nabas-navy-light transition-colors">
+        Clear Search & Show All
+      </button>
+    </div>
+
+    <section class="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-slate-200">
+      <div class="cant-find-doc-box max-w-4xl mx-auto rounded-2xl p-5 sm:p-7 text-white relative overflow-hidden shadow-lg" style="background: linear-gradient(135deg, #014d36 0%, #027c57 100%) !important;">
+        <!-- Background accent pattern -->
+        <div class="absolute -right-16 -top-16 w-52 h-52 bg-nabas-gold/10 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+          
+          <div class="lg:col-span-5 space-y-3">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-nabas-gold/20 text-nabas-gold border border-nabas-gold/30">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              Student Document Assistance
+            </span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug">
+              Can't Find The Specific Document You Need?
+            </h2>
+            <p class="text-xs text-slate-200 leading-relaxed font-normal">
+              Need past examination series, archival legislative resolutions, certified letter of recommendation formats, or custom bursary letters? Submit a formal request to the Secretariat.
+            </p>
+
+            <div class="pt-2 space-y-2 text-xs text-slate-300">
+              <div class="flex items-center gap-2">
+                <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span>Average Secretariat response within 24 to 48 hours</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span>Official verification for indigenous Badagry students</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7">
+            <form id="document-request-form" class="bg-white/10 backdrop-blur-md p-4 sm:p-5 rounded-xl border border-white/15 space-y-3">
+  {% csrf_token %}
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label for="req-name" class="block text-xs font-semibold text-slate-200 mb-1">Full Name *</label>
+                  <input type="text" id="req-name" required placeholder="e.g. Babatunde Segun" class="w-full px-3 py-2 rounded-lg bg-white/90 focus:bg-white text-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-nabas-gold transition">
+                </div>
+                <div>
+                  <label for="req-email" class="block text-xs font-semibold text-slate-200 mb-1">Email Address *</label>
+                  <input type="email" id="req-email" required placeholder="you@student.edu.ng" class="w-full px-3 py-2 rounded-lg bg-white/90 focus:bg-white text-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-nabas-gold transition">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label for="req-institution" class="block text-xs font-semibold text-slate-200 mb-1">Institution / Campus *</label>
+                  <input type="text" id="req-institution" required placeholder="e.g. LASU, UNILAG, LASUSTECH" class="w-full px-3 py-2 rounded-lg bg-white/90 focus:bg-white text-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-nabas-gold transition">
+                </div>
+                <div>
+                  <label for="req-doc-type" class="block text-xs font-semibold text-slate-200 mb-1">Document Category *</label>
+                  <select id="req-doc-type" required class="w-full px-3 py-2 rounded-lg bg-white/90 focus:bg-white text-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-nabas-gold transition">
+                    <option value="">Select a category...</option>
+                    <option value="Past Exam Papers">Past Exam Questions / Syllabi</option>
+                    <option value="Archival Resolution">Legislative Gazette / Resolution</option>
+                    <option value="Bursary Verification">Custom Bursary Verification Letter</option>
+                    <option value="Chapter By-Laws">Sub-Chapter By-Laws Model</option>
+                    <option value="Other">Other Specific Material</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="req-details" class="block text-xs font-semibold text-slate-200 mb-1">Document Details / Title Needed *</label>
+                <textarea id="req-details" rows="2" required placeholder="Specify academic level, department, year, or purpose of the requested document..." class="w-full px-3 py-2 rounded-lg bg-white/90 focus:bg-white text-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-nabas-gold transition"></textarea>
+              </div>
+
+              <div id="request-feedback" class="hidden p-2.5 rounded-lg text-xs font-semibold"></div>
+
+              <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 rounded-lg bg-nabas-gold hover:bg-nabas-gold-hover text-nabas-navy font-bold text-xs transition-all duration-150 shadow-sm">
+                <span>Submit Document Request</span>
+                <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="preview-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="relative bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-100 transform transition-all">
+      
+      <!-- Modal Close Button -->
+      <button id="close-modal-btn" type="button" aria-label="Close preview modal" class="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <!-- Modal Content Header -->
+      <div class="flex items-center gap-3 mb-4">
+        <span id="modal-badge" class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-rose-100 text-rose-700">
+          .PDF
+        </span>
+        <span id="modal-cat-tag" class="text-xs font-bold uppercase tracking-wider text-amber-600">
+          Constitution & Governance
+        </span>
+      </div>
+
+      <h3 id="modal-title" class="text-xl sm:text-2xl font-extrabold text-nabas-navy mb-3 leading-snug">
+        Document Title Placeholder
+      </h3>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 py-3 px-4 rounded-xl bg-slate-50 border border-slate-200/80 mb-5 text-xs">
+        <div>
+          <span class="text-slate-400 block font-medium">Custodian:</span>
+          <span id="modal-author" class="font-bold text-slate-800">NABAS Secretariat</span>
+        </div>
+        <div>
+          <span class="text-slate-400 block font-medium">File Size:</span>
+          <span id="modal-size" class="font-bold text-slate-800">3.2 MB</span>
+        </div>
+        <div>
+          <span class="text-slate-400 block font-medium">Total Downloads:</span>
+          <span id="modal-downloads" class="font-bold text-slate-800">5,420</span>
+        </div>
+      </div>
+
+      <!-- Description Area -->
+      <div class="mb-6">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Description & Scope</h4>
+        <p id="modal-desc" class="text-sm text-slate-600 leading-relaxed">
+          Comprehensive document synopsis will appear dynamically here.
+        </p>
+      </div>
+
+      <!-- Preview Mock Document Box -->
+      <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 mb-6 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xs">
+            DOC
+          </div>
+          <div>
+            <div class="text-xs font-bold text-slate-800">Verified Cryptographic Seal</div>
+            <div class="text-[11px] text-slate-500">Official Release for 2026 Academic Session</div>
+          </div>
+        </div>
+        <span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Authentic
+        </span>
+      </div>
+
+      <!-- Modal Actions -->
+      <div class="flex flex-col sm:flex-row items-center justify-end gap-3 pt-4 border-t border-slate-100">
+        <button id="modal-cancel-btn" type="button" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors">
+          Close Preview
+        </button>
+        <a id="modal-download-link" href="#" download="" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-2.5 rounded-xl download-btn text-xs font-bold transition-all shadow-md" style="background:#f5b301; color:#014d36; font-weight:700;">
+          <svg class="w-4 h-4 mr-2 text-nabas-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          Download Document
+        </a>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+      // Mobile Drawer Toggle
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const closeIcon = document.getElementById('close-icon');
+
+      if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', () => {
+          const isClosed = mobileMenu.classList.contains('hidden');
+          if (isClosed) {
+            mobileMenu.classList.remove('hidden');
+            hamburgerIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+          } else {
+            mobileMenu.classList.add('hidden');
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+          }
+        });
+      }
+
+      // Filter and Search Engine
+      const searchInput = document.getElementById('resource-search');
+      const clearSearchBtn = document.getElementById('clear-search-btn');
+      const categoryChips = document.querySelectorAll('.cat-pill');
+      const sortSelect = document.getElementById('sort-select');
+      const resourceCards = Array.from(document.querySelectorAll('.resource-card'));
+      const gridContainer = document.getElementById('resource-grid');
+      const visibleCountEl = document.getElementById('visible-count');
+      const activeQueryText = document.getElementById('active-query-text');
+      const resetFiltersBtn = document.getElementById('reset-filters');
+      const noResultsState = document.getElementById('no-results-state');
+      const resetEmptyBtn = document.getElementById('reset-empty-btn');
+
+      let currentCategory = 'all';
+      let currentQuery = '';
+
+      function filterResources() {
+        let visibleCount = 0;
+        const normalizedQuery = currentQuery.trim().toLowerCase();
+
+        resourceCards.forEach(card => {
+          const cardCat = card.getAttribute('data-category');
+          const cardTitle = card.getAttribute('data-title').toLowerCase();
+          const cardDesc = card.getAttribute('data-desc').toLowerCase();
+          const cardAuthor = card.getAttribute('data-author').toLowerCase();
+
+          const matchesCategory = (currentCategory === 'all' || cardCat === currentCategory);
+          const matchesQuery = (
+            normalizedQuery === '' ||
+            cardTitle.includes(normalizedQuery) ||
+            cardDesc.includes(normalizedQuery) ||
+            cardAuthor.includes(normalizedQuery)
+          );
+
+          if (matchesCategory && matchesQuery) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        // Update counts and visibility states
+        visibleCountEl.textContent = visibleCount;
+        
+        if (normalizedQuery !== '') {
+          activeQueryText.textContent = `for "${normalizedQuery}"`;
+          clearSearchBtn.classList.remove('hidden');
+          resetFiltersBtn.classList.remove('hidden');
+        } else {
+          activeQueryText.textContent = '';
+          clearSearchBtn.classList.add('hidden');
+          if (currentCategory === 'all') {
+            resetFiltersBtn.classList.add('hidden');
+          } else {
+            resetFiltersBtn.classList.remove('hidden');
+          }
+        }
+
+        if (visibleCount === 0) {
+          noResultsState.classList.remove('hidden');
+          gridContainer.classList.add('hidden');
+        } else {
+          noResultsState.classList.add('hidden');
+          gridContainer.classList.remove('hidden');
+        }
+      }
+
+      // Search input handler
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentQuery = e.target.value;
+          filterResources();
+        });
+      }
+
+      // Clear search button
+      if (clearSearchBtn) {
+        clearSearchBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          currentQuery = '';
+          filterResources();
+          searchInput.focus();
+        });
+      }
+
+      // Category filter buttons
+      categoryChips.forEach(button => {
+        button.addEventListener('click', () => {
+          categoryChips.forEach(b => {
+            b.classList.remove('bg-nabas-navy', 'text-white', 'shadow-sm');
+            b.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+          });
+
+          button.classList.add('bg-nabas-navy', 'text-white', 'shadow-sm');
+          button.classList.remove('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+
+          currentCategory = button.getAttribute('data-cat');
+          filterResources();
+        });
+      });
+
+      // Sorting handler
+      if (sortSelect) {
+        sortSelect.addEventListener('change', () => {
+          const sortBy = sortSelect.value;
+          const sorted = [...resourceCards].sort((a, b) => {
+            if (sortBy === 'popular') {
+              const aDown = parseInt(a.getAttribute('data-downloads') || '0', 10);
+              const bDown = parseInt(b.getAttribute('data-downloads') || '0', 10);
+              return bDown - aDown;
+            } else if (sortBy === 'newest') {
+              const aDate = new Date(a.getAttribute('data-date') || '2024-01-01');
+              const bDate = new Date(b.getAttribute('data-date') || '2024-01-01');
+              return bDate - aDate;
+            } else if (sortBy === 'alpha') {
+              const aTitle = a.getAttribute('data-title') || '';
+              const bTitle = b.getAttribute('data-title') || '';
+              return aTitle.localeCompare(bTitle);
+            }
+            return 0; // default featured
+          });
+
+          sorted.forEach(card => gridContainer.appendChild(card));
+        });
+      }
+
+      // Reset filters function
+      function resetAllFilters() {
+        if (searchInput) searchInput.value = '';
+        currentQuery = '';
+        currentCategory = 'all';
+
+        categoryChips.forEach(b => {
+          if (b.getAttribute('data-cat') === 'all') {
+            b.classList.add('bg-nabas-navy', 'text-white', 'shadow-sm');
+            b.classList.remove('bg-slate-100', 'text-slate-600');
+          } else {
+            b.classList.remove('bg-nabas-navy', 'text-white', 'shadow-sm');
+            b.classList.add('bg-slate-100', 'text-slate-600');
+          }
+        });
+
+        filterResources();
+      }
+
+      if (resetFiltersBtn) resetFiltersBtn.addEventListener('click', resetAllFilters);
+      if (resetEmptyBtn) resetEmptyBtn.addEventListener('click', resetAllFilters);
+
+      // Document Preview Modal Logic
+      const previewModal = document.getElementById('preview-modal');
+      const closeModalBtn = document.getElementById('close-modal-btn');
+      const modalCancelBtn = document.getElementById('modal-cancel-btn');
+      const modalBadge = document.getElementById('modal-badge');
+      const modalCatTag = document.getElementById('modal-cat-tag');
+      const modalTitle = document.getElementById('modal-title');
+      const modalAuthor = document.getElementById('modal-author');
+      const modalSize = document.getElementById('modal-size');
+      const modalDownloads = document.getElementById('modal-downloads');
+      const modalDesc = document.getElementById('modal-desc');
+      const modalDownloadLink = document.getElementById('modal-download-link');
+
+      function openModalWithCardData(card) {
+        const title = card.getAttribute('data-title');
+        const cat = card.getAttribute('data-category');
+        const format = card.getAttribute('data-format');
+        const size = card.getAttribute('data-size');
+        const downloads = card.getAttribute('data-downloads');
+        const author = card.getAttribute('data-author');
+        const desc = card.getAttribute('data-desc');
+        const downloadHref = card.querySelector('.download-btn')?.getAttribute('href') || '#';
+        const downloadAttr = card.querySelector('.download-btn')?.getAttribute('download') || 'document';
+
+        modalTitle.textContent = title;
+        modalAuthor.textContent = author;
+        modalSize.textContent = size;
+        modalDownloads.textContent = Number(downloads).toLocaleString();
+        modalDesc.textContent = desc;
+        modalCatTag.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+        modalBadge.textContent = '.' + format;
+        modalDownloadLink.setAttribute('href', downloadHref);
+        modalDownloadLink.setAttribute('download', downloadAttr);
+
+        // Badge styling based on format
+        if (format === 'PDF') {
+          modalBadge.className = 'inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-rose-100 text-rose-700';
+        } else if (format === 'DOCX') {
+          modalBadge.className = 'inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-blue-100 text-blue-700';
+        } else {
+          modalBadge.className = 'inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800';
+        }
+
+        previewModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        previewModal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.preview-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const card = e.target.closest('.resource-card');
+          if (card) openModalWithCardData(card);
+        });
+      });
+
+      if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+      if (modalCancelBtn) modalCancelBtn.addEventListener('click', closeModal);
+      
+      if (previewModal) {
+        previewModal.addEventListener('click', (e) => {
+          if (e.target === previewModal) {
+            closeModal();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !previewModal.classList.contains('hidden')) {
+          closeModal();
+        }
+      });
+
+      // Request a Document Form Handler
+      const requestForm = document.getElementById('document-request-form');
+      const feedbackDiv = document.getElementById('request-feedback');
+
+      if (requestForm) {
+        requestForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('req-name').value.trim();
+          const docType = document.getElementById('req-doc-type').value;
+
+          feedbackDiv.classList.remove('hidden', 'bg-rose-500/20', 'text-rose-200', 'border-rose-400');
+          feedbackDiv.classList.add('bg-emerald-500/20', 'text-emerald-200', 'border', 'border-emerald-400/40');
+          feedbackDiv.textContent = `Thank you, ${name}! Your request for "${docType}" has been forwarded to the NABAS Directorate of Academics. A member of the Secretariat will follow up via your email.`;
+
+          requestForm.reset();
+
+          setTimeout(() => {
+            feedbackDiv.classList.add('hidden');
+          }, 7000);
+        });
+      }
+    });
+</script>
+{% endblock %}

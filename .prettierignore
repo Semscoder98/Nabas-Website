@@ -1,0 +1,4 @@
+# Ignore Django templates from automated line wrapping/breaking
+templates/
+**/templates/**
+*.html

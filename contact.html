@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | National Association of Badagry Students (NABAS)</title>
+  <meta name="description" content="Reach out to the NABAS National Secretariat, submit student inquiries, and connect with council executive desks." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #0b1a30;
+      --primary-light: #152b4d;
+      --accent: #f5a623;
+      --accent-hover: #e29415;
+      --accent-soft: #fef6e7;
+      --surface: #ffffff;
+      --bg-slate: #f8fafc;
+      --border: #e2e8f0;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-accent: 'Caveat', cursive;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.08);
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-slate);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { font-family: inherit; border: none; background: none; cursor: pointer; }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    /* =========================================
+       GLOBAL NAVBAR
+    ========================================= */
+    .header-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .crest-mark {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-sub {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .desktop-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-item {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      position: relative;
+      transition: var(--transition);
+      padding: 6px 0;
+    }
+
+    .nav-item:hover, .nav-item.active {
+      color: var(--primary);
+    }
+
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2.5px;
+      background-color: var(--accent);
+      border-radius: var(--radius-pill);
+    }
+
+    .btn-join {
+      background: var(--accent);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      box-shadow: 0 4px 10px rgba(245, 166, 35, 0.25);
+    }
+
+    .btn-join:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .mobile-nav-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--primary);
+      z-index: 200;
+      padding: 24px;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.3);
+    }
+
+    .mobile-drawer.open { right: 0; }
+
+    .mobile-drawer a {
+      color: #cbd5e1;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mobile-drawer a.active { color: var(--accent); }
+
+    .drawer-close {
+      align-self: flex-end;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* =========================================
+       COMPACT PROPORTIONAL HERO BANNER
+    ========================================= */
+    .page-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #0d213f 100%);
+      color: white;
+      padding: 36px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::after {
+      content: 'Contact';
+      position: absolute;
+      right: -10px;
+      bottom: -15px;
+      font-family: var(--font-accent);
+      font-size: 5.5rem;
+      color: rgba(255, 255, 255, 0.04);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .breadcrumb-trail {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    .breadcrumb-trail a:hover { color: var(--accent); }
+
+    .hero-heading {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .hero-highlight { color: var(--accent); }
+
+    .hero-lead {
+      color: #cbd5e1;
+      max-width: 580px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       QUICK CONTACT HIGHLIGHT STRIP
+    ========================================= */
+    .contact-strip {
+      margin-top: -24px;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 36px;
+    }
+
+    .strip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .strip-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: var(--transition);
+    }
+
+    .strip-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: #cbd5e1;
+    }
+
+    .strip-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-soft);
+      color: var(--accent-hover);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .strip-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--accent-hover);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 2px;
+    }
+
+    .strip-value {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.35;
+    }
+
+    .strip-sub {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* =========================================
+       MAIN SPLIT SECTION: FORM & DESK DIRECTORY
+    ========================================= */
+    .contact-main-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+
+    /* FORM CARD */
+    .contact-form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-header {
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--accent-hover);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .form-h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .form-lead {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .form-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-slate);
+      outline: none;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      border-color: var(--accent);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.15);
+    }
+
+    textarea.form-control {
+      height: 110px;
+      resize: vertical;
+    }
+
+    .btn-submit-contact {
+      background: var(--primary);
+      color: white;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .btn-submit-contact:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    /* DIRECTORY / DESK CARD */
+    .desks-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .desks-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .desks-header p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .desk-item {
+      padding: 14px;
+      background: var(--bg-slate);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .desk-item:hover {
+      border-color: #cbd5e1;
+      background: white;
+    }
+
+    .desk-role {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .desk-holder {
+      font-size: 0.78rem;
+      color: var(--accent-hover);
+      font-weight: 600;
+      margin-top: 2px;
+      margin-bottom: 6px;
+    }
+
+    .desk-contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .desk-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .desk-link:hover {
+      color: var(--accent-hover);
+    }
+
+    /* =========================================
+       MAP & DIRECTIONS SECTION
+    ========================================= */
+    .map-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 50px;
+    }
+
+    .map-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .map-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .map-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .map-frame-box {
+      width: 100%;
+      height: 320px;
+      background: #e2e8f0;
+      border: none;
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    .site-footer {
+      background: var(--primary);
+      color: #94a3b8;
+      padding-top: 48px;
+      font-size: 0.85rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 32px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-brand h3 {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .footer-col-title {
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links-list a:hover { color: var(--accent); }
+
+    .social-icons-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .social-icon-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .social-icon-btn:hover {
+      background: var(--accent);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      padding: 18px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+    }
+
+    /* RESPONSIVENESS */
+    @media (max-width: 992px) {
+      .desktop-nav-menu, .nav-cta-group { display: none; }
+      .mobile-nav-toggle { display: flex; }
+      .strip-grid { grid-template-columns: 1fr; }
+      .contact-main-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+    }
+
+    @media (max-width: 640px) {
+      .page-hero { padding: 26px 0 30px; }
+      .hero-heading { font-size: 1.45rem; }
+      .form-grid-2 { grid-template-columns: 1fr; gap: 0; }
+      .contact-form-card { padding: 18px; }
+      .desks-card { padding: 18px; }
+      .map-frame-box { height: 260px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="header-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="brand-logo" aria-label="NABAS Home">
+          <div class="crest-mark">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="brand-title">
+            <span>NABAS</span>
+            <span class="brand-sub">Badagry Students Union</span>
+          </div>
+        </a>
+
+        <nav class="desktop-nav-menu">
+          <a href="index.html" class="nav-item">Home</a>
+          <a href="about.html" class="nav-item">About</a>
+          <a href="leadership.html" class="nav-item">Leadership</a>
+          <a href="chapters.html" class="nav-item">Institutions</a>
+          <a href="programmes.html" class="nav-item">Programmes</a>
+          <a href="news.html" class="nav-item">News</a>
+          <a href="gallery.html" class="nav-item">Gallery</a>
+          <a href="resources.html" class="nav-item">Resources</a>
+          <a href="contact.html" class="nav-item active">Contact</a>
+        </nav>
+
+        <div class="nav-cta-group">
+          <a href="join.html" class="btn-join">Join NABAS</a>
+        </div>
+
+        <button class="mobile-nav-toggle" id="mobileNavBtn" aria-label="Open menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-close" id="drawerClose">&times;</div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="leadership.html">Leadership</a>
+    <a href="chapters.html">Institutions</a>
+    <a href="programmes.html">Programmes</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="join.html" style="color:var(--accent);">Join NABAS</a>
+  </div>
+
+  <!-- COMPACT HERO BANNER -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb-trail">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Contact Us</span>
+      </div>
+      <h1 class="hero-heading">Connect With <span class="hero-highlight">NABAS Secretariat</span></h1>
+      <p class="hero-lead">Have questions, institutional inquiries, or student welfare concerns? Reach out to the national leadership directly.</p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTAINER -->
+  <main class="container">
+
+    <!-- QUICK CONTACT STRIP -->
+    <section class="contact-strip">
+      <div class="strip-grid">
+
+        <!-- Address -->
+        <div class="strip-card">
+          <div class="strip-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="strip-label">National Secretariat</div>
+            <div class="strip-value">Badagry Local Government Secretariat</div>
+            <div class="strip-sub">Ajara, Badagry, Lagos State, Nigeria</div>
+          </div>
+        </div>
+
+        <!-- Phone / WhatsApp -->
+        <div class="strip-card">
+          <div class="strip-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="strip-label">Official Helpline</div>
+            <div class="strip-value">+234 901 234 5678</div>
+            <div class="strip-sub">Mon – Fri: 9:00 AM – 5:00 PM WAT</div>
+          </div>
+        </div>
+
+        <!-- Official Email -->
+        <div class="strip-card">
+          <div class="strip-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="strip-label">Direct Mailbox</div>
+            <div class="strip-value">info@nabas.org.ng</div>
+            <div class="strip-sub">secretariat@nabas.org.ng</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FORM & DIRECTORY GRID -->
+    <div class="contact-main-grid">
+
+      <!-- INQUIRY FORM -->
+      <section class="contact-form-card">
+        <div class="form-header">
+          <span class="form-tag">Direct Communication</span>
+          <h2 class="form-h2">Send Us a Message</h2>
+          <p class="form-lead">Fill in the form below and the appropriate executive desk will attend to your submission within 24 hours.</p>
+        </div>
+
+        <form onsubmit="handleContactSubmit(event)">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-control" placeholder="e.g. Babatunde Posu" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" class="form-control" placeholder="name@example.com" required />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Phone / WhatsApp Number</label>
+              <input type="tel" class="form-control" placeholder="e.g. 08012345678" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Department / Inquiry Category *</label>
+              <select class="form-control" required>
+                <option value="" disabled selected>Select appropriate desk...</option>
+                <option value="general">General Secretariat Inquiry</option>
+                <option value="bursary">Bursary & Scholarship Verification</option>
+                <option value="welfare">Student Welfare & Hardship Relief</option>
+                <option value="academics">Academic Guidance & Mock Exams</option>
+                <option value="senate">Legislative Senate & Petitions</option>
+                <option value="media">Public Relations & Media Press</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Message Subject *</label>
+            <input type="text" class="form-control" placeholder="Brief subject of your inquiry" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Message Details *</label>
+            <textarea class="form-control" placeholder="Write your message, feedback, or grievance in detail..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit-contact">
+            <span>Send Message to Secretariat</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+      </section>
+
+      <!-- EXECUTIVE DESKS DIRECTORY -->
+      <aside class="desks-card">
+        <div class="desks-header">
+          <h3>Executive Communication Desks</h3>
+          <p>For urgent official correspondence, reach key officers directly:</p>
+        </div>
+
+        <!-- Desk 1: President -->
+        <div class="desk-item">
+          <div class="desk-role">
+            <span>Office of the President</span>
+            <span style="font-size:0.7rem; background:#fef3c7; color:#b45309; padding:2px 8px; border-radius:10px;">Executive</span>
+          </div>
+          <div class="desk-holder">Comr. Boyon John Metonno</div>
+          <div class="desk-contact-links">
+            <a href="mailto:president@nabas.org.ng" class="desk-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>president@nabas.org.ng</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Desk 2: General Secretary -->
+        <div class="desk-item">
+          <div class="desk-role">
+            <span>Secretariat & Records</span>
+            <span style="font-size:0.7rem; background:#e0e7ff; color:#4338ca; padding:2px 8px; border-radius:10px;">Admin</span>
+          </div>
+          <div class="desk-holder">Office of the General Secretary</div>
+          <div class="desk-contact-links">
+            <a href="mailto:gensec@nabas.org.ng" class="desk-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>gensec@nabas.org.ng</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Desk 3: PRO / Media -->
+        <div class="desk-item">
+          <div class="desk-role">
+            <span>Public Relations & Media</span>
+            <span style="font-size:0.7rem; background:#fee2e2; color:#dc2626; padding:2px 8px; border-radius:10px;">Press</span>
+          </div>
+          <div class="desk-holder">Directorate of Information & Strategy</div>
+          <div class="desk-contact-links">
+            <a href="mailto:pro@nabas.org.ng" class="desk-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>pro@nabas.org.ng</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Desk 4: Welfare -->
+        <div class="desk-item">
+          <div class="desk-role">
+            <span>Welfare & Indigence Desk</span>
+            <span style="font-size:0.7rem; background:#dcfce7; color:#15803d; padding:2px 8px; border-radius:10px;">Support</span>
+          </div>
+          <div class="desk-holder">Office of the Welfare Director</div>
+          <div class="desk-contact-links">
+            <a href="mailto:welfare@nabas.org.ng" class="desk-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>welfare@nabas.org.ng</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <!-- MAP SECTION -->
+    <section class="map-section">
+      <div class="map-header">
+        <div>
+          <h3 class="map-title">Badagry Secretariat Location</h3>
+          <p class="map-subtitle">Badagry Local Government Secretariat, Ajara, Badagry, Lagos State</p>
+        </div>
+        <a href="https://maps.google.com/?q=Badagry+Local+Government+Secretariat+Ajara+Lagos" target="_blank" class="btn-join" style="font-size:0.78rem; padding:6px 14px;">
+          <span>Open in Google Maps</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+
+      <!-- Embedded Google Map -->
+      <iframe 
+        class="map-frame-box" 
+        src="https://maps.google.com/maps?q=Badagry%20Local%20Government%20Secretariat%2C%20Ajara%2C%20Badagry%2C%20Lagos&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+        loading="lazy" 
+        title="NABAS Location Map">
+      </iframe>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>NABAS</h3>
+          <p>The National Association of Badagry Students is the united voice of indigenous and resident students across tertiary institutions in Nigeria.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">About NABAS</a></li>
+            <li><a href="leadership.html">Executive Council</a></li>
+            <li><a href="chapters.html">Institutions</a></li>
+            <li><a href="programmes.html">Programmes</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Contact</h4>
+          <ul class="footer-links-list">
+            <li>Secretariat: Badagry Local Government</li>
+            <li>Email: info@nabas.org.ng</li>
+            <li>Phone: +234 901 234 5678</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Follow Us</h4>
+          <div class="social-icons-row">
+            <!-- WhatsApp -->
+            <a href="https://wa.me/2349012345678" target="_blank" class="social-icon-btn" aria-label="WhatsApp">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            </a>
+            <!-- Facebook -->
+            <a href="https://facebook.com/nabasnational" target="_blank" class="social-icon-btn" aria-label="Facebook">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <!-- Single Glyph X -->
+            <a href="https://x.com/nabasnational" target="_blank" class="social-icon-btn" aria-label="X">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a href="https://instagram.com/nabasnational" target="_blank" class="social-icon-btn" aria-label="Instagram">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/company/nabasnational" target="_blank" class="social-icon-btn" aria-label="LinkedIn">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 National Association of Badagry Students (NABAS). All rights reserved.</div>
+        <div>Unity, Excellence & Development</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- VANILLA JAVASCRIPT -->
+  <script>
+    // 1. Mobile Drawer
+    const mobileBtn = document.getElementById('mobileNavBtn');
+    const drawer = document.getElementById('mobileDrawer');
+    const drawerClose = document.getElementById('drawerClose');
+
+    mobileBtn.addEventListener('click', () => drawer.classList.add('open'));
+    drawerClose.addEventListener('click', () => drawer.classList.remove('open'));
+
+    // 2. Contact Form Submission Handler
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      alert('Thank you! Your message has been officially dispatched to the NABAS Secretariat. A representative will get back to you shortly.');
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>

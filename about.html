@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | NABAS - National Association of Badagry Students</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CSS VARIABLES
+       ========================================================================== */
+    :root {
+      --primary-navy: #0c1d36;
+      --navy-dark: #071224;
+      --navy-light: #152b4d;
+      --navy-deep: #09172c;
+      --accent-gold: #f5b301;
+      --accent-gold-hover: #e5a400;
+      --gold-tint: #fff9e6;
+      --gold-gradient: linear-gradient(135deg, #f5b301 0%, #d99b00 100%);
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --bg-white: #ffffff;
+      --bg-slate: #f8fafc;
+      --bg-slate-200: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-subtle: rgba(226, 232, 240, 0.8);
+      --card-radius: 18px;
+      --pill-radius: 9999px;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 20px -2px rgba(15, 23, 42, 0.07);
+      --shadow-lg: 0 10px 30px -4px rgba(15, 23, 42, 0.1);
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-accent: 'Caveat', cursive;
+      --container-max: 1240px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-main);
+      color: var(--text-main);
+      background-color: var(--bg-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      outline: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
+    /* Section Tag Badge */
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-tag::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 14px;
+      background: var(--accent-gold);
+      border-radius: 2px;
+    }
+
+    .section-tag.tag-light {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .section-title.light {
+      color: #ffffff;
+    }
+
+    .section-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2.25rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .link-arrow {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--navy-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .link-arrow:hover {
+      color: var(--accent-gold-hover);
+      transform: translateX(3px);
+    }
+
+    /* Buttons */
+    .btn-gold {
+      background: var(--accent-gold);
+      color: var(--navy-dark);
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--pill-radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: 0 4px 14px rgba(245, 179, 1, 0.35);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn-gold:hover {
+      background: var(--accent-gold-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 179, 1, 0.45);
+    }
+
+    .btn-gold svg {
+      transition: transform 0.2s ease;
+    }
+
+    .btn-gold:hover svg {
+      transform: translateX(3px);
+    }
+
+    .btn-outline-white {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--pill-radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+    }
+
+    .btn-outline-white:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .btn-navy {
+      background: var(--navy-dark);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.65rem 1.3rem;
+      border-radius: var(--pill-radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.25s ease;
+    }
+
+    .btn-navy:hover {
+      background: var(--navy-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(12, 29, 54, 0.25);
+    }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== */
+    .header-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .header-nav.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #09172c 0%, #152b4d 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--accent-gold);
+      box-shadow: 0 2px 8px rgba(245, 179, 1, 0.2);
+    }
+
+    .logo-badge svg {
+      width: 26px;
+      height: 26px;
+      fill: var(--accent-gold);
+    }
+
+    .logo-text-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--navy-dark);
+      line-height: 1.1;
+    }
+
+    .logo-sub {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 1.75rem;
+    }
+
+    .nav-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #334155;
+      padding: 0.3rem 0;
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--navy-dark);
+    }
+
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2.5px;
+      background: var(--accent-gold);
+      border-radius: 2px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .search-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #475569;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .search-btn:hover {
+      background-color: var(--bg-slate);
+      color: var(--navy-dark);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+      color: var(--navy-dark);
+    }
+
+    /* ==========================================================================
+       HERO / BANNER
+       ========================================================================== */
+    .about-hero {
+      background-color: var(--navy-dark);
+      background-image: 
+        radial-gradient(circle at 80% 20%, rgba(21, 43, 77, 0.8) 0%, transparent 60%),
+        linear-gradient(to bottom, rgba(7, 18, 36, 0.9) 0%, rgba(12, 29, 54, 0.96) 100%),
+        url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+      color: #ffffff;
+      padding: 4.5rem 0 4rem;
+      position: relative;
+      border-bottom: 3px solid var(--accent-gold);
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+    }
+
+    .breadcrumb a {
+      color: #cbd5e1;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--accent-gold);
+    }
+
+    .breadcrumb span.current {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .hero-inner-banner {
+      max-width: 820px;
+    }
+
+    .hero-banner-title {
+      font-size: 2.85rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-banner-title .highlight-yellow {
+      color: var(--accent-gold);
+    }
+
+    .hero-lead-text {
+      font-size: 1.1rem;
+      color: #cbd5e1;
+      line-height: 1.7;
+      max-width: 720px;
+    }
+
+    /* ==========================================================================
+       SECTION: WHO WE ARE & ORIGIN STORY
+       ========================================================================== */
+    .section-origin {
+      padding: 5.5rem 0;
+      background: var(--bg-white);
+    }
+
+    .origin-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .origin-paragraphs p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+
+    .origin-paragraphs p strong {
+      color: var(--navy-dark);
+      font-weight: 700;
+    }
+
+    .origin-stat-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .origin-stat-box .num {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      line-height: 1.1;
+    }
+
+    .origin-stat-box .lbl {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .origin-visual-stack {
+      position: relative;
+      padding: 1.5rem;
+    }
+
+    .origin-main-img {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px -10px rgba(12, 29, 54, 0.2);
+      border: 4px solid #ffffff;
+      height: 420px;
+    }
+
+    .origin-main-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .origin-floating-quote {
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      right: 2rem;
+      background: rgba(12, 29, 54, 0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(245, 179, 1, 0.4);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      color: #ffffff;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .origin-floating-quote p {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: #e2e8f0;
+      margin-bottom: 0.4rem;
+    }
+
+    .origin-floating-quote .cite {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ==========================================================================
+       SECTION: MISSION, VISION & CORE VALUES
+       ========================================================================== */
+    .section-values {
+      padding: 5.5rem 0;
+      background: var(--bg-slate);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .mv-dual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .mv-box {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .mv-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(245, 179, 1, 0.5);
+    }
+
+    .mv-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--navy-dark);
+    }
+
+    .mv-box.vision-featured::before {
+      background: var(--accent-gold);
+    }
+
+    .mv-icon-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--bg-slate);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    .mv-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .mv-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Interactive Tabbed Pillars / Core Values */
+    .values-container-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 22px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .pillar-card {
+      background: var(--bg-slate);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: all 0.25s ease;
+    }
+
+    .pillar-card:hover {
+      background: #ffffff;
+      border-color: var(--accent-gold);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .pillar-num {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--accent-gold-hover);
+      margin-bottom: 0.75rem;
+    }
+
+    .pillar-heading {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-body {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       SECTION: JOURNEY / MILESTONES TIMELINE
+       ========================================================================== */
+    .section-timeline {
+      padding: 5.5rem 0;
+      background: var(--bg-white);
+    }
+
+    .timeline-wrapper {
+      position: relative;
+      margin-top: 3.5rem;
+    }
+
+    .timeline-wrapper::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border-color);
+      transform: translateX(-50%);
+    }
+
+    .timeline-row {
+      display: flex;
+      position: relative;
+      margin-bottom: 3.5rem;
+      align-items: center;
+    }
+
+    .timeline-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-row:nth-child(odd) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-content-side {
+      width: 45%;
+    }
+
+    .timeline-badge-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--navy-dark);
+      border: 3px solid #ffffff;
+      box-shadow: 0 0 0 4px rgba(245, 179, 1, 0.4);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-gold);
+    }
+
+    .timeline-card {
+      background: var(--bg-slate);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: all 0.25s ease;
+    }
+
+    .timeline-card:hover {
+      background: #ffffff;
+      border-color: var(--accent-gold);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .timeline-year {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      background: #fde68a;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       SECTION: ORGANIZATIONAL STRUCTURE & GOVERNANCE
+       ========================================================================== */
+    .section-structure {
+      padding: 5.5rem 0;
+      background: var(--bg-slate);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .org-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .org-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .org-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--navy-dark);
+    }
+
+    .org-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--bg-slate);
+      color: var(--navy-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .org-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .org-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .org-role-tag {
+      margin-top: 1.25rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-gold-hover);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ==========================================================================
+       SECTION: CONSTITUTION & CHARTER DOWNLOAD
+       ========================================================================== */
+    .section-constitution {
+      padding: 4.5rem 0;
+      background: var(--bg-white);
+    }
+
+    .constitution-card {
+      background: linear-gradient(135deg, #0c1d36 0%, #071224 100%);
+      border-radius: 24px;
+      padding: 3rem 3.5rem;
+      color: #ffffff;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2.5rem;
+      align-items: center;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(245, 179, 1, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .constitution-card::after {
+      content: "NABAS";
+      position: absolute;
+      right: -20px;
+      bottom: -35px;
+      font-size: 8rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.03);
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .const-info {
+      max-width: 680px;
+    }
+
+    .const-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .const-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .const-desc {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      line-height: 1.65;
+    }
+
+    .btn-download-pdf {
+      background: var(--accent-gold);
+      color: var(--navy-dark);
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: var(--pill-radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(245, 179, 1, 0.35);
+    }
+
+    .btn-download-pdf:hover {
+      background: var(--accent-gold-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(245, 179, 1, 0.5);
+    }
+
+    /* ==========================================================================
+       SECTION: BOTTOM CALL TO ACTION
+       ========================================================================== */
+    .section-cta {
+      padding: 5rem 0;
+      background: var(--bg-slate);
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .cta-container-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .cta-heading {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .cta-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .cta-btn-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .site-footer {
+      background: var(--navy-dark);
+      color: #94a3b8;
+      padding: 4.5rem 0 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.875rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .footer-brand .logo-title {
+      color: #ffffff;
+    }
+
+    .footer-brand .logo-sub {
+      color: #94a3b8;
+    }
+
+    .footer-about-snippet {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #64748b;
+      max-width: 300px;
+    }
+
+    .footer-heading {
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .footer-links-list a {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+
+    .footer-links-list a:hover {
+      color: var(--accent-gold);
+      transform: translateX(3px);
+    }
+
+    .footer-contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .footer-contact-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-gold);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .footer-social-links {
+      display: flex;
+      gap: 0.65rem;
+      margin-top: 0.5rem;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .social-btn:hover {
+      background: var(--accent-gold);
+      color: var(--navy-dark);
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom-bar {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-motto {
+      color: var(--accent-gold);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* Modal for Quick Join */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 18, 36, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 100%;
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      transform: scale(0.95);
+      transition: transform 0.25s ease;
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      font-size: 1.5rem;
+      color: #94a3b8;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .modal-close:hover {
+      color: var(--navy-dark);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1100px) {
+      .pillars-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .org-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-banner-title {
+        font-size: 2.3rem;
+      }
+      .origin-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .origin-visual-stack {
+        padding: 0;
+      }
+      .origin-floating-quote {
+        position: static;
+        margin-top: 1rem;
+      }
+      .mv-dual-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .constitution-card {
+        grid-template-columns: 1fr;
+        padding: 2.25rem;
+        text-align: left;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        flex-direction: column;
+        padding: 2rem 1.5rem;
+        gap: 1.25rem;
+        border-bottom: 2px solid var(--border-color);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+      }
+      .nav-menu.open {
+        transform: translateY(0);
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .timeline-wrapper::before {
+        left: 20px;
+      }
+      .timeline-row {
+        flex-direction: column !important;
+        align-items: flex-start;
+        padding-left: 50px;
+        margin-bottom: 2.5rem;
+      }
+      .timeline-content-side {
+        width: 100%;
+      }
+      .timeline-badge-center {
+        left: 20px;
+        top: 24px;
+        transform: translate(-50%, 0);
+      }
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .org-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-banner-title {
+        font-size: 1.85rem;
+      }
+      .origin-stat-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION BAR
+       ========================================================================== -->
+  <header class="header-nav" id="mainHeader">
+    <div class="container nav-container">
+      <a href="index.html" class="logo-brand">
+        <div class="logo-badge">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <div class="logo-text-block">
+          <span class="logo-title">NABAS</span>
+          <span class="logo-sub">National Association of Badagry Students</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link active">About</a></li>
+          <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+          <li><a href="chapters.html" class="nav-link">Chapters</a></li>
+          <li><a href="programmes.html" class="nav-link">Programmes</a></li>
+          <li><a href="news.html" class="nav-link">News</a></li>
+          <li><a href="resources.html" class="nav-link">Resources</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="search-btn" aria-label="Search website" onclick="openSearchModal()">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <a href="#join-modal" class="btn-gold" onclick="openJoinModal(event)">
+          <span>Join NABAS</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO BANNER
+       ========================================================================== -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="hero-inner-banner">
+        <nav class="breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <span class="current">About Us</span>
+        </nav>
+        <div class="section-tag tag-light">About NABAS</div>
+        <h1 class="hero-banner-title">
+          Empowering Badagry Students.<br>
+          <span class="highlight-yellow">Championing Heritage & Academic Excellence.</span>
+        </h1>
+        <p class="hero-lead-text">
+          Uniting young minds from the historic ancient cradle of Badagry across tertiary institutions in Nigeria. We are dedicated to fostering scholarship, leadership resilience, and transformative community advancement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 1: WHO WE ARE & ORIGIN STORY
+       ========================================================================== -->
+  <section class="section-origin">
+    <div class="container">
+      <div class="origin-grid">
+        <div class="origin-left">
+          <div class="section-tag">Origin & Heritage</div>
+          <h2 class="section-title" style="margin-bottom: 1.25rem;">A Legacy of Solidarity, Learning and Cultural Pride</h2>
+          
+          <div class="origin-paragraphs">
+            <p>
+              The <strong>National Association of Badagry Students (NABAS)</strong> was established out of a collective aspiration to provide an institutional umbrella for all students of Badagry origin studying across universities, polytechnics, and colleges of education across the federation.
+            </p>
+            <p>
+              Rooted in the illustrious coastal history of Badagry—a cradle of early Western education, resilient diplomacy, and cultural distinction in West Africa—NABAS connects tertiary students across institutions such as <strong>LASU, UNILAG, LASUSTECH, LASUED, YABATECH</strong>, and federal universities nationwide.
+            </p>
+            <p>
+              Beyond campus borders, NABAS serves as the vanguard for youth advocacy, educational interventions, bursary access, and civic engagement, making sure the collective voice and potential of Badagry's next generation of leaders are heard and nurtured.
+            </p>
+          </div>
+
+          <div class="origin-stat-strip">
+            <div class="origin-stat-box">
+              <div class="num">5,000+</div>
+              <div class="lbl">Active & Alumni Network</div>
+            </div>
+            <div class="origin-stat-box">
+              <div class="num">20+</div>
+              <div class="lbl">Campus Chapters</div>
+            </div>
+            <div class="origin-stat-box">
+              <div class="num">100%</div>
+              <div class="lbl">Non-Partisan & Student-Led</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="origin-visual-stack">
+          <div class="origin-main-img">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="NABAS Students Gathering">
+          </div>
+          <div class="origin-floating-quote">
+            <p>“Education is the greatest equalizer and the most potent instrument for the lasting transformation of our ancient kingdom.”</p>
+            <div class="cite">— Foundational Charter of NABAS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 2: MISSION, VISION & CORE VALUES
+       ========================================================================== -->
+  <section class="section-values">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <div class="section-tag">Purpose & Compass</div>
+          <h2 class="section-title">What Drives Our Mission</h2>
+        </div>
+      </div>
+
+      <!-- Dual Vision / Mission Cards -->
+      <div class="mv-dual-grid">
+        <div class="mv-box vision-featured">
+          <div class="mv-icon-badge">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <h3 class="mv-title">Our Vision</h3>
+          <p class="mv-desc">
+            To be a preeminent student association recognized nationally for cultivating exemplary scholarship, unyielding unity, and sustainable civic and socio-economic transformation across Badagry Division and Lagos State.
+          </p>
+        </div>
+
+        <div class="mv-box">
+          <div class="mv-icon-badge">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </div>
+          <h3 class="mv-title">Our Mission</h3>
+          <p class="mv-desc">
+            To unite, support, and empower Badagry students across all tertiary institutions through responsive advocacy, merit scholarships, mentorship, career readiness initiatives, and impactful grassroots community outreach.
+          </p>
+        </div>
+      </div>
+
+      <!-- Core Values / Pillars -->
+      <div class="values-container-card">
+        <div class="section-tag">The Foundations of NABAS</div>
+        <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--navy-dark);">Our Five Core Pillars</h3>
+        
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-num">PILLAR 01</div>
+            <h4 class="pillar-heading">Unity & Brotherhood</h4>
+            <p class="pillar-body">Fostering deep camaraderie among Badagry students across diverse campuses, towns, and communities.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-num">PILLAR 02</div>
+            <h4 class="pillar-heading">Academic Integrity</h4>
+            <p class="pillar-body">Promoting uncompromising scholastic excellence, research, peer-to-peer tutorials, and study bursaries.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-num">PILLAR 03</div>
+            <h4 class="pillar-heading">Cultural Preservation</h4>
+            <p class="pillar-body">Celebrating Badagry’s rich maritime legacy, Ogu traditions, historical landmarks, and indigenous values.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-num">PILLAR 04</div>
+            <h4 class="pillar-heading">Transformational Leadership</h4>
+            <p class="pillar-body">Training students with hands-on governance, ethics, public speaking, and project management capabilities.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-num">PILLAR 05</div>
+            <h4 class="pillar-heading">Student Welfare & Advocacy</h4>
+            <p class="pillar-body">Standing as an assertive voice for student rights, campus safety, accommodation access, and financial relief.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 3: JOURNEY & MILESTONES TIMELINE
+       ========================================================================== -->
+  <section class="section-timeline">
+    <div class="container">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <div class="section-tag" style="justify-content: center;">Historical Footprints</div>
+        <h2 class="section-title">The Journey So Far</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+          How a visionary student gathering blossomed into one of Lagos State's most active and recognized student associations.
+        </p>
+      </div>
+
+      <div class="timeline-wrapper">
+        <!-- Milestone 1 -->
+        <div class="timeline-row">
+          <div class="timeline-badge-center">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"></circle></svg>
+          </div>
+          <div class="timeline-content-side">
+            <div class="timeline-card">
+              <span class="timeline-year">Formation</span>
+              <h3 class="timeline-title">The Inception of NABAS</h3>
+              <p class="timeline-text">
+                Visionary student pioneers from Badagry across Lagos institutions convened to birth a unified front to champion the academic welfare and collective interests of indigenous students.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="timeline-row">
+          <div class="timeline-badge-center">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"></circle></svg>
+          </div>
+          <div class="timeline-content-side">
+            <div class="timeline-card">
+              <span class="timeline-year">Expansion</span>
+              <h3 class="timeline-title">Decentralized Campus Chapters</h3>
+              <p class="timeline-text">
+                Establishment of accredited institutional chapters at LASU, AOCOED (now LASUED), UNILAG, and YABATECH, bringing representative leadership closer to students.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="timeline-row">
+          <div class="timeline-badge-center">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"></circle></svg>
+          </div>
+          <div class="timeline-content-side">
+            <div class="timeline-card">
+              <span class="timeline-year">Social Impact</span>
+              <h3 class="timeline-title">Bursary Support & Free JAMB Forms</h3>
+              <p class="timeline-text">
+                Launched the historic educational support scheme, providing preparatory tutoring and free UTME forms to secondary school leavers across Badagry division.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 4 -->
+        <div class="timeline-row">
+          <div class="timeline-badge-center">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"></circle></svg>
+          </div>
+          <div class="timeline-content-side">
+            <div class="timeline-card">
+              <span class="timeline-year">Today & Beyond</span>
+              <h3 class="timeline-title">Digital Innovation & Global Network</h3>
+              <p class="timeline-text">
+                Scaling nationwide representation to 20+ tertiary institutions, digital portals for bursary access, and international career mentorship networks for alumni.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 4: GOVERNANCE & ORGANIZATIONAL STRUCTURE
+       ========================================================================== -->
+  <section class="section-structure">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <div class="section-tag">Checks & Balances</div>
+          <h2 class="section-title">Organizational Structure & Governance</h2>
+        </div>
+      </div>
+
+      <div class="org-grid">
+        <!-- 1. National Executive Council -->
+        <div class="org-card">
+          <div class="org-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="org-title">National Executive Council (NEC)</h3>
+          <p class="org-desc">
+            Led by the National President, the NEC executes policy decisions, oversees association operations, manages programmes, and represents Badagry students in national affairs.
+          </p>
+          <div class="org-role-tag">Executive Arm</div>
+        </div>
+
+        <!-- 2. Senate / Parliament -->
+        <div class="org-card">
+          <div class="org-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 21h18"></path>
+              <path d="M5 21V10.85L12 3l7 7.85V21"></path>
+              <path d="M9 21v-7h6v7"></path>
+            </svg>
+          </div>
+          <h3 class="org-title">The Senate & Students' Parliament</h3>
+          <p class="org-desc">
+            The legislative pillar made up of chapter delegates and senators who debate policy, ratify budgets, uphold constitutional integrity, and protect student interests.
+          </p>
+          <div class="org-role-tag">Legislative Arm</div>
+        </div>
+
+        <!-- 3. Institutional Chapter Executives -->
+        <div class="org-card">
+          <div class="org-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
+          </div>
+          <h3 class="org-title">Institutional Campus Chapters</h3>
+          <p class="org-desc">
+            Autonomous campus executive boards in universities, polytechnics, and colleges responsible for member onboarding, localized welfare, and academic tutorials.
+          </p>
+          <div class="org-role-tag">Campus Grassroots</div>
+        </div>
+
+        <!-- 4. Advisory & Elders Council -->
+        <div class="org-card">
+          <div class="org-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+          </div>
+          <h3 class="org-title">Advisory Council & Patrons</h3>
+          <p class="org-desc">
+            Distinguished elders, royal fathers, prominent Badagry leaders of thought, and past alumni who provide strategic counsel, mentorship, and institutional stability.
+          </p>
+          <div class="org-role-tag">Guidance & Custodianship</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 5: CONSTITUTION & CHARTER DOWNLOAD
+       ========================================================================== -->
+  <section class="section-constitution">
+    <div class="container">
+      <div class="constitution-card">
+        <div class="const-info">
+          <div class="const-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            Supreme Governing Instrument
+          </div>
+          <h2 class="const-title">The Constitution of NABAS</h2>
+          <p class="const-desc">
+            Download the official amended constitution of the National Association of Badagry Students. Learn about your rights, electoral codes, chapter obligations, and code of conduct.
+          </p>
+        </div>
+
+        <div>
+          <a href="#download" class="btn-download-pdf" onclick="triggerDownloadMessage(event)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Download PDF (Amended)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 6: CTA BANNER
+       ========================================================================== -->
+  <section class="section-cta">
+    <div class="container">
+      <div class="cta-container-inner">
+        <div class="section-tag" style="justify-content: center;">Get Involved Today</div>
+        <h2 class="cta-heading">Join the Movement. Shape the Future of Badagry.</h2>
+        <p class="cta-desc">
+          Whether you are an incoming freshman, an undergraduate, or a postgraduate student in Nigeria, NABAS gives you a network, a voice, and a home away from home.
+        </p>
+
+        <div class="cta-btn-group">
+          <a href="#join-modal" class="btn-gold" onclick="openJoinModal(event)">
+            <span>Register as a Member</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="chapters.html" class="btn-navy">
+            <span>Find Your Campus Chapter</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER (Matches Index.html)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-brand">
+            <div class="logo-badge">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <div class="logo-text-block">
+              <span class="logo-title">NABAS</span>
+              <span class="logo-sub">National Association of Badagry Students</span>
+            </div>
+          </div>
+          <p class="footer-about-snippet">
+            Empowering students, cultivating future leaders, and fostering sustainable community development throughout Badagry and beyond.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="leadership.html">Leadership</a></li>
+            <li><a href="chapters.html">Chapters</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Programmes</h4>
+          <ul class="footer-links-list">
+            <li><a href="programmes.html">Programmes</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Contact Us</h4>
+          <div class="footer-contact-items">
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>+234 901 234 5678</span>
+            </div>
+
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>info@nabas.org.ng</span>
+            </div>
+
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Badagry, Lagos State</span>
+            </div>
+
+            <div style="margin-top: 0.5rem;">
+              <span style="font-size: 0.75rem; color: #cbd5e1; font-weight: 600;">Follow Us</span>
+              <div class="footer-social-links">
+                <a href="#fb" class="social-btn" aria-label="Facebook">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <a href="#tw" class="social-btn" aria-label="X Twitter">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="#ig" class="social-btn" aria-label="Instagram">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="#yt" class="social-btn" aria-label="YouTube">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                </a>
+                <a href="#in" class="social-btn" aria-label="LinkedIn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          © 2025 National Association of Badagry Students (NABAS). All rights reserved.
+        </div>
+        <div class="footer-motto">
+          Unity • Excellence • Development
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODAL: JOIN NABAS
+       ========================================================================== -->
+  <div class="modal-overlay" id="joinModal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeJoinModal()">&times;</button>
+      <div class="section-tag">Join Our Community</div>
+      <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--navy-dark); margin-bottom: 0.5rem;">NABAS Membership</h3>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+        Indigene or resident of Badagry in a recognized tertiary institution? Register below to become an active member.
+      </p>
+
+      <form onsubmit="handleRegistrationSubmit(event)">
+        <div style="margin-bottom: 1rem;">
+          <label style="display:block; font-size: 0.78rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 0.25rem;">Full Name</label>
+          <input type="text" required placeholder="e.g. Adebayo Senapon" style="width: 100%; padding: 0.65rem 0.9rem; border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.88rem; font-family: inherit;">
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="display:block; font-size: 0.78rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 0.25rem;">Tertiary Institution</label>
+          <input type="text" required placeholder="e.g. Lagos State University (LASU)" style="width: 100%; padding: 0.65rem 0.9rem; border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.88rem; font-family: inherit;">
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display:block; font-size: 0.78rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 0.25rem;">Email Address</label>
+          <input type="email" required placeholder="name@example.com" style="width: 100%; padding: 0.65rem 0.9rem; border-radius: 8px; border: 1px solid var(--border-color); font-size: 0.88rem; font-family: inherit;">
+        </div>
+
+        <button type="submit" class="btn-gold" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <span>Submit Membership Request</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT INTERACTIONS
+       ========================================================================== -->
+  <script>
+    /* Mobile Menu Toggle */
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    if (mobileBtn && navMenu) {
+      mobileBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+      });
+
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('open');
+        });
+      });
+    }
+
+    /* Scroll header elevation */
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('mainHeader');
+      if (window.scrollY > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    /* Join Modal Functions */
+    function openJoinModal(e) {
+      if (e) e.preventDefault();
+      const modal = document.getElementById('joinModal');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeJoinModal() {
+      const modal = document.getElementById('joinModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'joinModal') {
+        closeJoinModal();
+      }
+    }
+
+    function handleRegistrationSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span>Processing...</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>✓ Request Submitted!</span>';
+        btn.style.backgroundColor = '#10b981';
+        btn.style.color = '#ffffff';
+        setTimeout(() => {
+          closeJoinModal();
+          btn.innerHTML = originalText;
+          btn.style.backgroundColor = '';
+          btn.style.color = '';
+          e.target.reset();
+        }, 1400);
+      }, 700);
+    }
+
+    /* Search Modal Mock */
+    function openSearchModal() {
+      const q = prompt("Search NABAS about us, constitution or history:");
+      if (q) console.log("Searching for:", q);
+    }
+
+    /* Download Trigger */
+    function triggerDownloadMessage(e) {
+      e.preventDefault();
+      const btn = e.currentTarget;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span>Preparing Document...</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>✓ Constitution Download Initiated</span>';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+        }, 2000);
+      }, 600);
+    }
+  </script>
+</body>
+</html>

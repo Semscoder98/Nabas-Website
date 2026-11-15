@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}500 - Server Error | NABAS{% endblock %}
+
+{% block extra_css %}
+<style>
+  .error-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    background-color: var(--bg-slate);
+    min-height: 70vh;
+  }
+  .error-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    padding: 50px 36px;
+    max-width: 680px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  .error-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #dc2626 0%, var(--accent-gold) 50%, var(--navy-dark) 100%);
+  }
+  .error-watermark {
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--navy-dark);
+    opacity: 0.08;
+    line-height: 0.9;
+    margin-bottom: -50px;
+    user-select: none;
+    letter-spacing: -0.04em;
+  }
+  .badge-error {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fee2e2;
+    color: #dc2626;
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 14px;
+    border-radius: var(--pill-radius);
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+  }
+  .error-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--navy-dark);
+    margin-bottom: 12px;
+    line-height: 1.25;
+    position: relative;
+    z-index: 2;
+  }
+  .error-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 520px;
+    margin: 0 auto 28px;
+    position: relative;
+    z-index: 2;
+  }
+  .error-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="error-container">
+  <div class="error-card">
+    <div class="error-watermark">500</div>
+    <div class="badge-error">
+      <span>Error 500 &bull; Internal Server Anomaly</span>
+    </div>
+
+    <h1 class="error-title">Server Encountered A <span>Hiccup</span></h1>
+    <p class="error-desc">Our technical team has been notified. The national server experienced an unexpected condition while processing your request.</p>
+
+    <div class="error-actions">
+      <a href="{% url 'home' %}" class="btn-gold">
+        <span>Return to Homepage</span>
+      </a>
+      <a href="{% url 'contact' %}" class="btn-navy">
+        <span>Contact Technical Desk</span>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}
