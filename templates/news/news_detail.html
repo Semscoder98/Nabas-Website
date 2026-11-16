@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Article Details | NABAS - National Association of Badagry Students{% endblock %}
+{% block title %}{% if article %}{{ article.title }} | NABAS{% else %}Article Details | NABAS - National Association of Badagry Students{% endif %}{% endblock %}
+{% block meta_description %}{% if article %}{{ article.excerpt|default:article.content|striptags|truncatechars:160 }}{% else %}Official communiqué and news from the National Association of Badagry Students (NABAS).{% endif %}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_title %}{% if article %}{{ article.title }} | NABAS{% else %}Article Details | NABAS{% endif %}{% endblock %}
+{% block og_description %}{% if article %}{{ article.excerpt|default:article.content|striptags|truncatechars:160 }}{% else %}Official communiqué and news from the National Association of Badagry Students (NABAS).{% endif %}{% endblock %}
+{% block og_image %}{% if article %}{% if '://' in article.image %}{{ article.image }}{% else %}{{ request.scheme }}://{{ request.get_host }}{{ article.image }}{% endif %}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo.jpg' %}{% endif %}{% endblock %}
+{% block og_image_alt %}{% if article %}{{ article.title }}{% else %}NABAS Official Communiqué{% endif %}{% endblock %}
+{% block twitter_title %}{% if article %}{{ article.title }} | NABAS{% else %}Article Details | NABAS{% endif %}{% endblock %}
+{% block twitter_description %}{% if article %}{{ article.excerpt|default:article.content|striptags|truncatechars:160 }}{% else %}Official communiqué and news from the National Association of Badagry Students (NABAS).{% endif %}{% endblock %}
+{% block twitter_image %}{% if article %}{% if '://' in article.image %}{{ article.image }}{% else %}{{ request.scheme }}://{{ request.get_host }}{{ article.image }}{% endif %}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo.jpg' %}{% endif %}{% endblock %}
 
 {% block extra_css %}
 <style>

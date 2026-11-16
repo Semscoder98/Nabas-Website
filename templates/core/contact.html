@@ -52,14 +52,23 @@
       margin-inline: auto !important;
       padding-inline: 1.5rem !important;
     }
+
+    /* =========================================
        COMPACT PROPORTIONAL HERO BANNER
     ========================================= */
     .page-hero {
-      background: linear-gradient(135deg, #014d36 0%, #027c57 100%);
+      background-color: var(--primary-dark);
+      background-image:
+        radial-gradient(circle at 85% 30%, rgba(3, 152, 106, 0.75) 0%, transparent 60%),
+        linear-gradient(to bottom, rgba(1, 47, 33, 0.92) 0%, rgba(1, 77, 54, 0.98) 100%),
+        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
       color: white;
       padding: 52px 0 56px;
       position: relative;
       overflow: hidden;
+      border-bottom: 4px solid var(--accent);
     }
 
     .page-hero::after {

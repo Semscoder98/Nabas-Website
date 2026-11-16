@@ -6,6 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}NABAS | National Association of Badagry Students{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}Official portal of the National Association of Badagry Students (NABAS) - Unity, Excellence, and Development.{% endblock %}">
+
+  <!-- Website Icon (Favicon) -->
+  <link rel="icon" type="image/jpeg" href="{% static 'img/logo.jpg' %}">
+  <link rel="shortcut icon" type="image/jpeg" href="{% static 'img/logo.jpg' %}">
+  <link rel="apple-touch-icon" href="{% static 'img/logo.jpg' %}">
+
+  <!-- Open Graph / Social Link Preview Meta Tags -->
+  <meta property="og:site_name" content="NABAS | National Association of Badagry Students">
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+  <meta property="og:url" content="{{ request.build_absolute_uri }}">
+  <meta property="og:title" content="{% block og_title %}NABAS | National Association of Badagry Students{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Official portal of the National Association of Badagry Students (NABAS) - Unity, Excellence, and Development.{% endblock %}">
+  <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo.jpg' %}{% endblock %}">
+  <meta property="og:image:alt" content="{% block og_image_alt %}NABAS Official Logo{% endblock %}">
+
+  <!-- Twitter / X Card Preview Meta Tags -->
+  <meta name="twitter:card" content="{% block twitter_card %}summary_large_image{% endblock %}">
+  <meta name="twitter:title" content="{% block twitter_title %}NABAS | National Association of Badagry Students{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}Official portal of the National Association of Badagry Students (NABAS) - Unity, Excellence, and Development.{% endblock %}">
+  <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo.jpg' %}{% endblock %}">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -419,7 +439,9 @@
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr 1fr;
       gap: 3rem;
-      margin-bottom: 3.5rem;
+      margin-bottom: 2.25rem !important;
+      padding-bottom: 0 !important;
+      border-bottom: none !important;
     }
 
     .footer-brand {
@@ -536,22 +558,28 @@
       transform: translateY(-2px);
     }
 
-    .footer-bottom-bar {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 1.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      color: #94a3b8;
-      flex-wrap: wrap;
-      gap: 1rem;
+    .footer-motto {
+      color: var(--accent-gold) !important;
+      font-weight: 600 !important;
+      font-size: 0.85rem !important;
+      letter-spacing: 0.05em !important;
+      text-align: center !important;
+      width: 100% !important;
+      margin-bottom: 1.25rem !important;
     }
 
-    .footer-motto {
-      color: var(--accent-gold);
-      font-weight: 600;
-      letter-spacing: 0.05em;
+    .footer-bottom-bar {
+      border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+      padding-top: 1.5rem !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+      text-align: center !important;
+      font-size: 0.8rem !important;
+      color: #94a3b8 !important;
+      gap: 0.35rem !important;
+      width: 100% !important;
     }
 
     @media (max-width: 900px) {
@@ -871,18 +899,18 @@
         </div>
       </div>
 
+      <!-- Footer Motto (Before Copyright Demarcation Line) -->
+      <div class="footer-motto">
+        Unity &bull; Excellence &bull; Development
+      </div>
+
       <!-- Footer Bottom Bar -->
       <div class="footer-bottom-bar">
         <div>
           &copy; 2026 National Association of Badagry Students (NABAS). All rights reserved.
-        <div class="footer-motto">
-          Unity &bull; Excellence &bull; Development
         </div>
-          <div style="font-size: 0.76rem; color: #94a3b8; margin-top: 4px;"> 
-            <center>
-              Designed by Dolmzone Ltd | Tande Semeton T.
-            </center>
-          </div>
+        <div style="font-size: 0.76rem; color: #94a3b8;">
+          Designed by Dolmzone Ltd | Tande Semeton T.
         </div>
       </div>
     </div>

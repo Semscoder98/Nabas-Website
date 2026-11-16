@@ -2,6 +2,15 @@
 {% load static %}
 
 {% block title %}{{ program.title }} - NABAS Programmes{% endblock %}
+{% block meta_description %}{{ program.description|striptags|truncatechars:160 }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_title %}{{ program.title }} | NABAS Programmes{% endblock %}
+{% block og_description %}{{ program.description|striptags|truncatechars:160 }}{% endblock %}
+{% block og_image %}{% if '://' in program.display_image %}{{ program.display_image }}{% else %}{{ request.scheme }}://{{ request.get_host }}{{ program.display_image }}{% endif %}{% endblock %}
+{% block og_image_alt %}{{ program.title }}{% endblock %}
+{% block twitter_title %}{{ program.title }} | NABAS Programmes{% endblock %}
+{% block twitter_description %}{{ program.description|striptags|truncatechars:160 }}{% endblock %}
+{% block twitter_image %}{% if '://' in program.display_image %}{{ program.display_image }}{% else %}{{ request.scheme }}://{{ request.get_host }}{{ program.display_image }}{% endif %}{% endblock %}
 
 {% block extra_css %}
 <style>
